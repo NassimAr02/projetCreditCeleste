@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 namespace CreditCeleste
 {
     class Connexion
-    {
+    {//
         // Remplace ces valeurs par celles de ta configuration
         string connectionString = "Server=192.168.1.33;Database=creditCelesteARRASS;User Id=creditUSER;Password=creditCeleste;";
 
