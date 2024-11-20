@@ -34,11 +34,12 @@ namespace CreditCeleste
             this.cmdRelance = new System.Windows.Forms.Button();
             this.lblMonApp = new System.Windows.Forms.Label();
             this.lblMaRegion = new System.Windows.Forms.Label();
+            this.cmdConnexion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdIntro
             // 
-            this.cmdIntro.Location = new System.Drawing.Point(280, 343);
+            this.cmdIntro.Location = new System.Drawing.Point(186, 289);
             this.cmdIntro.Name = "cmdIntro";
             this.cmdIntro.Size = new System.Drawing.Size(98, 29);
             this.cmdIntro.TabIndex = 0;
@@ -48,7 +49,7 @@ namespace CreditCeleste
             // 
             // cmdEtude
             // 
-            this.cmdEtude.Location = new System.Drawing.Point(384, 343);
+            this.cmdEtude.Location = new System.Drawing.Point(290, 289);
             this.cmdEtude.Name = "cmdEtude";
             this.cmdEtude.Size = new System.Drawing.Size(98, 29);
             this.cmdEtude.TabIndex = 1;
@@ -58,7 +59,7 @@ namespace CreditCeleste
             // 
             // cmdRelance
             // 
-            this.cmdRelance.Location = new System.Drawing.Point(488, 343);
+            this.cmdRelance.Location = new System.Drawing.Point(394, 289);
             this.cmdRelance.Name = "cmdRelance";
             this.cmdRelance.Size = new System.Drawing.Size(98, 29);
             this.cmdRelance.TabIndex = 2;
@@ -83,11 +84,21 @@ namespace CreditCeleste
             this.lblMaRegion.TabIndex = 4;
             this.lblMaRegion.Text = "a";
             // 
+            // cmdConnexion
+            // 
+            this.cmdConnexion.Location = new System.Drawing.Point(612, 289);
+            this.cmdConnexion.Name = "cmdConnexion";
+            this.cmdConnexion.Size = new System.Drawing.Size(148, 29);
+            this.cmdConnexion.TabIndex = 5;
+            this.cmdConnexion.Text = "Se connecter...";
+            this.cmdConnexion.UseVisualStyleBackColor = true;
+            // 
             // frmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cmdConnexion);
             this.Controls.Add(this.lblMaRegion);
             this.Controls.Add(this.lblMonApp);
             this.Controls.Add(this.cmdRelance);
@@ -108,6 +119,7 @@ namespace CreditCeleste
         private System.Windows.Forms.Button cmdRelance;
         private System.Windows.Forms.Label lblMonApp;
         private System.Windows.Forms.Label lblMaRegion;
+        private System.Windows.Forms.Button cmdConnexion;
     }
 }
 
