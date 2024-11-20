@@ -34,7 +34,7 @@ namespace CreditCeleste
             this.cmdRelance = new System.Windows.Forms.Button();
             this.lblMonApp = new System.Windows.Forms.Label();
             this.lblMaRegion = new System.Windows.Forms.Label();
-            this.btnPageConnexion = new System.Windows.Forms.Button();
+            this.cmdConnexion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdIntro
@@ -84,21 +84,21 @@ namespace CreditCeleste
             this.lblMaRegion.TabIndex = 4;
             this.lblMaRegion.Text = "a";
             // 
-            // btnPageConnexion
+            // cmdConnexion
             // 
-            this.btnPageConnexion.Location = new System.Drawing.Point(612, 289);
-            this.btnPageConnexion.Name = "btnPageConnexion";
-            this.btnPageConnexion.Size = new System.Drawing.Size(148, 29);
-            this.btnPageConnexion.TabIndex = 5;
-            this.btnPageConnexion.Text = "Se connecter...";
-            this.btnPageConnexion.UseVisualStyleBackColor = true;
+            this.cmdConnexion.Location = new System.Drawing.Point(612, 289);
+            this.cmdConnexion.Name = "cmdConnexion";
+            this.cmdConnexion.Size = new System.Drawing.Size(148, 29);
+            this.cmdConnexion.TabIndex = 5;
+            this.cmdConnexion.Text = "Se connecter...";
+            this.cmdConnexion.UseVisualStyleBackColor = true;
             // 
             // frmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnPageConnexion);
+            this.Controls.Add(this.cmdConnexion);
             this.Controls.Add(this.lblMaRegion);
             this.Controls.Add(this.lblMonApp);
             this.Controls.Add(this.cmdRelance);
@@ -119,7 +119,7 @@ namespace CreditCeleste
         private System.Windows.Forms.Button cmdRelance;
         private System.Windows.Forms.Label lblMonApp;
         private System.Windows.Forms.Label lblMaRegion;
-        private System.Windows.Forms.Button btnPageConnexion;
+        private System.Windows.Forms.Button cmdConnexion;
     }
 }
 
