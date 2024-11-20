@@ -29,33 +29,34 @@ namespace CreditCeleste
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lstCredits = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // lstCredits
             // 
-            this.textBox1.Location = new System.Drawing.Point(169, 97);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(422, 22);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.lstCredits.FormattingEnabled = true;
+            this.lstCredits.ItemHeight = 16;
+            this.lstCredits.Location = new System.Drawing.Point(159, 155);
+            this.lstCredits.Name = "lstCredits";
+            this.lstCredits.Size = new System.Drawing.Size(468, 132);
+            this.lstCredits.TabIndex = 0;
+            this.lstCredits.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // frmListeCredit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lstCredits);
             this.Name = "frmListeCredit";
             this.Text = "listeCredit";
             this.Load += new System.EventHandler(this.listeCredit_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListBox lstCredits;
     }
 }

@@ -15,6 +15,10 @@ namespace CreditCeleste
         public frmListeCredit()
         {
             InitializeComponent();
+            foreach (Credit credit in Globales.lesCredits)
+            {
+                lstCredits.Items.Add(credit.getCredit());
+            }
         }
 
         private void listeCredit_Load(object sender, EventArgs e)
@@ -24,10 +28,12 @@ namespace CreditCeleste
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            foreach (Credit credit in Globales.lesCredits)
-            {
+          
+        }
 
-            }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
