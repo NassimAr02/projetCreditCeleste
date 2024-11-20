@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CreditCeleste
 {
     class Client
-    {
+    {//a
         private int numeroClient;
         private string nomClient, prenomClient, adresseClient, civilite;
         

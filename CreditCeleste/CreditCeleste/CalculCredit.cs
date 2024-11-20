@@ -32,6 +32,12 @@ namespace CreditCeleste
         {
             Credit unCredit = new Credit(Convert.ToDouble(txtMontantFinance.Text), Convert.ToDouble(cbxDurée.Text), Convert.ToDouble(txtTauxAnnuel.Text));
             txtMensualite.Text = Convert.ToString(unCredit.getMensualite());
+            if(Globales.lesCredits == null)
+            {
+                Globales.lesCredits = new List<Credit>();
+            }
+            
+            Globales.lesCredits.Add(unCredit);
         }
 
         private void txtMontantFinance_TextChanged(object sender, EventArgs e)
@@ -41,7 +47,13 @@ namespace CreditCeleste
 
         private void btnListeCredit_Click(object sender, EventArgs e)
         {
-
+            if (Globales.fenListeCredit == null)
+            {
+                Globales.fenListeCredit = new frmListeCredit();
+            }
+            Globales.fenListeCredit.Show();
+            this.Close();
+            
         }
     }
 }

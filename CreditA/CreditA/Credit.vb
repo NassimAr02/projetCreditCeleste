@@ -1,4 +1,4 @@
-﻿Namespace CreditCeleste
+﻿Namespace travailCredit
     Public Class Credit
         '' Pourquoi une classe crédit 
         '

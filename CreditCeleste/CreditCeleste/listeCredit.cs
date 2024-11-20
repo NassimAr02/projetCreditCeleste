@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CreditCeleste
 {
-    public partial class listeCredit : Form
+    public partial class frmListeCredit : Form
     {
-        public listeCredit()
+        public frmListeCredit()
         {
             InitializeComponent();
         }
@@ -20,6 +20,14 @@ namespace CreditCeleste
         private void listeCredit_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            foreach (Credit credit in Globales.lesCredits)
+            {
+
+            }
         }
     }
 }

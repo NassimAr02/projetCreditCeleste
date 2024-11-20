@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CreditA">
+    <Reference Include="CreditA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CreditA\CreditA\bin\Debug\CreditA.dll</HintPath>
     </Reference>
     <Reference Include="System" />

@@ -12,6 +12,7 @@ namespace CreditCeleste
         private double monDuree;
         private double monTaux;
         private double monMensualite;
+        private List<Credit> credits;
 
         public Credit(double montant,double duree, double taux)
         {
@@ -38,6 +39,10 @@ namespace CreditCeleste
             string resultat = $"{monMontant} {monDuree} {monMensualite} {monTaux}";
             return resultat;
 
+        }
+        public void addCredit(Credit unCredit)
+        {
+            credits.Add(unCredit);
         }
     }
 }

@@ -19,9 +19,10 @@ namespace CreditCeleste
         public static frmAccueil frmAccueil;
         public static frmIntroduction fenIntroduction;
         public static frmVoiture fenVoiture;
-        public static List<Credit> lesCrdits;
+        public static List<Credit> lesCredits;
         public static Credit unCredit;
         public static frmCalculCredit fenCalcul;
+        public static frmListeCredit fenListeCredit;
 
 
 

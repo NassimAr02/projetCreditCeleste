@@ -18,3 +18,13 @@ C:\Users\nassi\Desktop\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.vbp
 C:\Users\nassi\Desktop\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.dll
 C:\Users\nassi\Desktop\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.xml
 C:\Users\nassi\Desktop\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.pdb
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\bin\Debug\CreditA.dll
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\bin\Debug\CreditA.pdb
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\bin\Debug\CreditA.xml
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.vbproj.AssemblyReference.cache
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.Resources.resources
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.vbproj.GenerateResource.cache
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.vbproj.CoreCompileInputs.cache
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.dll
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.xml
+C:\img\Partage\KREYDER\projetCreditCeleste\CreditA\CreditA\obj\Debug\CreditA.pdb
