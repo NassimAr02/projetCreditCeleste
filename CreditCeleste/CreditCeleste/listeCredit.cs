@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
 
 namespace CreditCeleste
 {
@@ -15,10 +17,11 @@ namespace CreditCeleste
         public frmListeCredit()
         {
             InitializeComponent();
-            foreach (Credit credit in Globales.lesCredits)
+            foreach (Credit uncredit in Globales.lesCredits)
             {
-                lstCredits.Items.Add(credit.getCredit());
+                lsbLesCredits.Items.Add(uncredit.getCredit());
             }
+
         }
 
         private void listeCredit_Load(object sender, EventArgs e)
@@ -26,14 +29,62 @@ namespace CreditCeleste
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void btnEnregistre_Click(object sender, EventArgs e)
         {
-          
+            // Collection-- > Stockage vers la base de données
+            // --> sqlserveur (CréditCeleste , tableCredit)
+
+            // Ecran --> Objets --> BDD
+
+            // il faut récupérer la ligne qui est cliquée
+
+            Credit unCredit = Globales.lesCredits[lsbLesCredits.SelectedIndex];
+
+            string connexionParam = "Data Source = 10.129.253.210;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
+            // Paramètres pour la procédure
+
+            double montantFinale = unCredit.getMontant();
+            double tauxFinale = unCredit.getTaux();
+            double mensualiteFinale = unCredit.getMensualite();
+            int nbMensualite = unCredit.getNbMensu();
+            // Appel de la procédure
+
+            using (SqlConnection connexion = new SqlConnection(connexionParam))
+            {
+                using(SqlCommand command = new SqlCommand("InsCredit", connexion))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Ajout des paramètres
+
+                    command.Parameters.Add(new SqlParameter("@MontantFin", montantFinale));
+                    command.Parameters.Add(new SqlParameter("@nbMens", nbMensualite));
+                    command.Parameters.Add(new SqlParameter("@montantMens", mensualiteFinale));
+                    command.Parameters.Add(new SqlParameter("@tauxAn", tauxFinale));
+
+                    try
+                    {
+                        // Ouvrir la connexion
+                        connexion.Open();
+                        // Exécuter la procédure
+                        command.ExecuteNonQuery();
+                        Console.WriteLine("Le crédit a été ajouté avec succès.");
+
+
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"Erreur lors de l'ajout: {ex.Message} ");
+                    }
+                }
+            }
+
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void lsbLesCredits_SelectedIndexChanged(object sender, EventArgs e)
         {
             
         }
     }
 }
+ 

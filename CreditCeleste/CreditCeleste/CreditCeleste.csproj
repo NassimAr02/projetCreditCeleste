@@ -56,6 +56,12 @@
       <DependentUpon>CalculCredit.cs</DependentUpon>
     </Compile>
     <Compile Include="Client.cs" />
+    <Compile Include="Comptabilité.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comptabilité.Designer.cs">
+      <DependentUpon>Comptabilité.cs</DependentUpon>
+    </Compile>
     <Compile Include="Concession.cs" />
     <Compile Include="Credit.cs" />
     <Compile Include="frmConnexion.cs">
@@ -89,12 +95,22 @@
       <DependentUpon>frmVoiture.cs</DependentUpon>
     </Compile>
     <Compile Include="Globales.cs" />
+    <Compile Include="MDPversMD5.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vendeur.cs" />
+    <Compile Include="Visiteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visiteur.Designer.cs">
+      <DependentUpon>Visiteur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Voiture.cs" />
     <EmbeddedResource Include="CalculCredit.resx">
       <DependentUpon>CalculCredit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comptabilité.resx">
+      <DependentUpon>Comptabilité.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAccueil.resx">
       <DependentUpon>frmAccueil.cs</DependentUpon>
@@ -120,6 +136,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Visiteur.resx">
+      <DependentUpon>Visiteur.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

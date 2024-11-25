@@ -9,19 +9,19 @@ namespace CreditCeleste
     class Credit
     {
         private double monMontant;
-        private double monDuree;
+        private int monDuree;
         private double monTaux;
         private double monMensualite;
-        private List<Credit> credits;
+        
 
-        public Credit(double montant,double duree, double taux)
+        public Credit(double montant,int duree, double taux)
         {
             monMontant = montant;
             monDuree = duree;
             monTaux = taux;
             monMensualite = 0;
         }
-        public Credit(double montant, double duree, double taux, double mensualite)
+        public Credit(double montant, int duree, double taux, double mensualite)
         {
             monMontant = montant;
             monDuree = duree;
@@ -34,15 +34,24 @@ namespace CreditCeleste
             monMensualite = Math.Round((monMontant * tauxMens) / (1 - Math.Pow(1 + tauxMens, -monDuree)), 2);
             return monMensualite;
         }
+        public double getMontant()
+        {
+            return monMontant;
+        }
+        public int getNbMensu()
+        {
+            return monDuree;
+        }
+        public double getTaux()
+        {
+            return monTaux;
+        }
         public string getCredit()
         {
-            string resultat = $"{monMontant} {monDuree} {monMensualite} {monTaux}";
+            string resultat = $"Montant Financé : {monMontant}€ \n Durée Souscrite : {monDuree} Montant mensuel : {monMensualite} Taux Annuel :{monTaux}";
             return resultat;
 
         }
-        public void addCredit(Credit unCredit)
-        {
-            credits.Add(unCredit);
-        }
+       
     }
 }

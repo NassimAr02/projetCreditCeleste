@@ -29,47 +29,49 @@ namespace CreditCeleste
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstCredits = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEnregistre = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnRetour = new System.Windows.Forms.Button();
+            this.lsbLesCredits = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // lstCredits
+            // btnEnregistre
             // 
-            this.lstCredits.FormattingEnabled = true;
-            this.lstCredits.ItemHeight = 16;
-            this.lstCredits.Location = new System.Drawing.Point(159, 155);
-            this.lstCredits.Name = "lstCredits";
-            this.lstCredits.Size = new System.Drawing.Size(468, 132);
-            this.lstCredits.TabIndex = 0;
-            this.lstCredits.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.btnEnregistre.Location = new System.Drawing.Point(200, 327);
+            this.btnEnregistre.Name = "btnEnregistre";
+            this.btnEnregistre.Size = new System.Drawing.Size(109, 37);
+            this.btnEnregistre.TabIndex = 1;
+            this.btnEnregistre.Text = "Enregistrer";
+            this.btnEnregistre.UseVisualStyleBackColor = true;
+            this.btnEnregistre.Click += new System.EventHandler(this.btnEnregistre_Click);
             // 
-            // button1
+            // btnRetour
             // 
-            this.button1.Location = new System.Drawing.Point(197, 327);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRetour.Location = new System.Drawing.Point(492, 327);
+            this.btnRetour.Name = "btnRetour";
+            this.btnRetour.Size = new System.Drawing.Size(75, 37);
+            this.btnRetour.TabIndex = 2;
+            this.btnRetour.Text = "Accueil";
+            this.btnRetour.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // lsbLesCredits
             // 
-            this.button2.Location = new System.Drawing.Point(473, 368);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 31);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.lsbLesCredits.FormattingEnabled = true;
+            this.lsbLesCredits.ItemHeight = 16;
+            this.lsbLesCredits.Location = new System.Drawing.Point(200, 100);
+            this.lsbLesCredits.Name = "lsbLesCredits";
+            this.lsbLesCredits.Size = new System.Drawing.Size(367, 148);
+            this.lsbLesCredits.TabIndex = 3;
+            this.lsbLesCredits.SelectedIndexChanged += new System.EventHandler(this.lsbLesCredits_SelectedIndexChanged);
             // 
             // frmListeCredit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.lstCredits);
+            this.Controls.Add(this.lsbLesCredits);
+            this.Controls.Add(this.btnRetour);
+            this.Controls.Add(this.btnEnregistre);
             this.Name = "frmListeCredit";
             this.Text = "listeCredit";
             this.Load += new System.EventHandler(this.listeCredit_Load);
@@ -78,9 +80,9 @@ namespace CreditCeleste
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lstCredits;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEnregistre;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnRetour;
+        private System.Windows.Forms.ListBox lsbLesCredits;
     }
 }

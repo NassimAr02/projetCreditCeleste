@@ -30,7 +30,7 @@ namespace CreditCeleste
 
         private void btnCalcul_Click(object sender, EventArgs e)
         {
-            Credit unCredit = new Credit(Convert.ToDouble(txtMontantFinance.Text), Convert.ToDouble(cbxDurée.Text), Convert.ToDouble(txtTauxAnnuel.Text));
+            Credit unCredit = new Credit(Convert.ToDouble(txtMontantFinance.Text), Convert.ToInt16(cbxDurée.Text), Convert.ToDouble(txtTauxAnnuel.Text));
             txtMensualite.Text = Convert.ToString(unCredit.getMensualite());
             if(Globales.lesCredits == null)
             {

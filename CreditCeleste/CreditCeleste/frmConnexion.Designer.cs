@@ -41,31 +41,35 @@ namespace CreditCeleste
             // btnValiderConnexion
             // 
             this.btnValiderConnexion.Location = new System.Drawing.Point(33, 170);
+            this.btnValiderConnexion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnValiderConnexion.Name = "btnValiderConnexion";
-            this.btnValiderConnexion.Size = new System.Drawing.Size(126, 36);
+            this.btnValiderConnexion.Size = new System.Drawing.Size(125, 36);
             this.btnValiderConnexion.TabIndex = 0;
             this.btnValiderConnexion.Text = "Valider";
             this.btnValiderConnexion.UseVisualStyleBackColor = true;
+            this.btnValiderConnexion.Click += new System.EventHandler(this.btnValiderConnexion_Click);
             // 
             // txtUtilisateur
             // 
             this.txtUtilisateur.Location = new System.Drawing.Point(33, 43);
+            this.txtUtilisateur.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUtilisateur.Name = "txtUtilisateur";
-            this.txtUtilisateur.Size = new System.Drawing.Size(126, 22);
+            this.txtUtilisateur.Size = new System.Drawing.Size(127, 22);
             this.txtUtilisateur.TabIndex = 1;
             // 
             // txtMdp
             // 
             this.txtMdp.Location = new System.Drawing.Point(33, 105);
+            this.txtMdp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMdp.Name = "txtMdp";
-            this.txtMdp.Size = new System.Drawing.Size(126, 22);
+            this.txtMdp.Size = new System.Drawing.Size(127, 22);
             this.txtMdp.TabIndex = 2;
             this.txtMdp.UseSystemPasswordChar = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 23);
+            this.label1.Location = new System.Drawing.Point(29, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 17);
             this.label1.TabIndex = 3;
@@ -74,7 +78,7 @@ namespace CreditCeleste
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 85);
+            this.label2.Location = new System.Drawing.Point(29, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 17);
             this.label2.TabIndex = 4;
@@ -88,8 +92,10 @@ namespace CreditCeleste
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtMdp);
             this.groupBox1.Location = new System.Drawing.Point(283, 86);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(206, 249);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(205, 249);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connexion";
@@ -100,8 +106,10 @@ namespace CreditCeleste
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmConnexion";
             this.Text = "frmConnexion";
+            this.Load += new System.EventHandler(this.frmConnexion_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
