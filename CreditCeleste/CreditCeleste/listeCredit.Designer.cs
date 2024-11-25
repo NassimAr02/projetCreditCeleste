@@ -33,6 +33,8 @@ namespace CreditCeleste
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnRetour = new System.Windows.Forms.Button();
             this.lsbLesCredits = new System.Windows.Forms.ListBox();
+            this.cmdBDD = new System.Windows.Forms.Button();
+            this.cmdInit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEnregistre
@@ -64,11 +66,32 @@ namespace CreditCeleste
             this.lsbLesCredits.TabIndex = 3;
             this.lsbLesCredits.SelectedIndexChanged += new System.EventHandler(this.lsbLesCredits_SelectedIndexChanged);
             // 
+            // cmdBDD
+            // 
+            this.cmdBDD.Location = new System.Drawing.Point(347, 327);
+            this.cmdBDD.Name = "cmdBDD";
+            this.cmdBDD.Size = new System.Drawing.Size(109, 37);
+            this.cmdBDD.TabIndex = 4;
+            this.cmdBDD.Text = "BDD";
+            this.cmdBDD.UseVisualStyleBackColor = true;
+            // 
+            // cmdInit
+            // 
+            this.cmdInit.Location = new System.Drawing.Point(598, 327);
+            this.cmdInit.Name = "cmdInit";
+            this.cmdInit.Size = new System.Drawing.Size(75, 37);
+            this.cmdInit.TabIndex = 5;
+            this.cmdInit.Text = "init";
+            this.cmdInit.UseVisualStyleBackColor = true;
+            this.cmdInit.Click += new System.EventHandler(this.cmdInit_Click);
+            // 
             // frmListeCredit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cmdInit);
+            this.Controls.Add(this.cmdBDD);
             this.Controls.Add(this.lsbLesCredits);
             this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.btnEnregistre);
@@ -84,5 +107,7 @@ namespace CreditCeleste
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button btnRetour;
         private System.Windows.Forms.ListBox lsbLesCredits;
+        private System.Windows.Forms.Button cmdBDD;
+        private System.Windows.Forms.Button cmdInit;
     }
 }

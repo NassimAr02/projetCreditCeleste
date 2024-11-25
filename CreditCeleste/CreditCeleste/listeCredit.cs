@@ -85,6 +85,13 @@ namespace CreditCeleste
         {
             
         }
+
+        private void cmdInit_Click(object sender, EventArgs e)
+        {
+            lsbLesCredits.Items.Clear();
+
+            Globales.lesCredits.Clear();
+        }
     }
 }
  
