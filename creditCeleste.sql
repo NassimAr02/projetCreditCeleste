@@ -3,103 +3,19 @@ USE creditCelesteARRASS;
 GO
 
 -- Supprimer les tables si elles existent
-IF OBJECT_ID('Financer', 'U') IS NOT NULL DROP TABLE Financer;
-IF OBJECT_ID('Lier', 'U') IS NOT NULL DROP TABLE Lier;
-IF OBJECT_ID('Vendeur', 'U') IS NOT NULL DROP TABLE Vendeur;
 IF OBJECT_ID('Credit', 'U') IS NOT NULL DROP TABLE Credit;
-IF OBJECT_ID('Visite', 'U') IS NOT NULL DROP TABLE Visite;
-IF OBJECT_ID('Visiteur', 'U') IS NOT NULL DROP TABLE Visiteur;
-IF OBJECT_ID('Collaborateur', 'U') IS NOT NULL DROP TABLE Collaborateur;
+IF OBJECT_ID('Client', 'U') IS NOT NULL DROP TABLE Client;
+IF OBJECT_ID('Lier', 'U') IS NOT NULL DROP TABLE Lier;
+IF OBJECT_ID('Voiture', 'U') IS NOT NULL DROP TABLE Voiture;
 IF OBJECT_ID('NouvelleVoiture', 'U') IS NOT NULL DROP TABLE NouvelleVoiture;
 IF OBJECT_ID('AncienneVoiture', 'U') IS NOT NULL DROP TABLE AncienneVoiture;
-IF OBJECT_ID('Voiture', 'U') IS NOT NULL DROP TABLE Voiture;
-IF OBJECT_ID('Client', 'U') IS NOT NULL DROP TABLE Client;
 IF OBJECT_ID('Concession', 'U') IS NOT NULL DROP TABLE Concession;
+IF OBJECT_ID('Visite', 'U') IS NOT NULL DROP TABLE Visite;
+IF OBJECT_ID('Facture', 'U') IS NOT NULL DROP TABLE Facture;
+IF OBJECT_ID('Remboursement', 'U') IS NOT NULL DROP TABLE Remboursement;
+IF OBJECT_ID('Rembourser', 'U') IS NOT NULL DROP TABLE Rembourser;
+IF OBJECT_ID('Users','U') IS NOT NULL DROP TABLE Users;
 
--- Recréer les tables
-
--- Table Concession
-CREATE TABLE Concession (
-   numeroConcession INT IDENTITY(1,1) PRIMARY KEY,
-   nomConcession NVARCHAR(50),
-   numRueConcession NVARCHAR(8),
-   nomRueConcession NVARCHAR(80),
-   codePostalConcession NVARCHAR(5),
-   villeConcession NVARCHAR(50)
-)
-INSERT INTO Concession(nomConcession,numRueConcession,nomRueConcession,codePostalConcession,villeConcession)VALUES('Concession Celeste','12','Rue du corps Armée','67000','Strasbourg');
-
--- Table Client
-CREATE TABLE Client (
-   numeroClient INT IDENTITY(1,1) PRIMARY KEY,
-   nomClient NVARCHAR(50),
-   prenomClient NVARCHAR(50),
-   adresseClient NVARCHAR(80),
-   civilite NVARCHAR(2)
-);
-
--- Table Voiture
-CREATE TABLE Voiture (
-   numeroConcession INT,
-   numeroImmat CHAR(9),
-   dateImmat DATE,
-   numeroSerie NVARCHAR(50),
-   PRIMARY KEY (numeroConcession, numeroImmat),
-   FOREIGN KEY (numeroConcession) REFERENCES Concession(numeroConcession)
-);
-
--- Table AncienneVoiture
-CREATE TABLE AncienneVoiture (
-   numeroConcession INT,
-   numeroImmat CHAR(9),
-   ancienneVoiture NVARCHAR(50),
-   PRIMARY KEY (numeroConcession, numeroImmat),
-   FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
-);
-
--- Table NouvelleVoiture
-CREATE TABLE NouvelleVoiture (
-   numeroConcession INT,
-   numeroImmat CHAR(9),
-   nouvelleVoiture NVARCHAR(50),
-   puissance INT,
-   age NVARCHAR(50),
-   PRIMARY KEY (numeroConcession, numeroImmat),
-   FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
-);
-
--- Table Collaborateur
-CREATE TABLE Collaborateur (
-   numeroConcession INT,
-   numeroCollaborateur INT IDENTITY(1,1),
-   nomCollaborateur NVARCHAR(50),
-   prenomCollaborateur NVARCHAR(50),
-   civiliteCollaborateur NVARCHAR(50),
-   PRIMARY KEY (numeroConcession, numeroCollaborateur),
-   FOREIGN KEY (numeroConcession) REFERENCES Concession(numeroConcession)
-);
-
--- Table Visiteur
-CREATE TABLE Visiteur (
-   numeroConcession INT,
-   numeroCollaborateur INT,
-   fraisRepas DECIMAL(10,2),
-   fraisHotel DECIMAL(10,2),
-   fraisEssence DECIMAL(10,2),
-   dateDepart DATE,
-   dateRetour DATE,
-   voiturePerso BIT,
-   PRIMARY KEY (numeroConcession, numeroCollaborateur),
-   FOREIGN KEY (numeroConcession, numeroCollaborateur) REFERENCES Collaborateur(numeroConcession, numeroCollaborateur)
-);
-
--- Table Visite
-CREATE TABLE Visite (
-   numVisite INT IDENTITY(1,1) PRIMARY KEY,
-   dateVisite DATE,
-   numeroConcession INT NOT NULL,
-   FOREIGN KEY (numeroConcession) REFERENCES Concession(numeroConcession)
-);
 
 -- Table Credit
 CREATE TABLE Credit (
@@ -113,12 +29,13 @@ CREATE TABLE Credit (
    FOREIGN KEY (numeroClient) REFERENCES Client(numeroClient)
 );
 
--- Table Vendeur
-CREATE TABLE Vendeur (
-   numeroConcession INT,
-   numeroCollaborateur INT,
-   PRIMARY KEY (numeroConcession, numeroCollaborateur),
-   FOREIGN KEY (numeroConcession, numeroCollaborateur) REFERENCES Collaborateur(numeroConcession, numeroCollaborateur)
+-- Table Client
+CREATE TABLE Client (
+   numeroClient INT IDENTITY(1,1) PRIMARY KEY,
+   nomClient NVARCHAR(50),
+   prenomClient NVARCHAR(50),
+   adresseClient NVARCHAR(80),
+   civilite NVARCHAR(3)
 );
 
 -- Table Lier
@@ -130,26 +47,96 @@ CREATE TABLE Lier (
    FOREIGN KEY (numeroClient) REFERENCES Client(numeroClient),
    FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
 );
-
--- Table Financer
-CREATE TABLE Financer (
+-- Table Voiture
+CREATE TABLE Voiture (
    numeroConcession INT,
-   numeroCollaborateur INT,
-   numVisite INT,
-   maxRepas DECIMAL(10,2),
-   maxHotel DECIMAL(10,2),
-   maxEssence DECIMAL(10,2),
-   prisEnCharge BIT,
-   RAC DECIMAL(10,2),
-   PRIMARY KEY (numeroConcession, numeroCollaborateur, numVisite),
-   FOREIGN KEY (numeroConcession, numeroCollaborateur) REFERENCES Visiteur(numeroConcession, numeroCollaborateur),
+   numeroImmat CHAR(9),
+   dateImmat DATE,
+   numeroSerie NVARCHAR(50),
+   PRIMARY KEY (numeroConcession, numeroImmat),
+   FOREIGN KEY (numeroConcession) REFERENCES Concession(numeroConcession)
+);
+-- Table AncienneVoiture
+CREATE TABLE AncienneVoiture (
+   numeroConcession INT,
+   numeroImmat CHAR(9),
+   ancienneVoiture NVARCHAR(50),
+   PRIMARY KEY (numeroConcession, numeroImmat),
+   FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
+);
+-- Table NouvelleVoiture
+CREATE TABLE NouvelleVoiture (
+   numeroConcession INT,
+   numeroImmat CHAR(9),
+   nouvelleVoiture NVARCHAR(50),
+   puissance INT,
+   age NVARCHAR(50),
+   PRIMARY KEY (numeroConcession, numeroImmat),
+   FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
+);
+
+
+-- Table Concession
+CREATE TABLE Concession (
+   numeroConcession INT IDENTITY(1,1) PRIMARY KEY,
+   nomConcession NVARCHAR(50),
+   numRueConcession NVARCHAR(8),
+   nomRueConcession NVARCHAR(80),
+   codePostalConcession NVARCHAR(5),
+   villeConcession NVARCHAR(50)
+)
+INSERT INTO Concession(nomConcession,numRueConcession,nomRueConcession,codePostalConcession,villeConcession)VALUES('Concession Celeste','12','Rue du corps Armée','67000','Strasbourg');
+
+-- Table Visite
+CREATE TABLE Visite (
+   numVisite INT IDENTITY(1,1) PRIMARY KEY,
+   datedepart DATE,
+   dateRetour DATE,
+   voiturePerso BIT,
+   numFacture INT NOT NULL,
+   numeroConcession INT NOT NULL,
+   idUser INT NOT NULL,
+   PRIMARY KEY(numVisite),
+   FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
+   FOREIGN KEY(numFacture) REFERENCES Facture(numFacture),
+   FOREIGN KEY(idUser) REFERENCES Users(idUser)
+);
+
+-- Table Visiteur
+CREATE TABLE Facture (
+   numFacture INT NOT NULL,
+   dateFacture DATE,
+   typeFrais NVARCHAR(50),
+   montant DECIMAL(10,2)
+   PRIMARY KEY (numFacture),
    FOREIGN KEY (numVisite) REFERENCES Visite(numVisite)
+);
+
+-- Table Remboursement
+CREATE TABLE Remboursement (
+   numeroFacture INT,
+   numRemboursement INT NOT NULL,
+   RAC DECIMAL(10,2),
+   commentaire NVARCHAR(100)
+   PRIMARY KEY (numRemboursement), 
+   FOREIGN KEY (numeroFacture) REFERENCES Facture(numeroFacture)
+);
+
+CREATE TABLE Rembourser(
+   numRemboursement INT,
+   numFacture INT,
+   PRIMARY KEY(numRemboursement, numFacture),
+   FOREIGN KEY(numRemboursement) REFERENCES Remboursement(numRemboursement),
+   FOREIGN KEY(numFacture) REFERENCES Facture(numFacture)
 );
 CREATE TABLE Users (
     idUser INT IDENTITY(1,1) PRIMARY KEY,
     username NVARCHAR(50) UNIQUE NOT NULL,
     passwordHash NVARCHAR(32) NOT NULL, -- MD5 produit une chaîne de 32 caractères hexadécimaux
     roleConcession NVARCHAR(20) NOT NULL, -- 'Visiteur', 'Vendeur', 'Comptabilité'
+    nomCollaborateur NVARCHAR(50),
+    prenomCollaborateur NVARCHAR(50),
+    civiliteCollaborateur NVARCHAR(4),
     numeroConcession INT, -- Optionnel : liaison avec une concession
     FOREIGN KEY (numeroConcession) REFERENCES Concession(numeroConcession)
 );
