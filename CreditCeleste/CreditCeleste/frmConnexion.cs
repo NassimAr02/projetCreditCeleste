@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace CreditCeleste
 {
-    public partial class frmConnexion : Form
+    public partial class frmConnexion :   Form
     {
         public frmConnexion()
         {
@@ -29,9 +29,9 @@ namespace CreditCeleste
             string identifiantUser = txtUtilisateur.Text;
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
-            string connexionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
+            string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
             string connectionParam2 = "Data Source = 192.168.1.33;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
-            using(SqlConnection connection = new SqlConnection(connexionParam))
+            using(SqlConnection connection = new SqlConnection(connectionParam2))
             {
                 using(SqlCommand UserConn = new SqlCommand("SelUserId", connection))
                 {
