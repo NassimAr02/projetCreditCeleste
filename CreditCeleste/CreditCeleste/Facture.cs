@@ -9,7 +9,7 @@ namespace CreditCeleste
     class Facture
     {
         private DateTime dateFacture = new DateTime();
-
+        private string typeFrais;
 
     }
 }
