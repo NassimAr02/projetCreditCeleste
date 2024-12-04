@@ -107,6 +107,7 @@
     <Compile Include="frmVisiteur.Designer.cs">
       <DependentUpon>frmVisiteur.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visite.cs" />
     <Compile Include="Voiture.cs" />
     <EmbeddedResource Include="CalculCredit.resx">
       <DependentUpon>CalculCredit.cs</DependentUpon>
