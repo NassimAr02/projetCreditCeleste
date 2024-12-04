@@ -24,7 +24,11 @@ namespace CreditCeleste
         public static frmCalculCredit fenCalcul;
         public static frmListeCredit fenListeCredit;
         public static frmComptabilite fenComptabilite;
-        public static frmVisiteur fenVisiteur;  
+        public static frmVisiteur fenVisiteur;
+        public static Facture facture1;
+        public static Facture facture2;
+        public static Facture facture3;
+        public static Visite visite;
 
 
 

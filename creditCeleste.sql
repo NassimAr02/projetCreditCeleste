@@ -104,7 +104,6 @@ CREATE TABLE Visite (
    datedepart DATE,
    dateRetour DATE,
    voiturePerso BIT,
-   numFacture INT NOT NULL,
    numeroConcession INT NOT NULL,
    idUser INT NOT NULL,
    FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
