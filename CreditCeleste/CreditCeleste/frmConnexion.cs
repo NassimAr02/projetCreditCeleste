@@ -31,7 +31,7 @@ namespace CreditCeleste
 
             string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
             string connectionParam2 = "Data Source = 192.168.1.33;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
-            using(SqlConnection connection = new SqlConnection(connectionParam2))
+            using(SqlConnection connection = new SqlConnection(connectionParam))
             {
                 using(SqlCommand UserConn = new SqlCommand("SelUserId", connection))
                 {

@@ -26,6 +26,8 @@ namespace CreditCeleste
             {
                 cbxDurée.Items.Add(i);
             }
+            Credit unCredit2 = new Credit(15000, 50, 5);
+            string affichage = Assert.estVrai(5000, unCredit2.getMensualite(), "le calcul de la mensualité ne fonctionne pas ");
         }
 
         private void btnCalcul_Click(object sender, EventArgs e)

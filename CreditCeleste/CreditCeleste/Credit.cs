@@ -9,19 +9,19 @@ namespace CreditCeleste
     class Credit
     {
         private double monMontant;
-        private int monDuree;
+        private double monDuree;
         private double monTaux;
         private double monMensualite;
         
 
-        public Credit(double montant,int duree, double taux)
+        public Credit(double montant,double duree, double taux)
         {
             monMontant = montant;
             monDuree = duree;
             monTaux = taux;
             monMensualite = 0;
         }
-        public Credit(double montant, int duree, double taux, double mensualite)
+        public Credit(double montant, double duree, double taux, double mensualite)
         {
             monMontant = montant;
             monDuree = duree;
@@ -38,7 +38,7 @@ namespace CreditCeleste
         {
             return monMontant;
         }
-        public int getNbMensu()
+        public double getNbMensu()
         {
             return monDuree;
         }

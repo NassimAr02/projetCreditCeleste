@@ -46,7 +46,7 @@ namespace CreditCeleste
             double montantFinale = unCredit.getMontant();
             double tauxFinale = unCredit.getTaux();
             double mensualiteFinale = unCredit.getMensualite();
-            int nbMensualite = unCredit.getNbMensu();
+            double nbMensualite = unCredit.getNbMensu();
             // Appel de la procédure
 
             using (SqlConnection connexion = new SqlConnection(connexionParam))

@@ -16,7 +16,14 @@ IF OBJECT_ID('Remboursement', 'U') IS NOT NULL DROP TABLE Remboursement;
 IF OBJECT_ID('Rembourser', 'U') IS NOT NULL DROP TABLE Rembourser;
 IF OBJECT_ID('Users','U') IS NOT NULL DROP TABLE Users;
 
-
+-- Table Client
+CREATE TABLE Client (
+   numeroClient INT IDENTITY(1,1) PRIMARY KEY,
+   nomClient NVARCHAR(50),
+   prenomClient NVARCHAR(50),
+   adresseClient NVARCHAR(80),
+   civilite NVARCHAR(3)
+);
 -- Table Credit
 CREATE TABLE Credit (
    numeroSouscription INT IDENTITY(1,1) PRIMARY KEY,
@@ -29,24 +36,17 @@ CREATE TABLE Credit (
    FOREIGN KEY (numeroClient) REFERENCES Client(numeroClient)
 );
 
--- Table Client
-CREATE TABLE Client (
-   numeroClient INT IDENTITY(1,1) PRIMARY KEY,
-   nomClient NVARCHAR(50),
-   prenomClient NVARCHAR(50),
-   adresseClient NVARCHAR(80),
-   civilite NVARCHAR(3)
-);
+-- Table Concession
+CREATE TABLE Concession (
+   numeroConcession INT IDENTITY(1,1) PRIMARY KEY,
+   nomConcession NVARCHAR(50),
+   numRueConcession NVARCHAR(8),
+   nomRueConcession NVARCHAR(80),
+   codePostalConcession NVARCHAR(5),
+   villeConcession NVARCHAR(50)
+)
+INSERT INTO Concession(nomConcession,numRueConcession,nomRueConcession,codePostalConcession,villeConcession)VALUES('Concession Celeste','12','Rue du corps Armée','67000','Strasbourg');
 
--- Table Lier
-CREATE TABLE Lier (
-   numeroClient INT,
-   numeroConcession INT,
-   numeroImmat CHAR(9),
-   PRIMARY KEY (numeroClient, numeroConcession, numeroImmat),
-   FOREIGN KEY (numeroClient) REFERENCES Client(numeroClient),
-   FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
-);
 -- Table Voiture
 CREATE TABLE Voiture (
    numeroConcession INT,
@@ -75,60 +75,18 @@ CREATE TABLE NouvelleVoiture (
    FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
 );
 
-
--- Table Concession
-CREATE TABLE Concession (
-   numeroConcession INT IDENTITY(1,1) PRIMARY KEY,
-   nomConcession NVARCHAR(50),
-   numRueConcession NVARCHAR(8),
-   nomRueConcession NVARCHAR(80),
-   codePostalConcession NVARCHAR(5),
-   villeConcession NVARCHAR(50)
-)
-INSERT INTO Concession(nomConcession,numRueConcession,nomRueConcession,codePostalConcession,villeConcession)VALUES('Concession Celeste','12','Rue du corps Armée','67000','Strasbourg');
-
--- Table Visite
-CREATE TABLE Visite (
-   numVisite INT IDENTITY(1,1) PRIMARY KEY,
-   datedepart DATE,
-   dateRetour DATE,
-   voiturePerso BIT,
-   numFacture INT NOT NULL,
-   numeroConcession INT NOT NULL,
-   idUser INT NOT NULL,
-   PRIMARY KEY(numVisite),
-   FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
-   FOREIGN KEY(numFacture) REFERENCES Facture(numFacture),
-   FOREIGN KEY(idUser) REFERENCES Users(idUser)
+-- Table Lier
+CREATE TABLE Lier (
+   numeroClient INT,
+   numeroConcession INT,
+   numeroImmat CHAR(9),
+   PRIMARY KEY (numeroClient, numeroConcession, numeroImmat),
+   FOREIGN KEY (numeroClient) REFERENCES Client(numeroClient),
+   FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
 );
 
--- Table Visiteur
-CREATE TABLE Facture (
-   numFacture INT NOT NULL,
-   dateFacture DATE,
-   typeFrais NVARCHAR(50),
-   montant DECIMAL(10,2)
-   PRIMARY KEY (numFacture),
-   FOREIGN KEY (numVisite) REFERENCES Visite(numVisite)
-);
 
--- Table Remboursement
-CREATE TABLE Remboursement (
-   numeroFacture INT,
-   numRemboursement INT NOT NULL,
-   RAC DECIMAL(10,2),
-   commentaire NVARCHAR(100)
-   PRIMARY KEY (numRemboursement), 
-   FOREIGN KEY (numeroFacture) REFERENCES Facture(numeroFacture)
-);
 
-CREATE TABLE Rembourser(
-   numRemboursement INT,
-   numFacture INT,
-   PRIMARY KEY(numRemboursement, numFacture),
-   FOREIGN KEY(numRemboursement) REFERENCES Remboursement(numRemboursement),
-   FOREIGN KEY(numFacture) REFERENCES Facture(numFacture)
-);
 CREATE TABLE Users (
     idUser INT IDENTITY(1,1) PRIMARY KEY,
     username NVARCHAR(50) UNIQUE NOT NULL,
@@ -140,6 +98,48 @@ CREATE TABLE Users (
     numeroConcession INT, -- Optionnel : liaison avec une concession
     FOREIGN KEY (numeroConcession) REFERENCES Concession(numeroConcession)
 );
+-- Table Visite
+CREATE TABLE Visite (
+   numVisite INT IDENTITY(1,1) PRIMARY KEY,
+   datedepart DATE,
+   dateRetour DATE,
+   voiturePerso BIT,
+   numFacture INT NOT NULL,
+   numeroConcession INT NOT NULL,
+   idUser INT NOT NULL,
+   FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
+   FOREIGN KEY(idUser) REFERENCES Users(idUser)
+);
+
+-- Table Visiteur
+CREATE TABLE Facture (
+   numFacture INT NOT NULL,
+   dateFacture DATE,
+   typeFrais NVARCHAR(50),
+   montant DECIMAL(10,2),
+   numVisite INT,
+   PRIMARY KEY (numFacture),
+   FOREIGN KEY (numVisite) REFERENCES Visite(numVisite)
+);
+
+-- Table Remboursement
+CREATE TABLE Remboursement (
+   numFacture INT,
+   numRemboursement INT NOT NULL,
+   RAC DECIMAL(10,2),
+   commentaire NVARCHAR(100)
+   PRIMARY KEY (numRemboursement), 
+   FOREIGN KEY (numFacture) REFERENCES Facture(numFacture)
+);
+
+CREATE TABLE Rembourser(
+   numRemboursement INT,
+   numFacture INT,
+   PRIMARY KEY(numRemboursement, numFacture),
+   FOREIGN KEY(numRemboursement) REFERENCES Remboursement(numRemboursement),
+   FOREIGN KEY(numFacture) REFERENCES Facture(numFacture)
+);
+
 INSERT INTO Users (username, passwordHash, roleConcession, numeroConcession)
 VALUES 
 ('visiteur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVisiteur1'), 2)), 'Visiteur', 1),
