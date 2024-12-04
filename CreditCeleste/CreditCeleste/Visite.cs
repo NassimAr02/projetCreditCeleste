@@ -14,6 +14,7 @@ namespace CreditCeleste
         private int idUser;
         private int numeroConcession;
 
+   
         public Visite(DateTime dateD, DateTime dateR, bool voiturePers, int idU,int numC)
         {
             dateDepart = dateD;

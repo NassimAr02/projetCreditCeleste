@@ -8,15 +8,18 @@ namespace CreditCeleste
 {
     class Facture
     {
+
         private DateTime dateFacture ;
         private string typeFrais;
         private double montantF;
-
-        public Facture (DateTime aaaammjj,string type,double montant)
+        private int numeroVisite;
+        public Facture (DateTime aaaammjj,string type,double montant, int numVisite)
         {
             dateFacture = aaaammjj;
             typeFrais = type;
             montantF = montant;
+            numeroVisite = numVisite;
+
         }
 
         public void setDateFacture(DateTime aaaammjj)
@@ -25,6 +28,7 @@ namespace CreditCeleste
 
         }
         public DateTime getDateFacture()
+
         {
             return dateFacture;
         }
@@ -45,5 +49,15 @@ namespace CreditCeleste
         {
             return montantF;
         }
+        public void setNumVisite(int numVisite)
+        {
+            numeroVisite = numVisite;
+        }
+        public int getNumVisite()
+        {
+            return numeroVisite;
+        }
+
+
     }
 }
