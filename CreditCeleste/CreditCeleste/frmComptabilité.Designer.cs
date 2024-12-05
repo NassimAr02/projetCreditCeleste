@@ -29,31 +29,33 @@ namespace CreditCeleste
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lstBoxFacture = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // lstBoxFacture
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 0;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.lstBoxFacture.FormattingEnabled = true;
+            this.lstBoxFacture.ItemHeight = 16;
+            this.lstBoxFacture.Location = new System.Drawing.Point(187, 117);
+            this.lstBoxFacture.Name = "lstBoxFacture";
+            this.lstBoxFacture.Size = new System.Drawing.Size(369, 148);
+            this.lstBoxFacture.TabIndex = 0;
             // 
             // frmComptabilite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.lstBoxFacture);
             this.Name = "frmComptabilite";
             this.Text = "Comptabilité";
+            this.Load += new System.EventHandler(this.frmComptabilite_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ListBox lstBoxFacture;
     }
 }

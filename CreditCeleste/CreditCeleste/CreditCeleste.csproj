@@ -100,6 +100,7 @@
     <Compile Include="MDPversMD5.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remboursement.cs" />
     <Compile Include="Vendeur.cs" />
     <Compile Include="frmVisiteur.cs">
       <SubType>Form</SubType>

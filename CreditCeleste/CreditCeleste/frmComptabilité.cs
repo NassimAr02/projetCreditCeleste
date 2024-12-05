@@ -21,5 +21,10 @@ namespace CreditCeleste
         {
 
         }
+
+        private void frmComptabilite_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
