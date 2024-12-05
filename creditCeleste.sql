@@ -66,7 +66,7 @@ CREATE TABLE AncienneVoiture (
 );
 -- Table NouvelleVoiture
 CREATE TABLE NouvelleVoiture (
-   numeroConcession INT,
+   numeroConcession INT IDENTITY(1,1),
    numeroImmat CHAR(9),
    nouvelleVoiture NVARCHAR(50),
    puissance INT,
@@ -112,7 +112,7 @@ CREATE TABLE Visite (
 
 -- Table Visiteur
 CREATE TABLE Facture (
-   numFacture INT NOT NULL,
+   numFacture INT IDENTITY(1,1) NOT NULL,
    dateFacture DATE,
    typeFrais NVARCHAR(50),
    montant DECIMAL(10,2),
@@ -124,7 +124,7 @@ CREATE TABLE Facture (
 -- Table Remboursement
 CREATE TABLE Remboursement (
    numFacture INT,
-   numRemboursement INT NOT NULL,
+   numRemboursement INT IDENTITY(1,1) NOT NULL,
    RAC DECIMAL(10,2),
    commentaire NVARCHAR(100)
    PRIMARY KEY (numRemboursement), 
