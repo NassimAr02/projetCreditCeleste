@@ -77,6 +77,7 @@ namespace CreditCeleste
             affichage += cbxVendeur.Text;
             affichage += Environment.NewLine;
 
+
             //
             //age du véhicule
             //1) parcourir chaque radiobutton; if elxe
@@ -155,6 +156,11 @@ namespace CreditCeleste
         {
             
          
+        }
+
+        private void txtVille_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         //if (Globales.fenVoiture == null)

@@ -17,11 +17,23 @@ namespace CreditCeleste
         public frmConnexion()
         {
             InitializeComponent();
+            Boolean backdoor = true;
+            Form formshow = null;
+            if (backdoor)
+            {
+                formshow = new frmAccueil();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez vous authentifiez ");
+            }
+            formshow.Show();
+            this.Hide();
         }
 
         private void frmConnexion_Load(object sender, EventArgs e)
         {
-            
+           
         }
 
         private void btnValiderConnexion_Click(object sender, EventArgs e)
@@ -56,7 +68,7 @@ namespace CreditCeleste
                             if (role == "Visiteur")
                             { 
                                 formShow = new frmVisiteur();
-
+                                this.Hide();
                             }
                             else if (role == "Vendeur")
                             {
@@ -70,7 +82,7 @@ namespace CreditCeleste
 
                             formShow.Show();
 
-                            this.Hide();
+                            
 
                         }
                         else

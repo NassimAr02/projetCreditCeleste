@@ -51,6 +51,8 @@ namespace CreditCeleste
             this.ccmdEnregistre = new System.Windows.Forms.Button();
             this.cmdSaisieBien = new System.Windows.Forms.Button();
             this.cmdVersBdd = new System.Windows.Forms.Button();
+            this.txtVille = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.gpbAgeV.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,7 +150,7 @@ namespace CreditCeleste
             // lblNewV
             // 
             this.lblNewV.AutoSize = true;
-            this.lblNewV.Location = new System.Drawing.Point(327, 64);
+            this.lblNewV.Location = new System.Drawing.Point(473, 34);
             this.lblNewV.Name = "lblNewV";
             this.lblNewV.Size = new System.Drawing.Size(158, 17);
             this.lblNewV.TabIndex = 11;
@@ -157,7 +159,7 @@ namespace CreditCeleste
             // 
             // txtNewV
             // 
-            this.txtNewV.Location = new System.Drawing.Point(330, 91);
+            this.txtNewV.Location = new System.Drawing.Point(476, 61);
             this.txtNewV.Name = "txtNewV";
             this.txtNewV.Size = new System.Drawing.Size(100, 22);
             this.txtNewV.TabIndex = 12;
@@ -222,7 +224,7 @@ namespace CreditCeleste
             // lblAncienV
             // 
             this.lblAncienV.AutoSize = true;
-            this.lblAncienV.Location = new System.Drawing.Point(628, 64);
+            this.lblAncienV.Location = new System.Drawing.Point(637, 34);
             this.lblAncienV.Name = "lblAncienV";
             this.lblAncienV.Size = new System.Drawing.Size(140, 17);
             this.lblAncienV.TabIndex = 14;
@@ -230,7 +232,7 @@ namespace CreditCeleste
             // 
             // txtAncVhc
             // 
-            this.txtAncVhc.Location = new System.Drawing.Point(631, 91);
+            this.txtAncVhc.Location = new System.Drawing.Point(640, 61);
             this.txtAncVhc.Name = "txtAncVhc";
             this.txtAncVhc.Size = new System.Drawing.Size(100, 22);
             this.txtAncVhc.TabIndex = 15;
@@ -265,11 +267,30 @@ namespace CreditCeleste
             this.cmdVersBdd.UseVisualStyleBackColor = true;
             this.cmdVersBdd.Click += new System.EventHandler(this.cmdVersBdd_Click);
             // 
+            // txtVille
+            // 
+            this.txtVille.Location = new System.Drawing.Point(355, 166);
+            this.txtVille.Name = "txtVille";
+            this.txtVille.Size = new System.Drawing.Size(100, 22);
+            this.txtVille.TabIndex = 18;
+            this.txtVille.TextChanged += new System.EventHandler(this.txtVille_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(352, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 17);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Ville";
+            // 
             // frmIntroduction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtVille);
             this.Controls.Add(this.cmdVersBdd);
             this.Controls.Add(this.cmdSaisieBien);
             this.Controls.Add(this.ccmdEnregistre);
@@ -322,5 +343,7 @@ namespace CreditCeleste
         private System.Windows.Forms.Button ccmdEnregistre;
         private System.Windows.Forms.Button cmdSaisieBien;
         private System.Windows.Forms.Button cmdVersBdd;
+        private System.Windows.Forms.TextBox txtVille;
+        private System.Windows.Forms.Label label1;
     }
 }
