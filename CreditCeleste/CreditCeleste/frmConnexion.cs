@@ -17,7 +17,7 @@ namespace CreditCeleste
         public frmConnexion()
         {
             InitializeComponent();
-            Boolean backdoor = true;
+            //Boolean backdoor = true;
             //Form formshow = null;
             //if (backdoor)
             //{
