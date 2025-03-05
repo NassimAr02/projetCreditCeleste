@@ -161,6 +161,7 @@ namespace CreditCeleste
         private void txtVille_TextChanged(object sender, EventArgs e)
         {
 
+
         }
 
         //if (Globales.fenVoiture == null)
