@@ -210,3 +210,23 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID('InsClient', 'P') IS NOT NULL 
+    DROP PROCEDURE InsClient;
+GO
+
+CREATE PROCEDURE InsClient
+   @civilite NVARCHAR(3),
+   @nom NVARCHAR(50),
+   @prenom NVARCHAR(50),
+   @adresseClient NVARCHAR(80)
+AS
+BEGIN
+   INSERT INTO [dbo].[Client]
+      (civiliteClient, nomClient, prenomClient, adresseClient)
+   VALUES
+      (@civilite, @nom, @prenom, @adresseClient);
+   
+   RETURN 0;
+END
+GO
+

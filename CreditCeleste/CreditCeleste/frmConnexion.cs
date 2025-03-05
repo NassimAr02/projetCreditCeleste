@@ -17,11 +17,23 @@ namespace CreditCeleste
         public frmConnexion()
         {
             InitializeComponent();
+            //Boolean backdoor = true;
+            //Form formshow = null;
+            //if (backdoor)
+            //{
+            //    formshow = new frmAccueil();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Veuillez vous authentifiez ");
+            //}
+            //formshow.Show();
+            //this.Hide();
         }
 
         private void frmConnexion_Load(object sender, EventArgs e)
         {
-            
+           
         }
 
         private void btnValiderConnexion_Click(object sender, EventArgs e)
@@ -29,9 +41,9 @@ namespace CreditCeleste
             string identifiantUser = txtUtilisateur.Text;
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
-            string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
-            string connectionParam2 = "Data Source = 192.168.1.33;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
-            using(SqlConnection connection = new SqlConnection(connectionParam))
+            //string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
+            string connectionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=creditCelesteARRASS";
+            using(SqlConnection connection = new SqlConnection(connectionParam2))
             {
                 using(SqlCommand UserConn = new SqlCommand("SelUserId", connection))
                 {
@@ -56,21 +68,22 @@ namespace CreditCeleste
                             if (role == "Visiteur")
                             { 
                                 formShow = new frmVisiteur();
-
+                                this.Hide();
                             }
                             else if (role == "Vendeur")
                             {
                                 formShow = new frmAccueil();
-
+                                this.Hide();
                             }
                             else
                             {
                                 formShow = new frmComptabilite();
+                                this.Hide();
                             }
 
                             formShow.Show();
 
-                            this.Hide();
+                            
 
                         }
                         else
@@ -86,6 +99,11 @@ namespace CreditCeleste
 
                 }
             }
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
 
         }
     }
