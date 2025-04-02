@@ -45,15 +45,15 @@ namespace CreditCeleste
             // tester si la fenètre existe == null
             // (un singleton ?? un seule instance possible)
 
-            if (Globales.fenIntroduction == null)
+            if (Globales.fenAjoutClient == null)
             {
-                Globales.fenIntroduction = new frmIntroduction();
+                Globales.fenAjoutClient = new frmAjoutClient();
                 
-                Globales.fenIntroduction.Show();
+                Globales.fenAjoutClient.Show();
                  // l'objet Courant 
             }
             //utiliser la base de donnée 
-
+            Globales.fenAccueil = null;
             this.Hide();
         }
         private void gestBDD()

@@ -30,40 +30,19 @@ namespace CreditCeleste
         private void InitializeComponent()
         {
             this.cmdIntro = new System.Windows.Forms.Button();
-            this.cmdEtude = new System.Windows.Forms.Button();
-            this.cmdRelance = new System.Windows.Forms.Button();
             this.lblMaRegion = new System.Windows.Forms.Label();
             this.lblMonApp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmdIntro
             // 
-            this.cmdIntro.Location = new System.Drawing.Point(186, 289);
+            this.cmdIntro.Location = new System.Drawing.Point(294, 289);
             this.cmdIntro.Name = "cmdIntro";
-            this.cmdIntro.Size = new System.Drawing.Size(98, 29);
+            this.cmdIntro.Size = new System.Drawing.Size(201, 29);
             this.cmdIntro.TabIndex = 0;
-            this.cmdIntro.Text = "Introduction";
+            this.cmdIntro.Text = "Nouveau Client";
             this.cmdIntro.UseVisualStyleBackColor = true;
             this.cmdIntro.Click += new System.EventHandler(this.cmdIntro_Click);
-            // 
-            // cmdEtude
-            // 
-            this.cmdEtude.Location = new System.Drawing.Point(290, 289);
-            this.cmdEtude.Name = "cmdEtude";
-            this.cmdEtude.Size = new System.Drawing.Size(98, 29);
-            this.cmdEtude.TabIndex = 1;
-            this.cmdEtude.Text = "Etude";
-            this.cmdEtude.UseVisualStyleBackColor = true;
-            this.cmdEtude.Click += new System.EventHandler(this.cmdEtude_Click);
-            // 
-            // cmdRelance
-            // 
-            this.cmdRelance.Location = new System.Drawing.Point(394, 289);
-            this.cmdRelance.Name = "cmdRelance";
-            this.cmdRelance.Size = new System.Drawing.Size(98, 29);
-            this.cmdRelance.TabIndex = 2;
-            this.cmdRelance.Text = "&Relance";
-            this.cmdRelance.UseVisualStyleBackColor = true;
             // 
             // lblMaRegion
             // 
@@ -90,8 +69,6 @@ namespace CreditCeleste
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lblMaRegion);
             this.Controls.Add(this.lblMonApp);
-            this.Controls.Add(this.cmdRelance);
-            this.Controls.Add(this.cmdEtude);
             this.Controls.Add(this.cmdIntro);
             this.Name = "frmAccueil";
             this.Text = "Accueil";
@@ -104,8 +81,6 @@ namespace CreditCeleste
         #endregion
 
         private System.Windows.Forms.Button cmdIntro;
-        private System.Windows.Forms.Button cmdEtude;
-        private System.Windows.Forms.Button cmdRelance;
         private System.Windows.Forms.Label lblMaRegion;
         private System.Windows.Forms.Label lblMonApp;
     }

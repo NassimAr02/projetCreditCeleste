@@ -7,7 +7,7 @@ namespace CreditCeleste
     public partial class frmIntroduction : Form
     {
         private string age;
-        private string civ;
+        
         public frmIntroduction()
         {
             InitializeComponent();
@@ -51,28 +51,34 @@ namespace CreditCeleste
 
         }
 
-        private void cmdVersBdd_Click(object sender, EventArgs e)
+        private void cmdVersNouveauClient_Click(object sender, EventArgs e)
         {
-
+            if (Globales.fenAjoutClient == null)
+            {
+                Globales.fenAjoutClient = new frmAjoutClient();
+                Globales.fenAjoutClient.Show();
+                Globales.fenIntroduction = null;
+                this.Hide();
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-                if (cbxVendeur.SelectedItem != null)
-                {
-                    lblNomA.Text = cbxVendeur.SelectedItem.ToString();
-                    lblNomA.Refresh();
 
-                }
-            
+            if (cbxVendeur.SelectedItem != null)
+            {
+                lblNomA.Text = cbxVendeur.SelectedItem.ToString();
+                lblNomA.Refresh();
+
+            }
+
 
         }
 
         private void ccmdEnregistre_Click(object sender, EventArgs e)
         {
             string affichage = "";
-            affichage = cboCiv.Text + " " + txtNom.Text + " " + txtPrenom.Text;
+            //affichage = cboCiv.Text + " " + txtNom.Text + " " + txtPrenom.Text;
             affichage += Environment.NewLine;
             affichage += cbxVendeur.Text;
             affichage += Environment.NewLine;
@@ -89,7 +95,7 @@ namespace CreditCeleste
             {
                 if (xRadio.Checked)
                 {
-                    
+
                     affichage += "Age : " + xRadio.Text;
                 }
             }
@@ -114,21 +120,21 @@ namespace CreditCeleste
             {
                 if (xRadio.Checked)
                 {
-                    age = xRadio.Text ;
+                    age = xRadio.Text;
                 }
             }
-           if (cboCiv.SelectedItem != null)
-            {
-                civ = cboCiv.SelectedItem.ToString();
-            }
+            //if (cboCiv.SelectedItem != null)
+            // {
+            //     civ = cboCiv.SelectedItem.ToString();
+            // }
             if ((Globales.fenVoiture == null))
             {
                 Globales.fenVoiture = new frmVoiture();
 
-                if ((Globales.uneVoiture == null) &&(Globales.unClient ==null))
+                if ((Globales.uneVoiture == null) && (Globales.unClient == null))
                 {
                     Globales.uneVoiture = new Voiture(txtAncVhc.Text, txtNewV.Text, age);
-                    Globales.unClient = new Client(civ,txtNom.Text,txtPrenom.Text);
+                    //Globales.unClient = new Client(civ,txtNom.Text,txtPrenom.Text);
                 }
                 else
                 {
@@ -141,12 +147,12 @@ namespace CreditCeleste
                             Globales.uneVoiture.setAge(xRadio.Text);
                         }
                     }
-                    Globales.unClient.setCivilite(cboCiv.SelectedItem.ToString());
-                    Globales.unClient.setNomClient(txtNom.Text);
-                    Globales.unClient.setPrenomClient(txtPrenom.Text);
-                    
+                    //Globales.unClient.setCivilite(cboCiv.SelectedItem.ToString());
+                    //Globales.unClient.setNomClient(txtNom.Text);
+                    //Globales.unClient.setPrenomClient(txtPrenom.Text);
+
                 }
-                
+
                 Globales.fenVoiture.Show();
                 this.Close();
             }
@@ -154,13 +160,18 @@ namespace CreditCeleste
 
         private void lblNomA_Click(object sender, EventArgs e)
         {
-            
-         
+
+
         }
 
         private void txtVille_TextChanged(object sender, EventArgs e)
         {
 
+
+        }
+
+        private void cboCiv_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
@@ -195,6 +206,6 @@ namespace CreditCeleste
         //}
     }
 }
-    
+
 
 

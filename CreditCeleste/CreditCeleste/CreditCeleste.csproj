@@ -58,6 +58,12 @@
     </Compile>
     <Compile Include="Facture.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="frmAjoutClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAjoutClient.Designer.cs">
+      <DependentUpon>frmAjoutClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmComptabilité.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +114,13 @@
       <DependentUpon>frmVisiteur.cs</DependentUpon>
     </Compile>
     <Compile Include="Visite.cs" />
+    <Compile Include="visiteur.cs" />
     <Compile Include="Voiture.cs" />
     <EmbeddedResource Include="CalculCredit.resx">
       <DependentUpon>CalculCredit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAjoutClient.resx">
+      <DependentUpon>frmAjoutClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmComptabilité.resx">
       <DependentUpon>frmComptabilité.cs</DependentUpon>
