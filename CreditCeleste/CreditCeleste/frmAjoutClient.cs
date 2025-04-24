@@ -26,7 +26,7 @@ namespace CreditCeleste
 
         private void cboCiv_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboCiv.SelectedItem != null && cboCiv.SelectedItem == "M.")
+            if (cboCiv.SelectedItem != null &&  cboCiv.SelectedItem == "M.")
             {
                 txtNomJeuneFille.Enabled = false;
             } else
@@ -43,8 +43,9 @@ namespace CreditCeleste
             {
                civ = cboCiv.SelectedItem.ToString();
             }
-            string connexionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
-            using (SqlConnection connection = new SqlConnection(connexionParam))
+            //string connexionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
+            string connexionParam2 = "Data Source = 192.168.1.175;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
+            using (SqlConnection connection = new SqlConnection(connexionParam2))
             {
                 string dernierId = "SELECT MAX(numeroClient) FROM Client";
                 using (SqlCommand command = new SqlCommand(dernierId, connection))

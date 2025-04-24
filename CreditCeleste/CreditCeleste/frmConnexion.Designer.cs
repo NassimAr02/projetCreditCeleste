@@ -65,6 +65,7 @@ namespace CreditCeleste
             this.txtMdp.Size = new System.Drawing.Size(127, 22);
             this.txtMdp.TabIndex = 2;
             this.txtMdp.UseSystemPasswordChar = true;
+            this.txtMdp.TextChanged += new System.EventHandler(this.txtMdp_TextChanged);
             // 
             // label1
             // 
@@ -99,7 +100,6 @@ namespace CreditCeleste
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connexion";
-            
             // 
             // frmConnexion
             // 

@@ -22,8 +22,18 @@ CREATE TABLE Client (
    nomClient NVARCHAR(50),
    prenomClient NVARCHAR(50),
    adresseClient NVARCHAR(80),
-   civilite NVARCHAR(3)
+   civilite NVARCHAR(3),
+   adresseClient NVARCHAR(100),
+   codePostal NVARCHAR(5),
+   ville NVARCHAR(80),
+   numTel NVARCHAR(15),
+   dateNaissance NVARCHAR(30),
+   revenuAnnuel NVARCHAR(15),
+   profession NVARCHAR(40),
+   nomJeuneFille NVARCHAR(50)
+
 );
+
 -- Table Credit
 CREATE TABLE Credit (
    numeroSouscription INT IDENTITY(1,1) PRIMARY KEY,
@@ -104,6 +114,8 @@ CREATE TABLE Visite (
    datedepart DATE,
    dateRetour DATE,
    voiturePerso BIT,
+   puissanceVoiture INT,
+   distanceVisite INT,
    numeroConcession INT NOT NULL,
    idUser INT NOT NULL,
    FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
@@ -230,3 +242,30 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID('InsClient', 'P') IS NOT NULL 
+    DROP PROCEDURE InsClient;
+GO
+
+CREATE PROCEDURE InsClient
+   @civilite NVARCHAR(3),
+   @nom NVARCHAR(50),
+   @prenom NVARCHAR(50),
+   @adresseClient NVARCHAR(80)
+   @codePostal NVARCHAR(5),
+   @ville NVARCHAR(80),
+   @numTel NVARCHAR(15),
+   @dateNaissance NVARCHAR(30),
+   @revenuAnnuel NVARCHAR(15),
+   @profession NVARCHAR(40),
+   @nomJeuneFille NVARCHAR(50)
+
+AS
+BEGIN
+   INSERT INTO [dbo].[Client]
+      (civiliteClient, nomClient, prenomClient, adresseClient)
+   VALUES
+      (@civilite, @nom, @prenom, @adresseClient,@codePostal,@ville,@numTel,@dateNaissance,@revenuAnnuel,@profession,@nomJeuneFille);
+   
+   RETURN 0;
+END
+GO

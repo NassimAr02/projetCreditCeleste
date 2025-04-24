@@ -41,9 +41,10 @@ namespace CreditCeleste
             string identifiantUser = txtUtilisateur.Text;
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
-            string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
+            //string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
             //string connectionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=creditCelesteARRASS";
-            using(SqlConnection connection = new SqlConnection(connectionParam))
+            string connexionParam2 = "Data Source = 192.168.1.175;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
+            using (SqlConnection connection = new SqlConnection(connexionParam2))
             {
                 using(SqlCommand UserConn = new SqlCommand("SelUserId", connection))
                 {
@@ -102,6 +103,9 @@ namespace CreditCeleste
 
         }
 
-        
+        private void txtMdp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
