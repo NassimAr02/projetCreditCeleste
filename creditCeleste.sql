@@ -27,8 +27,8 @@ CREATE TABLE Client (
    codePostal NVARCHAR(5),
    ville NVARCHAR(80),
    numTel NVARCHAR(15),
-   dateNaissance NVARCHAR(30),
-   revenuAnnuel NVARCHAR(15),
+   dateNaissance DATE,
+   revenuAnnuel DECIMAL(12,2),
    profession NVARCHAR(40),
    nomJeuneFille NVARCHAR(50)
 
