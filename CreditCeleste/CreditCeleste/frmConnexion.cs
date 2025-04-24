@@ -96,8 +96,6 @@ namespace CreditCeleste
                     {
                         MessageBox.Show($"Erreur SQL : {exe.Message}");
                     }
-
-
                 }
             }
 
