@@ -97,10 +97,10 @@ CREATE TABLE Lier (
 
 
 
-CREATE TABLE Users (
-    idUser INT IDENTITY(1,1) PRIMARY KEY,
-    username NVARCHAR(50) UNIQUE NOT NULL,
-    passwordHash NVARCHAR(32) NOT NULL, -- MD5 produit une chaîne de 32 caractères hexadécimaux
+CREATE TABLE Utilisateur (
+    idUtilisateur INT IDENTITY(1,1) PRIMARY KEY,
+    nomUtilisateur NVARCHAR(50) UNIQUE NOT NULL,
+    mdpHash NVARCHAR(32) NOT NULL, -- MD5 produit une chaîne de 32 caractères hexadécimaux
     roleConcession NVARCHAR(20) NOT NULL, -- 'Visiteur', 'Vendeur', 'Comptabilité'
     nomCollaborateur NVARCHAR(50),
     prenomCollaborateur NVARCHAR(50),
@@ -117,9 +117,9 @@ CREATE TABLE Visite (
    puissanceVoiture INT,
    distanceVisite INT,
    numeroConcession INT NOT NULL,
-   idUser INT NOT NULL,
+   idUtilisateur INT NOT NULL,
    FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
-   FOREIGN KEY(idUser) REFERENCES Users(idUser)
+   FOREIGN KEY(idUtilisateur) REFERENCES Users(idUtilisateur)
 );
 
 -- Table Visiteur
