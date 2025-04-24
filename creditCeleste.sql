@@ -205,14 +205,14 @@ BEGIN
    -- Vérifie si l'utilisateur existe avec les identifiants fournis
    IF EXISTS (
        SELECT 1 
-       FROM [dbo].[Users] 
-       WHERE username = @userN AND passwordHash = @passwordH
+       FROM [dbo].[Utilisateur] 
+       WHERE nomUtilisateur = @userN AND passwordHash = @passwordH
    )
    BEGIN
        -- Récupère le rôle de l'utilisateur
        SELECT @roleC = roleConcession
-       FROM [dbo].[Users]
-       WHERE username = @userN AND passwordHash = @passwordH;
+       FROM [dbo].[Utilisateur]
+       WHERE nomUtilisateur = @userN AND passwordHash = @passwordH;
    END
    ELSE
    BEGIN
@@ -230,42 +230,24 @@ CREATE PROCEDURE InsClient
    @civilite NVARCHAR(3),
    @nom NVARCHAR(50),
    @prenom NVARCHAR(50),
-   @adresseClient NVARCHAR(80)
-AS
-BEGIN
-   INSERT INTO [dbo].[Client]
-      (civiliteClient, nomClient, prenomClient, adresseClient)
-   VALUES
-      (@civilite, @nom, @prenom, @adresseClient);
-   
-   RETURN 0;
-END
-GO
-
-IF OBJECT_ID('InsClient', 'P') IS NOT NULL 
-    DROP PROCEDURE InsClient;
-GO
-
-CREATE PROCEDURE InsClient
-   @civilite NVARCHAR(3),
-   @nom NVARCHAR(50),
-   @prenom NVARCHAR(50),
-   @adresseClient NVARCHAR(80)
+   @numRue NVARCHAR(10),
+   @nomRue NVARCHAR(80),
    @codePostal NVARCHAR(5),
    @ville NVARCHAR(80),
    @numTel NVARCHAR(15),
-   @dateNaissance NVARCHAR(30),
-   @revenuAnnuel NVARCHAR(15),
+   @dateNaissance DATE,
+   @revenuAnnuel DECIMAL(12,2),
    @profession NVARCHAR(40),
    @nomJeuneFille NVARCHAR(50)
 
 AS
 BEGIN
    INSERT INTO [dbo].[Client]
-      (civiliteClient, nomClient, prenomClient, adresseClient)
+      (civilite, nomClient, prenomClient, numRue, nomRue, codePostal, ville, numTel, dateNaissance, profession, nomJeuneFille)
    VALUES
-      (@civilite, @nom, @prenom, @adresseClient,@codePostal,@ville,@numTel,@dateNaissance,@revenuAnnuel,@profession,@nomJeuneFille);
+      (@civilite, @nom, @prenom, @numRue , @nomRue, @codePostal, @ville, @numTel, @dateNaissance, @revenuAnnuel, @profession, @nomJeuneFille);
    
    RETURN 0;
 END
 GO
+
