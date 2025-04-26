@@ -128,6 +128,7 @@ CREATE TABLE Facture (
    dateFacture DATE,
    typeFrais NVARCHAR(50),
    montant DECIMAL(10,2),
+   estRembourser BIT,
    numVisite INT,
    PRIMARY KEY (numFacture),
    FOREIGN KEY (numVisite) REFERENCES Visite(numVisite)
@@ -137,6 +138,7 @@ CREATE TABLE Facture (
 CREATE TABLE Remboursement (
    numFacture INT,
    numRemboursement INT IDENTITY(1,1) NOT NULL,
+   montantR INT DECIMAL(10,2),
    RAC DECIMAL(10,2),
    commentaire NVARCHAR(100)
    PRIMARY KEY (numRemboursement), 
