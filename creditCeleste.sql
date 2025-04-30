@@ -119,7 +119,7 @@ CREATE TABLE Visite (
    numeroConcession INT NOT NULL,
    idUtilisateur INT NOT NULL,
    FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
-   FOREIGN KEY(idUtilisateur) REFERENCES Users(idUtilisateur)
+   FOREIGN KEY(idUtilisateur) REFERENCES Utilisateur(idUtilisateur)
 );
 
 -- Table Visiteur
@@ -138,7 +138,7 @@ CREATE TABLE Facture (
 CREATE TABLE Remboursement (
    numFacture INT,
    numRemboursement INT IDENTITY(1,1) NOT NULL,
-   montantR INT DECIMAL(10,2),
+   montantR DECIMAL(10,2),
    RAC DECIMAL(10,2),
    commentaire NVARCHAR(100)
    PRIMARY KEY (numRemboursement), 
@@ -153,7 +153,7 @@ CREATE TABLE Rembourser(
    FOREIGN KEY(numFacture) REFERENCES Facture(numFacture)
 );
 
-INSERT INTO Users (username, passwordHash, roleConcession, numeroConcession)
+INSERT INTO Utilisateur (nomUtilisateur, mdpHash, roleConcession, numeroConcession)
 VALUES 
 ('visiteur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVisiteur1'), 2)), 'Visiteur', 1),
 ('vendeur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVendeur1'), 2)), 'Vendeur', 1),
@@ -208,13 +208,13 @@ BEGIN
    IF EXISTS (
        SELECT 1 
        FROM [dbo].[Utilisateur] 
-       WHERE nomUtilisateur = @userN AND passwordHash = @passwordH
+       WHERE nomUtilisateur = @userN AND mdpHash = @passwordH
    )
    BEGIN
        -- Récupère le rôle de l'utilisateur
        SELECT @roleC = roleConcession
        FROM [dbo].[Utilisateur]
-       WHERE nomUtilisateur = @userN AND passwordHash = @passwordH;
+       WHERE nomUtilisateur = @userN AND mdpHash = @passwordH;
    END
    ELSE
    BEGIN
@@ -245,7 +245,7 @@ CREATE PROCEDURE InsClient
 AS
 BEGIN
    INSERT INTO [dbo].[Client]
-      (civilite, nomClient, prenomClient, numRue, nomRue, codePostal, ville, numTel, dateNaissance, profession, nomJeuneFille)
+      (civilite, nomClient, prenomClient, numRue, nomRue, codePostal, ville, numTel, dateNaissance, revenuAnnuel, profession, nomJeuneFille)
    VALUES
       (@civilite, @nom, @prenom, @numRue , @nomRue, @codePostal, @ville, @numTel, @dateNaissance, @revenuAnnuel, @profession, @nomJeuneFille);
    
