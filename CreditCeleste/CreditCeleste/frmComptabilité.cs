@@ -44,7 +44,7 @@ namespace CreditCeleste
             cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT * FROM Factures";
+            cmd.CommandText = "SELECT * FROM Facture";
             dr = cmd.ExecuteReader();
 
             while (dr.Read())
