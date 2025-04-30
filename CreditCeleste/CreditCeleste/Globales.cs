@@ -17,6 +17,8 @@ namespace CreditCeleste
         public static Voiture uneVoiture;
         public static Client unClient;
         public static frmAccueil fenAccueil;
+        public static frmAccueil frmAccueil;
+        public static frmAccueilVisiteur fenAccueilVisiteur;
         public static frmIntroduction fenIntroduction;
         public static frmVoiture fenVoiture;
         public static List<Credit> lesCredits;
@@ -25,12 +27,13 @@ namespace CreditCeleste
         public static frmListeCredit fenListeCredit;
         public static frmComptabilite fenComptabilite;
         public static frmVisiteur fenVisiteur;
+        public static frmSaisie fenSaisie;
         public static Facture facture1;
         public static Facture facture2;
         public static Facture facture3;
-        public static Visite uneVisite;
         public static frmAjoutClient fenAjoutClient;
-        
+        public static Visite uneVisite = new Visite();
+
 
 
     }

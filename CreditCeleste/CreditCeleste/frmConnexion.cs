@@ -43,8 +43,11 @@ namespace CreditCeleste
 
             //string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
             //string connectionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=creditCelesteARRASS";
-            string connexionParam2 = "Data Source = 192.168.1.175;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
-            using (SqlConnection connection = new SqlConnection(connexionParam2))
+            //string connexionParam2 = "Data Source = 192.168.1.175;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
+            //using (SqlConnection connection = new SqlConnection(connexionParam2))
+            //string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
+            string connectionParam2 = "Data Source=localhost\\SQLEXPRESS;Integrated Security = SSPI; Initial Catalog=CreditCelesteKOPP";
+            using(SqlConnection connection = new SqlConnection(connectionParam2))
             {
                 using(SqlCommand UserConn = new SqlCommand("SelUserId", connection))
                 {
@@ -56,6 +59,13 @@ namespace CreditCeleste
                         Direction = ParameterDirection.Output
                     };
                     UserConn.Parameters.Add(roleP);
+
+                    SqlParameter idU = new SqlParameter("@idU", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    UserConn.Parameters.Add(idU);
+
                     try
                     {
                         connection.Open();
@@ -65,10 +75,13 @@ namespace CreditCeleste
 
                         if (!string.IsNullOrEmpty(role))
                         {
+                            int userId = (idU.Value != DBNull.Value) ? Convert.ToInt32(idU.Value) : 0;
+                            Globales.uneVisite.setIdUser(userId);
+
                             Form formShow = null;
                             if (role == "Visiteur")
                             { 
-                                formShow = new frmVisiteur();
+                                formShow = new frmAccueilVisiteur();
                                 this.Hide();
                             }
                             else if (role == "Vendeur")
@@ -83,8 +96,6 @@ namespace CreditCeleste
                             }
 
                             formShow.Show();
-
-                            
 
                         }
                         else

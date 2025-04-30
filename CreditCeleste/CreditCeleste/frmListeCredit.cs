@@ -40,7 +40,7 @@ namespace CreditCeleste
 
             Credit unCredit = Globales.lesCredits[lsbLesCredits.SelectedIndex];
 
-            string connexionParam = "Data Source = 10.129.253.210;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
+            string connexionParam = "Data Source=localhost\\SQLEXPRESS;Integrated Security = SSPI; Initial Catalog=CreditCelesteKOPP";
             // Paramètres pour la procédure
 
             double montantFinale = unCredit.getMontant();

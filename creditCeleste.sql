@@ -198,11 +198,13 @@ GO
 CREATE PROCEDURE SelUserId
    @userN NVARCHAR(50),
    @passwordH NVARCHAR(32),
-   @roleC NVARCHAR(20) OUTPUT
+   @roleC NVARCHAR(20) OUTPUT,
+   @idU INT OUTPUT
 AS
 BEGIN
    -- Initialiser la valeur de sortie à NULL par défaut
    SET @roleC = NULL;
+   SET @idU = NULL;
 
    -- Vérifie si l'utilisateur existe avec les identifiants fournis
    IF EXISTS (
@@ -212,9 +214,15 @@ BEGIN
    )
    BEGIN
        -- Récupère le rôle de l'utilisateur
+<<<<<<< Updated upstream
        SELECT @roleC = roleConcession
        FROM [dbo].[Utilisateur]
        WHERE nomUtilisateur = @userN AND passwordHash = @passwordH;
+=======
+       SELECT @idU = idUser, @roleC = roleConcession
+       FROM [dbo].[Users]
+       WHERE username = @userN AND passwordHash = @passwordH;
+>>>>>>> Stashed changes
    END
    ELSE
    BEGIN
@@ -252,4 +260,58 @@ BEGIN
    RETURN 0;
 END
 GO
+
+IF OBJECT_ID('InsVisite', 'P') IS NOT NULL
+    DROP PROCEDURE InsVisite;
+GO
+
+CREATE PROCEDURE InsVisite
+    @dateDepart DATE,
+    @dateRetour DATE,
+    @voiturePerso BIT,
+    @numeroConcession INT,
+    @idUser INT
+
+AS 
+BEGIN 
+    -- Vérification si la concession associée à la visite existe
+    IF NOT EXISTS (SELECT 1 FROM [dbo].[Concession] WHERE numeroConcession = @numeroConcession)
+    BEGIN
+        RAISERROR('La concession spécifiée n''existe pas.', 16, 1);
+        RETURN 1;
+    END
+    -- Insertion des informations de la visite 
+    INSERT INTO [dbo].[Visite] (dateDepart, dateRetour, voiturePerso, numeroConcession, idUser)
+    VALUES (@dateDepart @dateRetour, @voiturePerso, @numeroConcession, @idUser); 
+    RETURN 0;
+END 
+GO
+
+IF OBJECT_ID('InsFacture', 'P') IS NOT NULL 
+    DROP PROCEDURE InsFacture;
+GO
+
+CREATE PROCEDURE InsFacture
+    @dateFacture DATE,
+    @typeFrais NVARCHAR(50),
+    @montant DECIMAL(10,2),
+    @numVisite INT
+AS
+BEGIN
+    -- Vérification si la visite associée existe
+    IF NOT EXISTS (SELECT 1 FROM [dbo].[Visite] WHERE numVisite = @numVisite)
+    BEGIN
+        RAISERROR('La visite associée n''existe pas.', 16, 1);
+        RETURN 1; -- Erreur
+    END
+    
+    -- Insertion des données dans la table Facture
+    INSERT INTO [dbo].[Facture] (dateFacture, typeFrais, montant, numVisite)
+    VALUES (@dateFacture, @typeFrais, @montant, @numVisite);
+    
+    RETURN 0; 
+END
+GO
+
+
 
