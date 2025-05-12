@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace CreditCeleste
 {
     public partial class frmIntroduction : Form
@@ -173,6 +179,62 @@ namespace CreditCeleste
         private void cboCiv_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmdVersBdd_Click(object sender, EventArgs e)
+        {
+            
+            string civ = Globales.unClient.getCivilite();
+            string nom = Globales.unClient.getNomClient();
+            string prenom = Globales.unClient.getPrenomClient();
+            string numRue = Globales.unClient.getNumRueClient();
+            string nomRue = Globales.unClient.getNomRueClient();
+            string codëPostal = Globales.unClient.getCPClient();
+            string ville = Globales.unClient.getVilleClient();
+            string numTel = Globales.unClient.getNumTel();
+            string dateNaissance = Globales.unClient.getDateNaissance();
+            double revenuAnnuel = Globales.unClient.getRevenuAnnuel();
+            string profession = Globales.unClient.getProfesssion();
+            string nomJeuneFille = Globales.unClient.getNomJeuneFille();
+
+            string connexionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=creditCelesteARRASS";
+            using (SqlConnection connexion = new SqlConnection(connexionParam2))
+            {
+                using (SqlCommand command = new SqlCommand("InsClient", connexion))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Ajout des paramètres
+
+                    command.Parameters.Add(new SqlParameter("@civilite", civ));
+                    command.Parameters.Add(new SqlParameter("@nom", nom));
+                    command.Parameters.Add(new SqlParameter("@prenom", prenom));
+                    command.Parameters.Add(new SqlParameter("@numRue", numRue));
+                    command.Parameters.Add(new SqlParameter("@nomRue", nomRue));
+                    command.Parameters.Add(new SqlParameter("@codePostal", codëPostal));
+                    command.Parameters.Add(new SqlParameter("@ville", ville));
+                    command.Parameters.Add(new SqlParameter("@numTel", numTel));
+                    command.Parameters.Add(new SqlParameter("@dateNaissance", dateNaissance));
+                    command.Parameters.Add(new SqlParameter("@revenuAnnuel", revenuAnnuel));
+                    command.Parameters.Add(new SqlParameter("@profession", profession));
+                    command.Parameters.Add(new SqlParameter("@nomJeuneFille", nomJeuneFille));
+
+                    try
+                    {
+                        // Ouvrir la connexion
+                        connexion.Open();
+                        // Exécuter la procédure
+                        command.ExecuteNonQuery();
+                        Console.WriteLine("Le crédit a été ajouté avec succès.");
+
+
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"Erreur lors de l'ajout: {ex.Message} ");
+                    }
+                }
+            }
         }
 
         //if (Globales.fenVoiture == null)

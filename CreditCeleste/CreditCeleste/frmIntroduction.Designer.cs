@@ -51,54 +51,60 @@ namespace CreditCeleste
             // lblNomA
             // 
             this.lblNomA.AutoSize = true;
-            this.lblNomA.Location = new System.Drawing.Point(650, 34);
+            this.lblNomA.Location = new System.Drawing.Point(488, 28);
+            this.lblNomA.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNomA.Name = "lblNomA";
-            this.lblNomA.Size = new System.Drawing.Size(0, 17);
+            this.lblNomA.Size = new System.Drawing.Size(0, 15);
             this.lblNomA.TabIndex = 1;
             this.lblNomA.Click += new System.EventHandler(this.lblNomA_Click);
             // 
             // lblJmpl
             // 
             this.lblJmpl.AutoSize = true;
-            this.lblJmpl.Location = new System.Drawing.Point(39, 34);
+            this.lblJmpl.Location = new System.Drawing.Point(29, 28);
+            this.lblJmpl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblJmpl.Name = "lblJmpl";
-            this.lblJmpl.Size = new System.Drawing.Size(87, 17);
+            this.lblJmpl.Size = new System.Drawing.Size(78, 15);
             this.lblJmpl.TabIndex = 2;
             this.lblJmpl.Text = "Je m\'appelle";
             // 
             // cbxVendeur
             // 
             this.cbxVendeur.FormattingEnabled = true;
-            this.cbxVendeur.Location = new System.Drawing.Point(42, 90);
+            this.cbxVendeur.Location = new System.Drawing.Point(32, 73);
+            this.cbxVendeur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxVendeur.Name = "cbxVendeur";
-            this.cbxVendeur.Size = new System.Drawing.Size(121, 24);
+            this.cbxVendeur.Size = new System.Drawing.Size(92, 21);
             this.cbxVendeur.TabIndex = 9;
             this.cbxVendeur.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // lblvendeur
             // 
             this.lblvendeur.AutoSize = true;
-            this.lblvendeur.Location = new System.Drawing.Point(39, 70);
+            this.lblvendeur.Location = new System.Drawing.Point(29, 57);
+            this.lblvendeur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblvendeur.Name = "lblvendeur";
-            this.lblvendeur.Size = new System.Drawing.Size(62, 17);
+            this.lblvendeur.Size = new System.Drawing.Size(53, 15);
             this.lblvendeur.TabIndex = 10;
             this.lblvendeur.Text = "Vendeur";
             // 
             // lblNewV
             // 
             this.lblNewV.AutoSize = true;
-            this.lblNewV.Location = new System.Drawing.Point(473, 34);
+            this.lblNewV.Location = new System.Drawing.Point(355, 28);
+            this.lblNewV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNewV.Name = "lblNewV";
-            this.lblNewV.Size = new System.Drawing.Size(158, 17);
+            this.lblNewV.Size = new System.Drawing.Size(137, 15);
             this.lblNewV.TabIndex = 11;
             this.lblNewV.Text = "Mon Nouveau Véhicule ";
             this.lblNewV.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // txtNewV
             // 
-            this.txtNewV.Location = new System.Drawing.Point(476, 61);
+            this.txtNewV.Location = new System.Drawing.Point(357, 50);
+            this.txtNewV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNewV.Name = "txtNewV";
-            this.txtNewV.Size = new System.Drawing.Size(100, 22);
+            this.txtNewV.Size = new System.Drawing.Size(76, 20);
             this.txtNewV.TabIndex = 12;
             // 
             // gpbAgeV
@@ -107,9 +113,11 @@ namespace CreditCeleste
             this.gpbAgeV.Controls.Add(this.rdb3à5ans);
             this.gpbAgeV.Controls.Add(this.rdb3ans);
             this.gpbAgeV.Controls.Add(this.rdbNeuf);
-            this.gpbAgeV.Location = new System.Drawing.Point(307, 214);
+            this.gpbAgeV.Location = new System.Drawing.Point(230, 174);
+            this.gpbAgeV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gpbAgeV.Name = "gpbAgeV";
-            this.gpbAgeV.Size = new System.Drawing.Size(241, 156);
+            this.gpbAgeV.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gpbAgeV.Size = new System.Drawing.Size(181, 127);
             this.gpbAgeV.TabIndex = 13;
             this.gpbAgeV.TabStop = false;
             this.gpbAgeV.Text = "Age du véhicule";
@@ -117,9 +125,10 @@ namespace CreditCeleste
             // rdb5ans
             // 
             this.rdb5ans.AutoSize = true;
-            this.rdb5ans.Location = new System.Drawing.Point(23, 115);
+            this.rdb5ans.Location = new System.Drawing.Point(17, 93);
+            this.rdb5ans.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdb5ans.Name = "rdb5ans";
-            this.rdb5ans.Size = new System.Drawing.Size(177, 21);
+            this.rdb5ans.Size = new System.Drawing.Size(151, 19);
             this.rdb5ans.TabIndex = 3;
             this.rdb5ans.TabStop = true;
             this.rdb5ans.Text = "Occasion 5 ans et plus ";
@@ -128,9 +137,10 @@ namespace CreditCeleste
             // rdb3à5ans
             // 
             this.rdb3à5ans.AutoSize = true;
-            this.rdb3à5ans.Location = new System.Drawing.Point(23, 88);
+            this.rdb3à5ans.Location = new System.Drawing.Point(17, 72);
+            this.rdb3à5ans.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdb3à5ans.Name = "rdb3à5ans";
-            this.rdb3à5ans.Size = new System.Drawing.Size(175, 21);
+            this.rdb3à5ans.Size = new System.Drawing.Size(149, 19);
             this.rdb3à5ans.TabIndex = 2;
             this.rdb3à5ans.TabStop = true;
             this.rdb3à5ans.Text = "Occasion de 3 à 5 ans ";
@@ -139,9 +149,10 @@ namespace CreditCeleste
             // rdb3ans
             // 
             this.rdb3ans.AutoSize = true;
-            this.rdb3ans.Location = new System.Drawing.Point(23, 60);
+            this.rdb3ans.Location = new System.Drawing.Point(17, 49);
+            this.rdb3ans.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdb3ans.Name = "rdb3ans";
-            this.rdb3ans.Size = new System.Drawing.Size(160, 21);
+            this.rdb3ans.Size = new System.Drawing.Size(136, 19);
             this.rdb3ans.TabIndex = 1;
             this.rdb3ans.TabStop = true;
             this.rdb3ans.Text = "Occasion - de 3 ans ";
@@ -150,9 +161,10 @@ namespace CreditCeleste
             // rdbNeuf
             // 
             this.rdbNeuf.AutoSize = true;
-            this.rdbNeuf.Location = new System.Drawing.Point(23, 33);
+            this.rdbNeuf.Location = new System.Drawing.Point(17, 27);
+            this.rdbNeuf.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdbNeuf.Name = "rdbNeuf";
-            this.rdbNeuf.Size = new System.Drawing.Size(59, 21);
+            this.rdbNeuf.Size = new System.Drawing.Size(51, 19);
             this.rdbNeuf.TabIndex = 0;
             this.rdbNeuf.TabStop = true;
             this.rdbNeuf.Text = "Neuf";
@@ -161,24 +173,27 @@ namespace CreditCeleste
             // lblAncienV
             // 
             this.lblAncienV.AutoSize = true;
-            this.lblAncienV.Location = new System.Drawing.Point(637, 34);
+            this.lblAncienV.Location = new System.Drawing.Point(478, 28);
+            this.lblAncienV.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAncienV.Name = "lblAncienV";
-            this.lblAncienV.Size = new System.Drawing.Size(140, 17);
+            this.lblAncienV.Size = new System.Drawing.Size(122, 15);
             this.lblAncienV.TabIndex = 14;
             this.lblAncienV.Text = "Mon Ancien Vehicule";
             // 
             // txtAncVhc
             // 
-            this.txtAncVhc.Location = new System.Drawing.Point(640, 61);
+            this.txtAncVhc.Location = new System.Drawing.Point(480, 50);
+            this.txtAncVhc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtAncVhc.Name = "txtAncVhc";
-            this.txtAncVhc.Size = new System.Drawing.Size(100, 22);
+            this.txtAncVhc.Size = new System.Drawing.Size(76, 20);
             this.txtAncVhc.TabIndex = 15;
             // 
             // cmdSaisieBien
             // 
-            this.cmdSaisieBien.Location = new System.Drawing.Point(347, 395);
+            this.cmdSaisieBien.Location = new System.Drawing.Point(260, 321);
+            this.cmdSaisieBien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmdSaisieBien.Name = "cmdSaisieBien";
-            this.cmdSaisieBien.Size = new System.Drawing.Size(104, 30);
+            this.cmdSaisieBien.Size = new System.Drawing.Size(78, 24);
             this.cmdSaisieBien.TabIndex = 16;
             this.cmdSaisieBien.Text = "Voiture";
             this.cmdSaisieBien.UseVisualStyleBackColor = true;
@@ -186,27 +201,30 @@ namespace CreditCeleste
             // 
             // cmdVersBdd
             // 
-            this.cmdVersBdd.Location = new System.Drawing.Point(476, 395);
+            this.cmdVersBdd.Location = new System.Drawing.Point(357, 321);
+            this.cmdVersBdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmdVersBdd.Name = "cmdVersBdd";
-            this.cmdVersBdd.Size = new System.Drawing.Size(100, 30);
+            this.cmdVersBdd.Size = new System.Drawing.Size(75, 24);
             this.cmdVersBdd.TabIndex = 17;
             this.cmdVersBdd.Text = "Je valide";
             this.cmdVersBdd.UseVisualStyleBackColor = true;
+            this.cmdVersBdd.Click += new System.EventHandler(this.cmdVersBdd_Click);
             // 
             // cmdVersNouveauClient
             // 
-            this.cmdVersNouveauClient.Location = new System.Drawing.Point(216, 395);
+            this.cmdVersNouveauClient.Location = new System.Drawing.Point(162, 321);
+            this.cmdVersNouveauClient.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmdVersNouveauClient.Name = "cmdVersNouveauClient";
-            this.cmdVersNouveauClient.Size = new System.Drawing.Size(104, 30);
+            this.cmdVersNouveauClient.Size = new System.Drawing.Size(78, 24);
             this.cmdVersNouveauClient.TabIndex = 18;
             this.cmdVersNouveauClient.Text = "Précédent";
             this.cmdVersNouveauClient.UseVisualStyleBackColor = true;
             // 
             // frmIntroduction
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.cmdVersNouveauClient);
             this.Controls.Add(this.cmdVersBdd);
             this.Controls.Add(this.cmdSaisieBien);
@@ -219,6 +237,7 @@ namespace CreditCeleste
             this.Controls.Add(this.cbxVendeur);
             this.Controls.Add(this.lblJmpl);
             this.Controls.Add(this.lblNomA);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmIntroduction";
             this.Text = "frmIntroduction";
             this.Load += new System.EventHandler(this.frmIntroduction_Load);

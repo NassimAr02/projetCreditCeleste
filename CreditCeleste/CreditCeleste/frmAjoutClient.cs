@@ -41,39 +41,49 @@ namespace CreditCeleste
             string civ = "";
             if (cboCiv.SelectedItem != null)
             {
-               civ = cboCiv.SelectedItem.ToString();
+                civ = cboCiv.SelectedItem.ToString();
             }
-            //string connexionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
-            string connexionParam2 = "Data Source = 192.168.1.175;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
+            string dernierId = "SELECT MAX(numeroClient) FROM Client";
+            //string connexionParam2 = "Data Source=172.20.10.5;User Id=connEleveSio;Password=mdpEleveSio2025;Initial Catalog=CreditCeleste";
+            string connexionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=creditCelesteARRASS";
             using (SqlConnection connection = new SqlConnection(connexionParam2))
             {
-                string dernierId = "SELECT MAX(numeroClient) FROM Client";
-                using (SqlCommand command = new SqlCommand(dernierId, connection))
+                SqlCommand command = new SqlCommand(dernierId, connection);
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
                 {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-
-                    if (result != DBNull.Value)
-                    {
-                        derId = Convert.ToInt32(result);
-                    } else
-                    {
-                        derId = 0;
-                    }
+                    derId = 0;
                 }
-               
+                else
+                {
+                    derId = Convert.ToInt32(result);
+                }
             }
-            Globales.unClient = new Client(derId+=1,civ,txtNomClient.Text,txtPrenomClient.Text,txtNumRue.Text,txtRue.Text,txtCP.Text,txtVille.Text,dtpDateNaissance.Text,Convert.ToDouble(txtRevenuA.Text),txtProfession.Text,txtNomJeuneFille.Text);
 
-            if(Globales.fenIntroduction == null)
+            // Créer un nouveau client en incrémentant l'ID.
+            Globales.unClient = new Client(++derId, civ,
+                                           txtNomClient.Text,
+                                           txtPrenomClient.Text,
+                                           txtNumRue.Text,
+                                           txtRue.Text,
+                                           txtCP.Text,
+                                           txtVille.Text,
+                                           dtpDateNaissance.Text,
+                                           Convert.ToDouble(txtRevenuA.Text),
+                                           txtProfession.Text,
+                                           txtNomJeuneFille.Text);
+
+            if (Globales.fenIntroduction == null)
             {
                 Globales.fenIntroduction = new frmIntroduction();
                 Globales.fenIntroduction.Show();
                 Globales.fenAjoutClient = null;
                 this.Hide();
             }
-
         }
+
 
         private void txtNomJeuneFille_TextChanged(object sender, EventArgs e)
         {
