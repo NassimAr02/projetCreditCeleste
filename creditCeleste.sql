@@ -1,5 +1,5 @@
 -- Utiliser la base de données
-USE creditCelesteARRASS;
+USE CreditCeleste;
 GO
 
 -- Supprimer les tables si elles existent
@@ -60,6 +60,7 @@ INSERT INTO Concession(nomConcession,numRueConcession,nomRueConcession,codePosta
 -- Table Voiture
 CREATE TABLE Voiture (
    numeroConcession INT,
+   libeleVoiture NVARCHAR(100),
    numeroImmat CHAR(9),
    dateImmat DATE,
    numeroSerie NVARCHAR(50),
@@ -70,7 +71,7 @@ CREATE TABLE Voiture (
 CREATE TABLE AncienneVoiture (
    numeroConcession INT,
    numeroImmat CHAR(9),
-   ancienneVoiture NVARCHAR(50),
+   
    PRIMARY KEY (numeroConcession, numeroImmat),
    FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
 );
@@ -78,7 +79,6 @@ CREATE TABLE AncienneVoiture (
 CREATE TABLE NouvelleVoiture (
    numeroConcession INT IDENTITY(1,1),
    numeroImmat CHAR(9),
-   nouvelleVoiture NVARCHAR(50),
    puissance INT,
    age NVARCHAR(50),
    PRIMARY KEY (numeroConcession, numeroImmat),

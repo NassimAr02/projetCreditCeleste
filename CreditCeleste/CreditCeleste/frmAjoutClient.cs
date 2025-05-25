@@ -45,7 +45,7 @@ namespace CreditCeleste
             }
             string dernierId = "SELECT MAX(numeroClient) FROM Client";
             //string connexionParam2 = "Data Source=172.20.10.5;User Id=connEleveSio;Password=mdpEleveSio2025;Initial Catalog=CreditCeleste";
-            string connexionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=creditCelesteARRASS";
+            string connexionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste";
             using (SqlConnection connection = new SqlConnection(connexionParam2))
             {
                 SqlCommand command = new SqlCommand(dernierId, connection);
@@ -73,6 +73,7 @@ namespace CreditCeleste
                                            dtpDateNaissance.Text,
                                            Convert.ToDouble(txtRevenuA.Text),
                                            txtProfession.Text,
+                                           txtNumTel.Text,
                                            txtNomJeuneFille.Text);
 
             if (Globales.fenIntroduction == null)
@@ -81,6 +82,46 @@ namespace CreditCeleste
                 Globales.fenIntroduction.Show();
                 Globales.fenAjoutClient = null;
                 this.Hide();
+            }
+           
+            using (SqlConnection connexion = new SqlConnection(connexionParam2))
+            {
+                using (SqlCommand command = new SqlCommand("InsClient", connexion))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Ajout des paramètres
+                    Console.WriteLine($"Valeur de NumTel : {Globales.unClient.getNumTel()}");
+
+
+                    command.Parameters.Add(new SqlParameter("@civilite", civ));
+                    command.Parameters.Add(new SqlParameter("@nom", Globales.unClient.getNomClient()));
+                    command.Parameters.Add(new SqlParameter("@prenom", Globales.unClient.getPrenomClient()));
+                    command.Parameters.Add(new SqlParameter("@numRue", Globales.unClient.getNumRueClient()));
+                    command.Parameters.Add(new SqlParameter("@nomRue", Globales.unClient.getNomRueClient()));
+                    command.Parameters.Add(new SqlParameter("@codePostal", Globales.unClient.getCPClient()));
+                    command.Parameters.Add(new SqlParameter("@ville", Globales.unClient.getVilleClient()));
+                    command.Parameters.Add(new SqlParameter("@numTel", Globales.unClient.getNumTel()));
+                    command.Parameters.Add(new SqlParameter("@dateNaissance", Convert.ToDateTime(Globales.unClient.getDateNaissance())));
+                    command.Parameters.Add(new SqlParameter("@revenuAnnuel", Globales.unClient.getRevenuAnnuel()));
+                    command.Parameters.Add(new SqlParameter("@profession", Globales.unClient.getProfesssion()));
+                    command.Parameters.Add(new SqlParameter("@nomJeuneFille", Globales.unClient.getNomJeuneFille()));
+
+                    try
+                    {
+                        // Ouvrir la connexion
+                        connexion.Open();
+                        // Exécuter la procédure
+                        command.ExecuteNonQuery();
+                        Console.WriteLine("Le client a été ajouté avec succès.");
+
+
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"Erreur lors de l'ajout: {ex.Message} ");
+                    }
+                }
             }
         }
 

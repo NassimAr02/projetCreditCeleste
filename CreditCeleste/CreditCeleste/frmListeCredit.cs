@@ -92,6 +92,11 @@ namespace CreditCeleste
 
             Globales.lesCredits.Clear();
         }
+
+        private void cmdBDD_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
  
