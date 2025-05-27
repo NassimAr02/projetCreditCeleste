@@ -14,8 +14,7 @@ namespace CreditCeleste
         
         // Les informations de la concession : une concession
         public static Concession uneConcession; // = new Concession();
-        public static Voiture AVoiture;
-        public static Voiture NVoiture;
+
         public static AncienneVoiture uneAncienneVoiture;
         public static NouvelleVoiture uneNouvelleVoiture;
         public static Client unClient;

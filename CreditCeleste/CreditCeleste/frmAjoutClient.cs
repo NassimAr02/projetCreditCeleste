@@ -21,7 +21,30 @@ namespace CreditCeleste
 
         private void frmAjoutClient_Load(object sender, EventArgs e)
         {
-           
+            if (Globales.unClient != null)
+            {
+                cboCiv.SelectedItem = Globales.unClient.getCivilite();
+                txtNomClient.Text = Globales.unClient.getNomClient();
+                if (cboCiv.SelectedItem != null && cboCiv.SelectedItem == "M.")
+                {
+                    txtNomJeuneFille.Enabled = false;
+                }
+                else
+                {
+                    txtNomJeuneFille.Enabled = true;
+                    txtNomJeuneFille.Text = Globales.unClient.getNomJeuneFille();
+                }
+                txtPrenomClient.Text = Globales.unClient.getPrenomClient();
+                dtpDateNaissance.Value = Globales.unClient.getDateNaissance();
+                txtNumRue.Text = Globales.unClient.getNumRueClient();
+                txtNomClient.Text = Globales.unClient.getNomClient();
+                txtCP.Text = Globales.unClient.getCPClient();
+                txtVille.Text = Globales.unClient.getVilleClient();
+                txtProfession.Text = Globales.unClient.getProfesssion();
+                txtRevenuA.Text = Convert.ToString(Globales.unClient.getRevenuAnnuel());
+                txtNumTel.Text = Globales.unClient.getNumTel();
+
+            }
         }
 
         private void cboCiv_SelectedIndexChanged(object sender, EventArgs e)
@@ -34,9 +57,10 @@ namespace CreditCeleste
                 txtNomJeuneFille.Enabled = true;
             }
         }
-
+        
         private void btnSuivant_Click(object sender, EventArgs e)
         {
+            
             int derId;
             string civ = "";
             if (cboCiv.SelectedItem != null)
@@ -61,20 +85,34 @@ namespace CreditCeleste
                     derId = Convert.ToInt32(result);
                 }
             }
-
-            // Créer un nouveau client en incrémentant l'ID.
-            Globales.unClient = new Client(++derId, civ,
-                                           txtNomClient.Text,
-                                           txtPrenomClient.Text,
-                                           txtNumRue.Text,
-                                           txtRue.Text,
-                                           txtCP.Text,
-                                           txtVille.Text,
-                                           dtpDateNaissance.Text,
-                                           Convert.ToDouble(txtRevenuA.Text),
-                                           txtProfession.Text,
-                                           txtNumTel.Text,
-                                           txtNomJeuneFille.Text);
+            if (Globales.unClient == null)
+            {
+                // Créer un nouveau client en incrémentant l'ID.
+                Globales.unClient = new Client(++derId, civ,
+                                               txtNomClient.Text,
+                                               txtPrenomClient.Text,
+                                               txtNumRue.Text,
+                                               txtRue.Text,
+                                               txtCP.Text,
+                                               txtVille.Text,
+                                               dtpDateNaissance.Value,
+                                               Convert.ToDouble(txtRevenuA.Text),
+                                               txtProfession.Text,
+                                               txtNumTel.Text,
+                                               txtNomJeuneFille.Text);
+            } else
+            {
+                Globales.unClient.setCivilite(civ);
+                Globales.unClient.setNomClient(txtNomClient.Text);
+                Globales.unClient.setPrenomClient(txtPrenomClient.Text);
+                Globales.unClient.setAdresseClient(txtNumRue.Text,txtNomClient.Text,txtCP.Text,txtVille.Text);
+                Globales.unClient.setDateNaissance(dtpDateNaissance.Value);
+                Globales.unClient.setRevenuAnnuel(Convert.ToDouble(txtRevenuA.Text));
+                Globales.unClient.setProfession(txtProfession.Text);
+                Globales.unClient.setNumtel(txtNumTel.Text);
+                Globales.unClient.setNomJeuneFille(txtNomJeuneFille.Text);
+            }
+            
 
             if (Globales.fenIntroduction == null)
             {
@@ -102,7 +140,7 @@ namespace CreditCeleste
                     command.Parameters.Add(new SqlParameter("@codePostal", Globales.unClient.getCPClient()));
                     command.Parameters.Add(new SqlParameter("@ville", Globales.unClient.getVilleClient()));
                     command.Parameters.Add(new SqlParameter("@numTel", Globales.unClient.getNumTel()));
-                    command.Parameters.Add(new SqlParameter("@dateNaissance", Convert.ToDateTime(Globales.unClient.getDateNaissance())));
+                    command.Parameters.Add(new SqlParameter("@dateNaissance", Globales.unClient.getDateNaissance()));
                     command.Parameters.Add(new SqlParameter("@revenuAnnuel", Globales.unClient.getRevenuAnnuel()));
                     command.Parameters.Add(new SqlParameter("@profession", Globales.unClient.getProfesssion()));
                     command.Parameters.Add(new SqlParameter("@nomJeuneFille", Globales.unClient.getNomJeuneFille()));

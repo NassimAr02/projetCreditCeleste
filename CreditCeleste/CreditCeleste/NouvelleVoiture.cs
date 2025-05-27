@@ -13,12 +13,12 @@ namespace CreditCeleste
         private string age { get; set; }
         private string libeleNouvVoiture { get; set; }
 
-        public NouvelleVoiture(string numImmat, string dateImmat, string numeroSerie, string libeleNouvVoiture, string age) : base(numImmat, dateImmat, numeroSerie)
+        public NouvelleVoiture(string numImmat, DateTime dateImmat, string numeroSerie, string libeleNouvVoiture, string age) : base(numImmat, dateImmat, numeroSerie)
         {
             this.libeleNouvVoiture = libeleNouvVoiture;
             this.age = age;
         }
-        public NouvelleVoiture(string numImmat, string dateImmat, string numeroSerie, string libeleNouvVoiture, string puissance, string age) : base( numImmat, dateImmat, numeroSerie)
+        public NouvelleVoiture(string numImmat, DateTime dateImmat, string numeroSerie, string libeleNouvVoiture, string puissance, string age) : base( numImmat, dateImmat, numeroSerie)
         {
             this.libeleNouvVoiture = libeleNouvVoiture;
             this.puissance = puissance;

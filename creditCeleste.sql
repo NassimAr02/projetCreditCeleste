@@ -60,7 +60,6 @@ INSERT INTO Concession(nomConcession,numRueConcession,nomRueConcession,codePosta
 -- Table Voiture
 CREATE TABLE Voiture (
    numeroConcession INT,
-   libeleVoiture NVARCHAR(100),
    numeroImmat CHAR(9),
    dateImmat DATE,
    numeroSerie NVARCHAR(50),
@@ -71,7 +70,7 @@ CREATE TABLE Voiture (
 CREATE TABLE AncienneVoiture (
    numeroConcession INT,
    numeroImmat CHAR(9),
-   
+   ancienneVoiture NVARCHAR(50),
    PRIMARY KEY (numeroConcession, numeroImmat),
    FOREIGN KEY (numeroConcession, numeroImmat) REFERENCES Voiture(numeroConcession, numeroImmat)
 );
@@ -79,6 +78,7 @@ CREATE TABLE AncienneVoiture (
 CREATE TABLE NouvelleVoiture (
    numeroConcession INT IDENTITY(1,1),
    numeroImmat CHAR(9),
+   nouvelleVoiture NVARCHAR(50),
    puissance INT,
    age NVARCHAR(50),
    PRIMARY KEY (numeroConcession, numeroImmat),
@@ -253,3 +253,55 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID('InsAncienneVoiture','P') IS NOT NULL
+	DROP PROCEDURE InsAncienneVoiture;
+GO
+
+CREATE PROCEDURE InsAncienneVoiture 
+	@numeroConcession INT,
+	@numImmat NVARCHAR(9),
+	@dateImmat DATE,
+	@numeroSerie NVARCHAR(50),
+	@libeleAncVoiture NVARCHAR(60)
+AS
+BEGIN
+	INSERT INTO [dbo].[Voiture]
+		(numeroConcession, numeroImmat, dateImmat, numeroSerie) 
+	VALUES
+		(@numeroConcession,@numImmat,@dateImmat,@numeroSerie)
+	
+	INSERT INTO [dbo].[AncienneVoiture]
+		(numeroConcession,numeroImmat,ancienneVoiture)
+	VALUES
+		(@numeroConcession,@numImmat,@libeleAncVoiture)
+
+		RETURN 0;
+END
+GO
+IF OBJECT_ID('InsNouvelleVoiture','P') IS NOT NULL
+	DROP PROCEDURE InsNouvelleVoiture;
+GO
+
+CREATE PROCEDURE InsNouvelleVoiture 
+	@numeroConcession INT,
+	@numImmat NVARCHAR(9),
+	@dateImmat DATE,
+	@numeroSerie NVARCHAR(50),
+	@puissance INT,
+	@age NVARCHAR(50),
+	@libeleNouvVoiture NVARCHAR(50)
+AS
+BEGIN
+	INSERT INTO [dbo].[Voiture]
+		(numeroConcession, numeroImmat, dateImmat, numeroSerie) 
+	VALUES
+		(@numeroConcession,@numImmat,@dateImmat,@numeroSerie)
+	
+	INSERT INTO [dbo].[NouvelleVoiture]
+		(numeroConcession, numeroImmat,puissance,age,NouvelleVoiture)
+	VALUES
+		(@numeroConcession,@numImmat,@puissance,@age,@libeleNouvVoiture)
+
+		RETURN 0;
+END
+GO

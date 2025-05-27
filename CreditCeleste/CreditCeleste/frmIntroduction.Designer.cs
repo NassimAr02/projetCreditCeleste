@@ -109,6 +109,7 @@ namespace CreditCeleste
             this.cmdVersNouveauClient.TabIndex = 18;
             this.cmdVersNouveauClient.Text = "Précédent";
             this.cmdVersNouveauClient.UseVisualStyleBackColor = true;
+            this.cmdVersNouveauClient.Click += new System.EventHandler(this.cmdVersNouveauClient_Click_1);
             // 
             // label1
             // 

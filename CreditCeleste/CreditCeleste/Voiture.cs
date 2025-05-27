@@ -10,9 +10,9 @@ namespace CreditCeleste
     {
 
         private string numImmat { get; set; }
-        public string dateImmat { get; set; }
+        public DateTime dateImmat { get; set; }
         public string numeroSerie { get; set; }
-        public Voiture( string numImmat, string dateImmat, string numeroSerie)
+        public Voiture( string numImmat,DateTime dateImmat, string numeroSerie)
         {
             this.numImmat = numImmat;
             this.dateImmat = dateImmat;
@@ -23,7 +23,7 @@ namespace CreditCeleste
             get { return numImmat; }
             set { numImmat = value; }
         }
-        public string DateImmat
+        public DateTime DateImmat
         {
             get { return dateImmat; }
             set { dateImmat = value; }

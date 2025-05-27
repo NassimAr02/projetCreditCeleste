@@ -41,6 +41,14 @@ namespace CreditCeleste
             {
                 cbxVendeur.Items.Add(unVendeur.getInfoVendeur());
             }
+            if (Globales.uneAncienneVoiture != null)
+            {
+                txtAncVhc.Text = Globales.uneAncienneVoiture.LibeleAncVoiture;
+                txtNumImmat.Text = Globales.uneAncienneVoiture.NumImmat;
+                txtNumSerie.Text = Globales.uneAncienneVoiture.NumeroSerie;
+                dtpImmat.Value = Globales.uneAncienneVoiture.DateImmat;
+
+            }
             //lblNomVendeur.Text = cbxVendeur.SelectedItem.ToString();
             //lblNomVendeur.Text = le nom du vendeur
             //
@@ -57,16 +65,7 @@ namespace CreditCeleste
 
         }
 
-        private void cmdVersNouveauClient_Click(object sender, EventArgs e)
-        {
-            if (Globales.fenAjoutClient == null)
-            {
-                Globales.fenAjoutClient = new frmAjoutClient();
-                Globales.fenAjoutClient.Show();
-                Globales.fenIntroduction = null;
-                this.Hide();
-            }
-        }
+       
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -96,15 +95,15 @@ namespace CreditCeleste
             {
                 Globales.fenVoiture = new frmVoiture();
 
-                if ((Globales.AVoiture == null) && (Globales.uneAncienneVoiture == null))
+                if (Globales.uneAncienneVoiture == null)
                 {
-                    Globales.uneAncienneVoiture = new AncienneVoiture(txtNumImmat.Text,dtpImmat.Text,txtNumSerie.Text,txtAncVhc.Text);
+                    Globales.uneAncienneVoiture = new AncienneVoiture(txtNumImmat.Text, dtpImmat.Value, txtNumSerie.Text,txtAncVhc.Text);
                 }
                 else
                 {
                     Globales.uneAncienneVoiture.LibeleAncVoiture = txtAncVhc.Text;
                     Globales.uneAncienneVoiture.NumImmat = txtNumImmat.Text;
-                    Globales.uneAncienneVoiture.DateImmat = dtpImmat.Text;
+                    Globales.uneAncienneVoiture.DateImmat = dtpImmat.Value;
                     Globales.uneAncienneVoiture.numeroSerie = txtNumSerie.Text;
                     //Globales.unClient.setCivilite(cboCiv.SelectedItem.ToString());
                     //Globales.unClient.setNomClient(txtNom.Text);
@@ -113,6 +112,7 @@ namespace CreditCeleste
                 }
 
                 Globales.fenVoiture.Show();
+                Globales.fenIntroduction = null;
                 this.Close();
             }
         }
@@ -134,9 +134,22 @@ namespace CreditCeleste
 
         }
 
+        private void cmdVersNouveauClient_Click_1(object sender, EventArgs e)
+        {
+            if (Globales.fenAjoutClient == null)
+            {
+                Globales.fenAjoutClient = new frmAjoutClient();
+                Globales.fenAjoutClient.Show();
+                Globales.fenIntroduction = null;
+                this.Hide();
+            }
+        }
+
+
+
         //private void cmdVersBdd_Click(object sender, EventArgs e)
         //{
-            
+
         //    string civ = Globales.unClient.getCivilite();
         //    string nom = Globales.unClient.getNomClient();
         //    string prenom = Globales.unClient.getPrenomClient();

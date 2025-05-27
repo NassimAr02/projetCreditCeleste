@@ -23,24 +23,21 @@ namespace CreditCeleste
 
         }
 
-        private void ccmdEnregistre_Click(object sender, EventArgs e)
-        {
-          
-        }
+        
 
         private void frmVoiture_Load(object sender, EventArgs e)
         {
-            if (Globales.uneVoiture != null)
+            if (Globales.uneNouvelleVoiture != null)
             {
-                txtNvVoiture.Text = Globales.uneVoiture.getNvVoiture();
-                txt1ereImmat.Text = Globales.uneVoiture.getDateimmat();
-                txtNumImmat.Text = Globales.uneVoiture.getNumImmat();
-                txtNumImmat.Text = Globales.uneVoiture.getNumSerie();
-                txtPuis.Text = Globales.uneVoiture.getPuissance();
+                txtNvVoiture.Text = Globales.uneNouvelleVoiture.LibeleNouvVoiture;
+                dtp1Immat.Value = Globales.uneNouvelleVoiture.DateImmat;
+                txtNumImmat.Text = Globales.uneNouvelleVoiture.NumImmat;
+                txtNumSerie.Text = Globales.uneNouvelleVoiture.NumeroSerie;
+                txtPuis.Text = Globales.uneNouvelleVoiture.Puissance;
 
                 foreach (RadioButton radio in gpbAgeV.Controls.OfType<RadioButton>())
                 {
-                    if (radio.Text == Globales.uneVoiture.getAge())
+                    if (radio.Text == Globales.uneNouvelleVoiture.Age)
                     {
                         radio.Checked = true; // Vérifiez que l'âge correspond au bouton sélectionné
                     }
@@ -49,30 +46,7 @@ namespace CreditCeleste
         }
 
 
-        private void cmdIntro_Click(object sender, EventArgs e)
-        {
-            if (Globales.fenIntroduction != null)
-            {
-                Globales.fenIntroduction = new frmIntroduction();
-                Globales.uneVoiture.setNvVoiture(txtNvVoiture.Text);
-                Globales.uneVoiture.setDateimmat(txt1ereImmat.Text);
-                Globales.uneVoiture.setNumImmat(txtNumImmat.Text);
-                Globales.uneVoiture.setNumSerie(txtNumSerie.Text);
-                Globales.uneVoiture.setPuissance(txt1ereImmat.Text);
-                foreach (RadioButton xRadio in gpbAgeV.Controls)
-                {
-                    if (xRadio.Checked)
-                    {
-                        Globales.uneVoiture.setAge(xRadio.Text);
-                    }
-                }
-                
-                Globales.fenIntroduction.Show();
-                 // l'objet Courant 
-            }
-            Globales.fenVoiture = null;
-            this.Close();
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -90,5 +64,15 @@ namespace CreditCeleste
             this.Close();
         }
 
+        private void btnPrécédent_Click(object sender, EventArgs e)
+        {
+            if (Globales.fenIntroduction == null)
+            {
+                Globales.fenIntroduction = new frmIntroduction();
+                Globales.fenIntroduction.Show();
+                Globales.fenVoiture = null;
+                this.Close();
+            }
+        }
     }
 }

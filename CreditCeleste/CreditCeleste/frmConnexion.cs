@@ -41,6 +41,7 @@ namespace CreditCeleste
             string identifiantUser = txtUtilisateur.Text;
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
+            string concess = "SELECT * FROM Concession WHERE numeroConcession = @numConcession";
             //string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
             string connexionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste";
             //string connexionParam2 = "Data Source = 192.168.1.175;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
@@ -55,25 +56,54 @@ namespace CreditCeleste
                     {
                         Direction = ParameterDirection.Output
                     };
+                    SqlParameter numConcession = new SqlParameter("@numConcession", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
                     UserConn.Parameters.Add(roleP);
+                    UserConn.Parameters.Add(numConcession);
                     try
                     {
                         connection.Open();
                         UserConn.ExecuteNonQuery();
 
                         string role = roleP.Value as string;
-
+                        int numC = (int)numConcession.Value;
                         if (!string.IsNullOrEmpty(role))
                         {
                             Form formShow = null;
                             if (role == "Visiteur")
                             { 
                                 formShow = new frmVisiteur();
+
                                 this.Hide();
                             }
                             else if (role == "Vendeur")
                             {
                                 formShow = new frmAccueil();
+                                using (SqlCommand concessCmd = new SqlCommand(concess, connection))
+                                {
+                                    concessCmd.Parameters.AddWithValue("@numConcession", numC);
+                                    using (SqlDataReader reader = concessCmd.ExecuteReader())
+                                    {
+                                        if (reader.Read())
+                                        {
+                                            int numCon = reader.GetInt32(reader.GetOrdinal("numeroConcession"));
+                                            string nomCon = reader.GetString(reader.GetOrdinal("nomConcession"));
+                                            string numRue = reader.GetString(reader.GetOrdinal("numRueConcession"));
+                                            string nomRue = reader.GetString(reader.GetOrdinal("nomRueConcession"));
+                                            string cp = reader.GetString(reader.GetOrdinal("codePostalConcession"));
+                                            string villeConc = reader.GetString(reader.GetOrdinal("villeConcession"));
+
+                                            Globales.uneConcession = new Concession(numCon, nomCon, numRue, nomRue, cp, villeConc);
+                                            Console.WriteLine(numCon);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Aucune concession trouvée pour ce vendeur.");
+                                        }
+                                    }
+                                }
                                 this.Hide();
                             }
                             else

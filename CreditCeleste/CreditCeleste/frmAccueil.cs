@@ -19,21 +19,22 @@ namespace CreditCeleste
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lblMonApp.Text = "ARRASS";
-            //création de l'objet 
-            // gestion de ma région
-            lblMaRegion.Text = Globales.maRegion;
-            lblMonApp.Text = Globales.nomUtilisateur;
+
 
             //Concession uneConcession = new Concession(); 
-            Globales.uneConcession = new Concession("Garage Arrass","66 rue du voyages");
+            //Globales.uneConcession = new Concession("Garage Arrass","66 rue du voyages");
             Vendeur unVendeur = new Vendeur("M.","ARRASS","Nassim");
             Vendeur un2Vendeur = new Vendeur("M.", "GADAEV", "Albert");
             Vendeur un3Vendeur = new Vendeur("M.", "KOPP", "Enzo");
             Globales.uneConcession.ajoutVendeur(unVendeur);
             Globales.uneConcession.ajoutVendeur(un2Vendeur);
             Globales.uneConcession.ajoutVendeur(un3Vendeur);
-            
+
+            lblNomConcession.Text = Globales.uneConcession.MonNomConcession;
+            lblNumRue.Text = Globales.uneConcession.NumRueConcession;
+            lblRue.Text = Globales.uneConcession.NomRueConcession;
+            lblCP.Text = Globales.uneConcession.CpConcession;
+            lblVille.Text = Globales.uneConcession.VilleConcession;
         }
 
         private void cmdIntro_Click(object sender, EventArgs e)

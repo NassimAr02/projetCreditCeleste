@@ -30,8 +30,11 @@ namespace CreditCeleste
         private void InitializeComponent()
         {
             this.cmdIntro = new System.Windows.Forms.Button();
-            this.lblMaRegion = new System.Windows.Forms.Label();
-            this.lblMonApp = new System.Windows.Forms.Label();
+            this.lblNomConcession = new System.Windows.Forms.Label();
+            this.lblNumRue = new System.Windows.Forms.Label();
+            this.lblRue = new System.Windows.Forms.Label();
+            this.lblCP = new System.Windows.Forms.Label();
+            this.lblVille = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmdIntro
@@ -44,31 +47,61 @@ namespace CreditCeleste
             this.cmdIntro.UseVisualStyleBackColor = true;
             this.cmdIntro.Click += new System.EventHandler(this.cmdIntro_Click);
             // 
-            // lblMaRegion
+            // lblNomConcession
             // 
-            this.lblMaRegion.AutoSize = true;
-            this.lblMaRegion.Location = new System.Drawing.Point(31, 47);
-            this.lblMaRegion.Name = "lblMaRegion";
-            this.lblMaRegion.Size = new System.Drawing.Size(16, 17);
-            this.lblMaRegion.TabIndex = 4;
-            this.lblMaRegion.Text = "a";
+            this.lblNomConcession.AutoSize = true;
+            this.lblNomConcession.Location = new System.Drawing.Point(315, 177);
+            this.lblNomConcession.Name = "lblNomConcession";
+            this.lblNomConcession.Size = new System.Drawing.Size(109, 16);
+            this.lblNomConcession.TabIndex = 1;
+            this.lblNomConcession.Text = "Nom concession";
             // 
-            // lblMonApp
+            // lblNumRue
             // 
-            this.lblMonApp.AutoSize = true;
-            this.lblMonApp.Location = new System.Drawing.Point(697, 47);
-            this.lblMonApp.Name = "lblMonApp";
-            this.lblMonApp.Size = new System.Drawing.Size(49, 17);
-            this.lblMonApp.TabIndex = 3;
-            this.lblMonApp.Text = "Arrass";
+            this.lblNumRue.AutoSize = true;
+            this.lblNumRue.Location = new System.Drawing.Point(315, 193);
+            this.lblNumRue.Name = "lblNumRue";
+            this.lblNumRue.Size = new System.Drawing.Size(58, 16);
+            this.lblNumRue.TabIndex = 2;
+            this.lblNumRue.Text = "Num rue";
+            // 
+            // lblRue
+            // 
+            this.lblRue.AutoSize = true;
+            this.lblRue.Location = new System.Drawing.Point(370, 193);
+            this.lblRue.Name = "lblRue";
+            this.lblRue.Size = new System.Drawing.Size(107, 16);
+            this.lblRue.TabIndex = 3;
+            this.lblRue.Text = "Rue Concession";
+            // 
+            // lblCP
+            // 
+            this.lblCP.AutoSize = true;
+            this.lblCP.Location = new System.Drawing.Point(315, 209);
+            this.lblCP.Name = "lblCP";
+            this.lblCP.Size = new System.Drawing.Size(43, 16);
+            this.lblCP.TabIndex = 4;
+            this.lblCP.Text = "00000";
+            // 
+            // lblVille
+            // 
+            this.lblVille.AutoSize = true;
+            this.lblVille.Location = new System.Drawing.Point(364, 209);
+            this.lblVille.Name = "lblVille";
+            this.lblVille.Size = new System.Drawing.Size(108, 16);
+            this.lblVille.TabIndex = 5;
+            this.lblVille.Text = "Ville Concession";
             // 
             // frmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblMaRegion);
-            this.Controls.Add(this.lblMonApp);
+            this.Controls.Add(this.lblVille);
+            this.Controls.Add(this.lblCP);
+            this.Controls.Add(this.lblRue);
+            this.Controls.Add(this.lblNumRue);
+            this.Controls.Add(this.lblNomConcession);
             this.Controls.Add(this.cmdIntro);
             this.Name = "frmAccueil";
             this.Text = "Accueil";
@@ -81,8 +114,11 @@ namespace CreditCeleste
         #endregion
 
         private System.Windows.Forms.Button cmdIntro;
-        private System.Windows.Forms.Label lblMaRegion;
-        private System.Windows.Forms.Label lblMonApp;
+        private System.Windows.Forms.Label lblNomConcession;
+        private System.Windows.Forms.Label lblNumRue;
+        private System.Windows.Forms.Label lblRue;
+        private System.Windows.Forms.Label lblCP;
+        private System.Windows.Forms.Label lblVille;
     }
 }
 
