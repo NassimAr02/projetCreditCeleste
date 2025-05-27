@@ -42,10 +42,8 @@ namespace CreditCeleste
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
             string concess = "SELECT * FROM Concession WHERE numeroConcession = @numConcession";
-            //string connectionParam = "Data Source = 10.129.184.101;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
-            string connexionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste";
-            //string connexionParam2 = "Data Source = 192.168.1.175;User Id=connEleveSio;password=mdpEleveSio24;Initial Catalog=CreditCeleste";
-            using (SqlConnection connection = new SqlConnection(connexionParam2))
+            
+            using (SqlConnection connection = DbConnexion.GetConnection())
             {
                 using(SqlCommand UserConn = new SqlCommand("SelUserId", connection))
                 {

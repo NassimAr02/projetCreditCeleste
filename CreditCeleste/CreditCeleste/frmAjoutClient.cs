@@ -68,9 +68,8 @@ namespace CreditCeleste
                 civ = cboCiv.SelectedItem.ToString();
             }
             string dernierId = "SELECT MAX(numeroClient) FROM Client";
-            //string connexionParam2 = "Data Source=172.20.10.5;User Id=connEleveSio;Password=mdpEleveSio2025;Initial Catalog=CreditCeleste";
-            string connexionParam2 = "Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste";
-            using (SqlConnection connection = new SqlConnection(connexionParam2))
+           
+            using (SqlConnection connection = DbConnexion.GetConnection())
             {
                 SqlCommand command = new SqlCommand(dernierId, connection);
                 connection.Open();
@@ -122,9 +121,9 @@ namespace CreditCeleste
                 this.Hide();
             }
            
-            using (SqlConnection connexion = new SqlConnection(connexionParam2))
+            using (SqlConnection connection = DbConnexion.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("InsClient", connexion))
+                using (SqlCommand command = new SqlCommand("InsClient", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -148,7 +147,7 @@ namespace CreditCeleste
                     try
                     {
                         // Ouvrir la connexion
-                        connexion.Open();
+                        connection.Open();
                         // Exécuter la procédure
                         command.ExecuteNonQuery();
                         Console.WriteLine("Le client a été ajouté avec succès.");

@@ -76,7 +76,7 @@ CREATE TABLE AncienneVoiture (
 );
 -- Table NouvelleVoiture
 CREATE TABLE NouvelleVoiture (
-   numeroConcession INT IDENTITY(1,1),
+   numeroConcession INT,
    numeroImmat CHAR(9),
    nouvelleVoiture NVARCHAR(50),
    puissance INT,
@@ -153,11 +153,11 @@ CREATE TABLE Rembourser(
    FOREIGN KEY(numFacture) REFERENCES Facture(numFacture)
 );
 
-INSERT INTO Utilisateur (nomUtilisateur, mdpHash, roleConcession, numeroConcession)
+INSERT INTO Utilisateur (nomUtilisateur, mdpHash, roleConcession,nomCollaborateur,prenomCollaborateur,civiliteCollaborateur, numeroConcession)
 VALUES 
-('visiteur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVisiteur1'), 2)), 'Visiteur', 1),
-('vendeur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVendeur1'), 2)), 'Vendeur', 1),
-('comptabilite1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordCompta1'), 2)), 'Comptabilité', 1);
+('visiteur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVisiteur1'), 2)), 'Visiteur','KOPP','Enzo','M.', 1),
+('vendeur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVendeur1'), 2)), 'Vendeur','ARRASS','Nassim','M.', 1),
+('comptabilite1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordCompta1'), 2)), 'Comptabilité','GADAEV','Albert','M.', 1);
 
 
 IF OBJECT_ID('InsCredit', 'P') IS NOT NULL
@@ -168,7 +168,8 @@ CREATE PROCEDURE InsCredit
     @MontantFin decimal(10,2),
     @nbMens int,
     @MontantMens decimal(10,2),
-    @TauxAn decimal(5,3)
+    @TauxAn decimal(5,3),
+	@numClient INT
 AS
 BEGIN
     -- Valider les paramètres
@@ -176,9 +177,9 @@ BEGIN
     BEGIN
         -- Insertion des données dans la table CREDIT
         INSERT INTO [dbo].[CREDIT]
-            (montant, duree, mensualite, taux)
+            (montant, duree, mensualite, taux, numeroClient)
         VALUES 
-            (@MontantFin, @nbMens, @MontantMens, @TauxAn);
+            (@MontantFin, @nbMens, @MontantMens, @TauxAn, @numClient);
         
         RETURN 0; -- Succès
     END
@@ -198,7 +199,8 @@ GO
 CREATE PROCEDURE SelUserId
    @userN NVARCHAR(50),
    @passwordH NVARCHAR(32),
-   @roleC NVARCHAR(20) OUTPUT
+   @roleC NVARCHAR(20) OUTPUT,
+   @numConcession INT OUTPUT
 AS
 BEGIN
    -- Initialiser la valeur de sortie à NULL par défaut
@@ -212,7 +214,7 @@ BEGIN
    )
    BEGIN
        -- Récupère le rôle de l'utilisateur
-       SELECT @roleC = roleConcession
+       SELECT @roleC = roleConcession, @numConcession = numeroConcession
        FROM [dbo].[Utilisateur]
        WHERE nomUtilisateur = @userN AND mdpHash = @passwordH;
    END
@@ -258,7 +260,8 @@ IF OBJECT_ID('InsAncienneVoiture','P') IS NOT NULL
 GO
 
 CREATE PROCEDURE InsAncienneVoiture 
-	@numeroConcession INT,
+	@numClient INT,
+	@numConcession INT,
 	@numImmat NVARCHAR(9),
 	@dateImmat DATE,
 	@numeroSerie NVARCHAR(50),
@@ -274,7 +277,10 @@ BEGIN
 		(numeroConcession,numeroImmat,ancienneVoiture)
 	VALUES
 		(@numeroConcession,@numImmat,@libeleAncVoiture)
-
+	INSERT INTO [dbo].[Lier]
+		(numeroClient, numeroConcession, numeroImmat) 
+	VALUES
+		(@numClient, @numConcession, @numImmat)
 		RETURN 0;
 END
 GO
@@ -283,6 +289,7 @@ IF OBJECT_ID('InsNouvelleVoiture','P') IS NOT NULL
 GO
 
 CREATE PROCEDURE InsNouvelleVoiture 
+	@numClient INT,
 	@numeroConcession INT,
 	@numImmat NVARCHAR(9),
 	@dateImmat DATE,
@@ -301,7 +308,10 @@ BEGIN
 		(numeroConcession, numeroImmat,puissance,age,NouvelleVoiture)
 	VALUES
 		(@numeroConcession,@numImmat,@puissance,@age,@libeleNouvVoiture)
-
+	INSERT INTO [dbo].[Lier]
+		(numeroClient, numeroConcession, numeroImmat) 
+	VALUES
+		(@numClient, @numConcession, @numImmat)
 		RETURN 0;
 END
 GO

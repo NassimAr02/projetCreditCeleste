@@ -40,6 +40,7 @@
       <HintPath>..\..\CreditA\CreditA\bin\Debug\CreditA.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,6 +61,7 @@
     <Compile Include="CalculCredit.Designer.cs">
       <DependentUpon>CalculCredit.cs</DependentUpon>
     </Compile>
+    <Compile Include="DbConnexion.cs" />
     <Compile Include="Facture.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="frmAjoutClient.cs">

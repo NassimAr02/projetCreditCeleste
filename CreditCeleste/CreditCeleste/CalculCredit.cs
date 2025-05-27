@@ -57,5 +57,16 @@ namespace CreditCeleste
             this.Close();
             
         }
+
+        private void btnPrecedent_Click(object sender, EventArgs e)
+        {
+            if(Globales.fenVoiture == null)
+            {
+                Globales.fenVoiture = new frmVoiture();
+                Globales.fenVoiture.Show();
+                Globales.fenCalcul = null;
+                this.Close();
+            }
+        }
     }
 }

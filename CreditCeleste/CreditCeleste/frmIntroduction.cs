@@ -49,6 +49,7 @@ namespace CreditCeleste
                 dtpImmat.Value = Globales.uneAncienneVoiture.DateImmat;
 
             }
+            
             //lblNomVendeur.Text = cbxVendeur.SelectedItem.ToString();
             //lblNomVendeur.Text = le nom du vendeur
             //
@@ -84,14 +85,41 @@ namespace CreditCeleste
 
         private void cmdSaisieBien_Click(object sender, EventArgs e)
         {
-           
-        
-            
-            //if (cboCiv.SelectedItem != null)
-            // {
-            //     civ = cboCiv.SelectedItem.ToString();
-            // }
-            if ((Globales.fenVoiture == null))
+            using (SqlConnection connection = DbConnexion.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand("InsAncienneVoiture",connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add(new SqlParameter("@numeroConcession",Globales.uneConcession.NumConcession));
+                    command.Parameters.Add(new SqlParameter("@numImmat", txtNumImmat.Text));
+                    command.Parameters.Add(new SqlParameter("@dateImmat",dtpImmat.Value));
+                    command.Parameters.Add(new SqlParameter("@numeroSerie",txtNumSerie.Text ));
+                    command.Parameters.Add(new SqlParameter("@libeleAncVoiture", txtAncVhc.Text));
+
+                    try
+                    {
+                        // Ouvrir la connexion
+                        connection.Open();
+                        // Exécuter la procédure
+                        command.ExecuteNonQuery();
+                        Console.WriteLine("La voiture a été ajouté avec succès.");
+
+
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"Erreur lors de l'ajout: {ex.Message} ");
+                    }
+                }
+            }
+
+
+                //if (cboCiv.SelectedItem != null)
+                // {
+                //     civ = cboCiv.SelectedItem.ToString();
+                // }
+                if ((Globales.fenVoiture == null))
             {
                 Globales.fenVoiture = new frmVoiture();
 
