@@ -12,28 +12,16 @@ using System.Data.SqlClient;
 
 namespace CreditCeleste
 {
-    public partial class frmConnexion :   Form
+    public partial class frmConnexion : Form
     {
         public frmConnexion()
         {
             InitializeComponent();
-            //Boolean backdoor = true;
-            //Form formshow = null;
-            //if (backdoor)
-            //{
-            //    formshow = new frmAccueil();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Veuillez vous authentifiez ");
-            //}
-            //formshow.Show();
-            //this.Hide();
         }
 
         private void frmConnexion_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnValiderConnexion_Click(object sender, EventArgs e)
@@ -42,13 +30,13 @@ namespace CreditCeleste
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
             string concess = "SELECT * FROM Concession WHERE numeroConcession = @numConcession";
-            
+
             using (SqlConnection connection = DbConnexion.GetConnection())
             {
-                using(SqlCommand UserConn = new SqlCommand("SelUserId", connection))
+                using (SqlCommand UserConn = new SqlCommand("SelUserId", connection))
                 {
                     UserConn.CommandType = CommandType.StoredProcedure;
-                    UserConn.Parameters.Add(new SqlParameter("@userN",identifiantUser));
+                    UserConn.Parameters.Add(new SqlParameter("@userN", identifiantUser));
                     UserConn.Parameters.Add(new SqlParameter("@passwordH", mdpUser));
                     SqlParameter roleP = new SqlParameter("@roleC", SqlDbType.NVarChar, 20)
                     {
@@ -60,20 +48,28 @@ namespace CreditCeleste
                     };
                     UserConn.Parameters.Add(roleP);
                     UserConn.Parameters.Add(numConcession);
+
                     try
                     {
                         connection.Open();
                         UserConn.ExecuteNonQuery();
 
                         string role = roleP.Value as string;
-                        int numC = (int)numConcession.Value;
+                        int numC = numConcession.Value != DBNull.Value ? Convert.ToInt32(numConcession.Value) : -1;
+
+                        if (numC == -1)
+                        {
+                            MessageBox.Show("Aucune concession assignée à cet utilisateur.");
+                            return;
+                        }
+
                         if (!string.IsNullOrEmpty(role))
                         {
                             Form formShow = null;
-                            if (role == "Visiteur")
-                            { 
+                            if (role  == "Visiteur")
+                            {
                                 formShow = new frmVisiteur();
-
+                                Globales.fenConnexion = null;
                                 this.Hide();
                             }
                             else if (role == "Vendeur")
@@ -86,12 +82,19 @@ namespace CreditCeleste
                                     {
                                         if (reader.Read())
                                         {
-                                            int numCon = reader.GetInt32(reader.GetOrdinal("numeroConcession"));
-                                            string nomCon = reader.GetString(reader.GetOrdinal("nomConcession"));
-                                            string numRue = reader.GetString(reader.GetOrdinal("numRueConcession"));
-                                            string nomRue = reader.GetString(reader.GetOrdinal("nomRueConcession"));
-                                            string cp = reader.GetString(reader.GetOrdinal("codePostalConcession"));
-                                            string villeConc = reader.GetString(reader.GetOrdinal("villeConcession"));
+                                            // Use column names instead of ordinals to avoid index errors
+                                            int numCon = reader["numeroConcession"] != DBNull.Value ?
+                                                Convert.ToInt32(reader["numeroConcession"]) : -1;
+                                            string nomCon = reader["nomConcession"] != DBNull.Value ?
+                                                reader["nomConcession"].ToString() : "";
+                                            string numRue = reader["numRueConcession"] != DBNull.Value ?
+                                                reader["numRueConcession"].ToString() : "";
+                                            string nomRue = reader["nomRueConcession"] != DBNull.Value ?
+                                                reader["nomRueConcession"].ToString() : "";
+                                            string cp = reader["codePostalConcession"] != DBNull.Value ?
+                                                reader["codePostalConcession"].ToString() : "";
+                                            string villeConc = reader["villeConcession"] != DBNull.Value ?
+                                                reader["villeConcession"].ToString() : "";
 
                                             Globales.uneConcession = new Concession(numCon, nomCon, numRue, nomRue, cp, villeConc);
                                             Console.WriteLine(numCon);
@@ -99,21 +102,24 @@ namespace CreditCeleste
                                         else
                                         {
                                             MessageBox.Show("Aucune concession trouvée pour ce vendeur.");
+                                            return; // Don't continue if no concession found
                                         }
                                     }
                                 }
+                                Globales.fenConnexion = null;
                                 this.Hide();
                             }
                             else
                             {
                                 formShow = new frmComptabilite();
+                                Globales.fenConnexion = null;
                                 this.Hide();
                             }
 
-                            formShow.Show();
-
-                            
-
+                            if (formShow != null)
+                            {
+                                formShow.Show();
+                            }
                         }
                         else
                         {
@@ -124,9 +130,12 @@ namespace CreditCeleste
                     {
                         MessageBox.Show($"Erreur SQL : {exe.Message}");
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur : {ex.Message}");
+                    }
                 }
             }
-
         }
 
         private void txtMdp_TextChanged(object sender, EventArgs e)

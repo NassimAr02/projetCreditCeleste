@@ -66,5 +66,16 @@ namespace CreditCeleste
         {
 
         }
+
+        private void btnDeconnexion_Click(object sender, EventArgs e)
+        {
+            if (Globales.fenConnexion == null)
+            {
+                Globales.fenConnexion = new frmConnexion();
+                Globales.fenConnexion.Show();
+                Globales.fenAccueil = null;
+                this.Hide();
+            }
+        }
     }
 }

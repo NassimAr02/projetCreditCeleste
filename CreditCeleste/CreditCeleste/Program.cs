@@ -16,7 +16,8 @@ namespace CreditCeleste
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmConnexion());
+            Globales.fenConnexion = new frmConnexion();
+            Application.Run(Globales.fenConnexion);
         }
     }
 }

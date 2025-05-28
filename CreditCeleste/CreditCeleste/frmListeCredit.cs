@@ -61,7 +61,7 @@ namespace CreditCeleste
                     command.Parameters.Add(new SqlParameter("@nbMens", nbMensualite));
                     command.Parameters.Add(new SqlParameter("@montantMens", mensualiteFinale));
                     command.Parameters.Add(new SqlParameter("@tauxAn", tauxFinale));
-
+                    command.Parameters.Add(new SqlParameter("@numClient", Globales.unClient.getNumeroClient()));
                     try
                     {
                         // Ouvrir la connexion
@@ -96,6 +96,28 @@ namespace CreditCeleste
         private void cmdBDD_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            if (Globales.fenAccueil == null)
+            {
+                Globales.fenAccueil = new frmAccueil();
+                Globales.fenAccueil.Show();
+                Globales.fenListeCredit = null;
+                this.Hide();
+            }
+        }
+
+        private void btnDeconnexion_Click(object sender, EventArgs e)
+        {
+            if (Globales.fenConnexion == null)
+            {
+                Globales.fenConnexion = new frmConnexion();
+                Globales.fenConnexion.Show();
+                Globales.fenListeCredit = null;
+                this.Hide();
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace CreditCeleste
         public static AncienneVoiture uneAncienneVoiture;
         public static NouvelleVoiture uneNouvelleVoiture;
         public static Client unClient;
+        public static frmConnexion fenConnexion;
         public static frmAccueil fenAccueil;
         public static frmIntroduction fenIntroduction;
         public static frmVoiture fenVoiture;

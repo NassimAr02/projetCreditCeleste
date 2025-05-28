@@ -90,8 +90,8 @@ namespace CreditCeleste
                 using (SqlCommand command = new SqlCommand("InsAncienneVoiture",connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.Add(new SqlParameter("@numeroConcession",Globales.uneConcession.NumConcession));
+                    command.Parameters.Add(new SqlParameter("@numClient",Globales.unClient.getNumeroClient()));
+                    command.Parameters.Add(new SqlParameter("@numConcession",Globales.uneConcession.NumConcession));
                     command.Parameters.Add(new SqlParameter("@numImmat", txtNumImmat.Text));
                     command.Parameters.Add(new SqlParameter("@dateImmat",dtpImmat.Value));
                     command.Parameters.Add(new SqlParameter("@numeroSerie",txtNumSerie.Text ));
