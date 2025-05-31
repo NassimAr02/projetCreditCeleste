@@ -30,7 +30,24 @@ namespace CreditCeleste
 
         private void frmComptabilite_Load(object sender, EventArgs e)
         {
+            con = new SqlConnection("Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste");
+            cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
 
+            cmd.CommandText = "SELECT * FROM Visite";
+
+
+            dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                lstBoxFactures.Items.Add("Visite numéro : " + dr["numVisite"].ToString());
+            }
+            con.Close();
+
+
+            Visite uneVisite = Globales.lesVisites[lstBoxFactures.SelectedIndex];
         }
 
         private void lstBoxFactures_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,18 +57,11 @@ namespace CreditCeleste
 
         private void btnBDDfill_Click(object sender, EventArgs e)
         {
-            con = new SqlConnection("Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=creditCelesteARRASS");
-            cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandText = "SELECT * FROM Facture";
-            dr = cmd.ExecuteReader();
+            
+        }
 
-            while (dr.Read())
-            {
-                lstBoxFactures.Items.Add(dr["typeFrais"]);
-            }
-            con.Close();
+        private void btnConsulter_Click(object sender, EventArgs e)
+        {
 
         }
     }
