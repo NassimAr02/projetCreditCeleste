@@ -110,7 +110,7 @@ namespace CreditCeleste
                                 using (SqlCommand vendeurCmd = new SqlCommand(vendeur, connection))
                                 {
                                     vendeurCmd.Parameters.AddWithValue("@nomU", identifiantUser);
-                                    vendeurCmd.Parameters.AddWithValue("@mdp", identifiantUser);
+                                    vendeurCmd.Parameters.AddWithValue("@mdp", mdpUser);
 
                                     using (SqlDataReader reader = vendeurCmd.ExecuteReader())
                                     {
@@ -120,6 +120,10 @@ namespace CreditCeleste
                                             string nomC = reader["nomCollaborateur"] != DBNull.Value ? reader["nomCollaborateur"].ToString() : "";
                                             string prenomC = reader["prenomCollaborateur"] != DBNull.Value ? reader["prenomCollaborateur"].ToString() : "";
                                             Globales.unVendeur = new Vendeur(civC, nomC, prenomC);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Aucun vendeur trouvé pour ces identifiants.");
                                         }
                                     }
                                 }

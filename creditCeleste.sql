@@ -226,6 +226,7 @@ BEGIN
 END
 GO
 
+
 IF OBJECT_ID('InsClient', 'P') IS NOT NULL 
     DROP PROCEDURE InsClient;
 GO
