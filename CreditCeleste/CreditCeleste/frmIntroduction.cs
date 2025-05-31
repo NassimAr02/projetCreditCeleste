@@ -36,6 +36,7 @@ namespace CreditCeleste
 
         private void frmIntroduction_Load(object sender, EventArgs e)
         {
+           
             //mettre les vendeurs dans la comboBox
             foreach (Vendeur unVendeur in Globales.uneConcession.getLesVendeurs())
             {
@@ -49,6 +50,7 @@ namespace CreditCeleste
                 dtpImmat.Value = Globales.uneAncienneVoiture.DateImmat;
 
             }
+            lblNomA.Text = Globales.unVendeur.getInfoVendeur();
             
             //lblNomVendeur.Text = cbxVendeur.SelectedItem.ToString();
             //lblNomVendeur.Text = le nom du vendeur

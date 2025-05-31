@@ -33,6 +33,7 @@ namespace CreditCeleste
         public static Facture facture3;
         public static Visite uneVisite;
         public static frmAjoutClient fenAjoutClient;
+        public static Vendeur unVendeur;
         
 
 

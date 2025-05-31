@@ -271,12 +271,12 @@ BEGIN
 	INSERT INTO [dbo].[Voiture]
 		(numeroConcession, numeroImmat, dateImmat, numeroSerie) 
 	VALUES
-		(@numeroConcession,@numImmat,@dateImmat,@numeroSerie)
+		(@numConcession,@numImmat,@dateImmat,@numeroSerie)
 	
 	INSERT INTO [dbo].[AncienneVoiture]
 		(numeroConcession,numeroImmat,ancienneVoiture)
 	VALUES
-		(@numeroConcession,@numImmat,@libeleAncVoiture)
+		(@numConcession,@numImmat,@libeleAncVoiture)
 	INSERT INTO [dbo].[Lier]
 		(numeroClient, numeroConcession, numeroImmat) 
 	VALUES
@@ -290,7 +290,7 @@ GO
 
 CREATE PROCEDURE InsNouvelleVoiture 
 	@numClient INT,
-	@numeroConcession INT,
+	@numConcession INT,
 	@numImmat NVARCHAR(9),
 	@dateImmat DATE,
 	@numeroSerie NVARCHAR(50),
@@ -302,12 +302,12 @@ BEGIN
 	INSERT INTO [dbo].[Voiture]
 		(numeroConcession, numeroImmat, dateImmat, numeroSerie) 
 	VALUES
-		(@numeroConcession,@numImmat,@dateImmat,@numeroSerie)
+		(@numConcession,@numImmat,@dateImmat,@numeroSerie)
 	
 	INSERT INTO [dbo].[NouvelleVoiture]
 		(numeroConcession, numeroImmat,puissance,age,NouvelleVoiture)
 	VALUES
-		(@numeroConcession,@numImmat,@puissance,@age,@libeleNouvVoiture)
+		(@numConcession,@numImmat,@puissance,@age,@libeleNouvVoiture)
 	INSERT INTO [dbo].[Lier]
 		(numeroClient, numeroConcession, numeroImmat) 
 	VALUES

@@ -40,8 +40,7 @@ namespace CreditCeleste
 
             Credit unCredit = Globales.lesCredits[lsbLesCredits.SelectedIndex];
 
-            string connexionParam = "Data Source = 10.129.253.210;User Id=connEleveSio;password=mdpEleveSio2024;Initial Catalog=creditCelesteARRASS";
-            // Paramètres pour la procédure
+            
 
             double montantFinale = unCredit.getMontant();
             double tauxFinale = unCredit.getTaux();
@@ -49,7 +48,7 @@ namespace CreditCeleste
             double nbMensualite = unCredit.getNbMensu();
             // Appel de la procédure
 
-            using (SqlConnection connexion = new SqlConnection(connexionParam))
+            using (SqlConnection connexion = DbConnexion.GetConnection())
             {
                 using(SqlCommand command = new SqlCommand("InsCredit", connexion))
                 {

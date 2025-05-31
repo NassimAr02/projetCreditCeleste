@@ -30,7 +30,7 @@ namespace CreditCeleste
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
             string concess = "SELECT * FROM Concession WHERE numeroConcession = @numConcession";
-
+          
             using (SqlConnection connection = DbConnexion.GetConnection())
             {
                 using (SqlCommand UserConn = new SqlCommand("SelUserId", connection))
@@ -74,6 +74,7 @@ namespace CreditCeleste
                             }
                             else if (role == "Vendeur")
                             {
+                                string vendeur = "SELECT nomCollaborateur, prenomCOllaborateur, civiliteCollaborateur FROM Utilisateur WHERE nomUtilisateur = @nomU AND mdpHash = @mdp";
                                 formShow = new frmAccueil();
                                 using (SqlCommand concessCmd = new SqlCommand(concess, connection))
                                 {
@@ -103,6 +104,22 @@ namespace CreditCeleste
                                         {
                                             MessageBox.Show("Aucune concession trouvée pour ce vendeur.");
                                             return; // Don't continue if no concession found
+                                        }
+                                    }
+                                }
+                                using (SqlCommand vendeurCmd = new SqlCommand(vendeur, connection))
+                                {
+                                    vendeurCmd.Parameters.AddWithValue("@nomU", identifiantUser);
+                                    vendeurCmd.Parameters.AddWithValue("@mdp", identifiantUser);
+
+                                    using (SqlDataReader reader = vendeurCmd.ExecuteReader())
+                                    {
+                                        if (reader.Read())
+                                        {
+                                            string civC = reader["civiliteCollaborateur"] != DBNull.Value ? reader["civiliteCollaborateur"].ToString() : "";
+                                            string nomC = reader["nomCollaborateur"] != DBNull.Value ? reader["nomCollaborateur"].ToString() : "";
+                                            string prenomC = reader["prenomCollaborateur"] != DBNull.Value ? reader["prenomCollaborateur"].ToString() : "";
+                                            Globales.unVendeur = new Vendeur(civC, nomC, prenomC);
                                         }
                                     }
                                 }
