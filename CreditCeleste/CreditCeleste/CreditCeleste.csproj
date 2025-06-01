@@ -84,6 +84,12 @@
     <Compile Include="frmConnexion.Designer.cs">
       <DependentUpon>frmConnexion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFactureVisite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFactureVisite.Designer.cs">
+      <DependentUpon>frmFactureVisite.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListeCredit.cs">
       <SubType>Form</SubType>
     </Compile>

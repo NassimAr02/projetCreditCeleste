@@ -13,7 +13,8 @@ namespace CreditCeleste
         private bool voiturePerso;
         private int idUser;
         private int numeroConcession;
-        private int numVisite { get; set; }
+        //private int numVisite { get; set; }
+        private int numVisite;
 
    
         public Visite(DateTime dateD, DateTime dateR, bool voiturePers, int idU,int numC)
@@ -78,10 +79,20 @@ namespace CreditCeleste
             return numeroConcession;
         }
 
-        public int NumeroVisite
+        //public int NumeroVisite
+        //{
+        //    get { return numVisite; }
+        //    set { numVisite = value; }
+        //}
+
+        public int getNumeroVisite()
         {
-            get { return numVisite; }
-            set { numVisite = value; }
+            return numVisite;
+        }
+
+        public void setNumeroVisite(int numV)
+        {
+            numVisite = numV;
         }
     }
 }
