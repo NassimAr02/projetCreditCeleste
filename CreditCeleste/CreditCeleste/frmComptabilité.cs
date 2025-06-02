@@ -14,10 +14,6 @@ namespace CreditCeleste
     public partial class frmComptabilite : Form
     {
 
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataReader dr;
-
         public frmComptabilite()
         {
             InitializeComponent();
@@ -30,7 +26,7 @@ namespace CreditCeleste
 
         private void frmComptabilite_Load(object sender, EventArgs e)
         {
-            Globales.lesVisites = new List<Visite>(); // initialiser la liste
+            Globales.lesVisites = new List<Visite>(); // Création de la liste visite
 
             using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCeleste"))
             {
@@ -49,7 +45,7 @@ namespace CreditCeleste
                         (int)dr["numVisite"]
                     );
 
-                    Globales.lesVisites.Add(v);
+                    Globales.lesVisites.Add(v); //ajout de chaque visite dans la collection
                 }
             }
 
@@ -59,47 +55,24 @@ namespace CreditCeleste
             {
                 lstBoxFactures.Items.Add("Visite n°" + v.getNumeroVisite());
             }
-
-
-
-
-
-
-
-            //con = new SqlConnection("Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste");
-            //cmd = new SqlCommand();
-            //con.Open();
-            //cmd.Connection = con;
-
-            //cmd.CommandText = "SELECT * FROM Visite";
-
-
-            //dr = cmd.ExecuteReader();
-
-            //while (dr.Read())
-            //{
-            //    lstBoxFactures.Items.Add("Visite numéro : " + dr["numVisite"].ToString());
-            //}
-            //con.Close();
-
-
-            //Visite uneVisite = Globales.lesVisites[lstBoxFactures.SelectedIndex];
         }
 
         private void lstBoxFactures_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Moyen de cliquer sur les visites pour les informations
             if (lstBoxFactures.SelectedIndex >= 0)
             {
                 Visite selectedVisite = Globales.lesVisites[lstBoxFactures.SelectedIndex];
                 Globales.uneVisite = selectedVisite;
 
+                // Vérification si la fenêtre est fermée ou non
                 if (Globales.fenFactureVisite == null || Globales.fenFactureVisite.IsDisposed)
                 {
-                    Globales.fenFactureVisite = new frmFactureVisite();
+                    Globales.fenFactureVisite = new frmFactureVisite(); //Creation de l'instance
                 }
 
                 Globales.fenFactureVisite.Show();
-                Globales.fenFactureVisite.AfficherDetailsVisite(selectedVisite.getNumeroVisite()); // méthode à créer
+                Globales.fenFactureVisite.AfficherDetailsVisite(selectedVisite.getNumeroVisite()); 
             }
 
         }

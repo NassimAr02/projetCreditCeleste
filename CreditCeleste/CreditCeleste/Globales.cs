@@ -20,6 +20,7 @@ namespace CreditCeleste
         public static Client unClient;
 
         public static frmFactureVisite fenFactureVisite;
+        public static frmDetailsFacture fenDetailsFacture;
         public static frmConnexion fenConnexion;
         public static frmAccueil fenAccueil;
         public static frmIntroduction fenIntroduction;

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+// Liste les factures d'une visite 
+
 namespace CreditCeleste
 {
     public partial class frmFactureVisite : Form
@@ -22,30 +24,6 @@ namespace CreditCeleste
         {
 
         }
-
-        //public void AfficherDetailsVisite(int numVisite)
-        //{
-        //    using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCeleste"))
-        //    {
-        //        con.Open();
-        //        SqlCommand cmd = new SqlCommand("SELECT * FROM Visite WHERE numVisite = @num", con);
-        //        cmd.Parameters.AddWithValue("@num", numVisite);
-
-        //        SqlDataReader dr = cmd.ExecuteReader();
-        //        if (dr.Read())
-        //        {
-        //            lblNum.Text = "Numéro de visite : " + dr["numVisite"];
-        //            lblDateDep.Text = "Date départ : " + dr["dateDepart"];
-        //            lblDateRet.Text = "Date retour : " + dr["dateRetour"];
-        //            lblVoiturePerso.Text = "Voiture perso : " + ((bool)dr["voiturePerso"] ? "Oui" : "Non");
-        //            lblUser.Text = "Utilisateur ID : " + dr["idUser"];
-        //            lblConcession.Text = "Concession : " + dr["numeroConcession"];
-        //        }
-        //    }
-        //}
-
-
-
 
         public void AfficherDetailsVisite(int numVisite)
         {
@@ -91,9 +69,9 @@ namespace CreditCeleste
 
                 // Récupération des factures associées à cette visite
                 SqlCommand cmdFactures = new SqlCommand(@"
-            SELECT numFacture, dateFacture, typeFrais, montant, estRembourser
-            FROM Facture
-            WHERE numVisite = @numVisite", con);
+                    SELECT numFacture, dateFacture, typeFrais, montant, estRembourser
+                    FROM Facture
+                    WHERE numVisite = @numVisite", con);
 
                 cmdFactures.Parameters.AddWithValue("@numVisite", numVisite);
                 SqlDataReader drFactures = cmdFactures.ExecuteReader();
@@ -109,6 +87,11 @@ namespace CreditCeleste
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNum_Click(object sender, EventArgs e)
         {
 
         }

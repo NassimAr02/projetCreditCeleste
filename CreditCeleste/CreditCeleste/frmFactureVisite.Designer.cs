@@ -43,82 +43,83 @@ namespace CreditCeleste
             // lblNum
             // 
             this.lblNum.AutoSize = true;
-            this.lblNum.Location = new System.Drawing.Point(149, 112);
+            this.lblNum.Location = new System.Drawing.Point(31, 134);
             this.lblNum.Name = "lblNum";
-            this.lblNum.Size = new System.Drawing.Size(35, 13);
+            this.lblNum.Size = new System.Drawing.Size(52, 13);
             this.lblNum.TabIndex = 0;
-            this.lblNum.Text = "label1";
+            this.lblNum.Text = "numVisite";
+            this.lblNum.Click += new System.EventHandler(this.lblNum_Click);
             // 
             // lblDateDep
             // 
             this.lblDateDep.AutoSize = true;
-            this.lblDateDep.Location = new System.Drawing.Point(149, 148);
+            this.lblDateDep.Location = new System.Drawing.Point(31, 156);
             this.lblDateDep.Name = "lblDateDep";
-            this.lblDateDep.Size = new System.Drawing.Size(35, 13);
+            this.lblDateDep.Size = new System.Drawing.Size(62, 13);
             this.lblDateDep.TabIndex = 1;
-            this.lblDateDep.Text = "label2";
+            this.lblDateDep.Text = "DateDepart";
             // 
             // lblDateRet
             // 
             this.lblDateRet.AutoSize = true;
-            this.lblDateRet.Location = new System.Drawing.Point(149, 192);
+            this.lblDateRet.Location = new System.Drawing.Point(31, 183);
             this.lblDateRet.Name = "lblDateRet";
-            this.lblDateRet.Size = new System.Drawing.Size(35, 13);
+            this.lblDateRet.Size = new System.Drawing.Size(62, 13);
             this.lblDateRet.TabIndex = 2;
-            this.lblDateRet.Text = "label3";
+            this.lblDateRet.Text = "DateRetour";
             // 
             // lblVoiturePerso
             // 
             this.lblVoiturePerso.AutoSize = true;
-            this.lblVoiturePerso.Location = new System.Drawing.Point(149, 243);
+            this.lblVoiturePerso.Location = new System.Drawing.Point(31, 207);
             this.lblVoiturePerso.Name = "lblVoiturePerso";
-            this.lblVoiturePerso.Size = new System.Drawing.Size(35, 13);
+            this.lblVoiturePerso.Size = new System.Drawing.Size(69, 13);
             this.lblVoiturePerso.TabIndex = 3;
-            this.lblVoiturePerso.Text = "label4";
+            this.lblVoiturePerso.Text = "Voiture perso";
             this.lblVoiturePerso.Click += new System.EventHandler(this.label4_Click);
             // 
             // lblPuissance
             // 
             this.lblPuissance.AutoSize = true;
-            this.lblPuissance.Location = new System.Drawing.Point(149, 275);
+            this.lblPuissance.Location = new System.Drawing.Point(31, 231);
             this.lblPuissance.Name = "lblPuissance";
-            this.lblPuissance.Size = new System.Drawing.Size(35, 13);
+            this.lblPuissance.Size = new System.Drawing.Size(56, 13);
             this.lblPuissance.TabIndex = 4;
-            this.lblPuissance.Text = "label5";
+            this.lblPuissance.Text = "Puissance";
             // 
             // lblDistance
             // 
             this.lblDistance.AutoSize = true;
-            this.lblDistance.Location = new System.Drawing.Point(149, 311);
+            this.lblDistance.Location = new System.Drawing.Point(31, 255);
             this.lblDistance.Name = "lblDistance";
-            this.lblDistance.Size = new System.Drawing.Size(35, 13);
+            this.lblDistance.Size = new System.Drawing.Size(49, 13);
             this.lblDistance.TabIndex = 5;
-            this.lblDistance.Text = "label6";
+            this.lblDistance.Text = "Distance";
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(247, 112);
+            this.lblUser.Location = new System.Drawing.Point(217, 33);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(35, 13);
+            this.lblUser.Size = new System.Drawing.Size(53, 13);
             this.lblUser.TabIndex = 6;
-            this.lblUser.Text = "label7";
+            this.lblUser.Text = "Utilisateur";
             // 
             // lblConcession
             // 
             this.lblConcession.AutoSize = true;
-            this.lblConcession.Location = new System.Drawing.Point(247, 148);
+            this.lblConcession.Location = new System.Drawing.Point(217, 69);
             this.lblConcession.Name = "lblConcession";
-            this.lblConcession.Size = new System.Drawing.Size(35, 13);
+            this.lblConcession.Size = new System.Drawing.Size(62, 13);
             this.lblConcession.TabIndex = 7;
-            this.lblConcession.Text = "label8";
+            this.lblConcession.Text = "Concession";
             // 
             // lstFactures
             // 
             this.lstFactures.FormattingEnabled = true;
-            this.lstFactures.Location = new System.Drawing.Point(459, 217);
+            this.lstFactures.Location = new System.Drawing.Point(373, 112);
             this.lstFactures.Name = "lstFactures";
-            this.lstFactures.Size = new System.Drawing.Size(218, 160);
+            this.lstFactures.Size = new System.Drawing.Size(373, 238);
             this.lstFactures.TabIndex = 8;
             // 
             // frmFactureVisite
