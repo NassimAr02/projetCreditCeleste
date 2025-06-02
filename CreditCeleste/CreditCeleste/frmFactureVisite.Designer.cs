@@ -29,12 +29,130 @@ namespace CreditCeleste
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.lblNum = new System.Windows.Forms.Label();
+            this.lblDateDep = new System.Windows.Forms.Label();
+            this.lblDateRet = new System.Windows.Forms.Label();
+            this.lblVoiturePerso = new System.Windows.Forms.Label();
+            this.lblPuissance = new System.Windows.Forms.Label();
+            this.lblDistance = new System.Windows.Forms.Label();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.lblConcession = new System.Windows.Forms.Label();
+            this.lstFactures = new System.Windows.Forms.ListBox();
+            this.SuspendLayout();
+            // 
+            // lblNum
+            // 
+            this.lblNum.AutoSize = true;
+            this.lblNum.Location = new System.Drawing.Point(149, 112);
+            this.lblNum.Name = "lblNum";
+            this.lblNum.Size = new System.Drawing.Size(35, 13);
+            this.lblNum.TabIndex = 0;
+            this.lblNum.Text = "label1";
+            // 
+            // lblDateDep
+            // 
+            this.lblDateDep.AutoSize = true;
+            this.lblDateDep.Location = new System.Drawing.Point(149, 148);
+            this.lblDateDep.Name = "lblDateDep";
+            this.lblDateDep.Size = new System.Drawing.Size(35, 13);
+            this.lblDateDep.TabIndex = 1;
+            this.lblDateDep.Text = "label2";
+            // 
+            // lblDateRet
+            // 
+            this.lblDateRet.AutoSize = true;
+            this.lblDateRet.Location = new System.Drawing.Point(149, 192);
+            this.lblDateRet.Name = "lblDateRet";
+            this.lblDateRet.Size = new System.Drawing.Size(35, 13);
+            this.lblDateRet.TabIndex = 2;
+            this.lblDateRet.Text = "label3";
+            // 
+            // lblVoiturePerso
+            // 
+            this.lblVoiturePerso.AutoSize = true;
+            this.lblVoiturePerso.Location = new System.Drawing.Point(149, 243);
+            this.lblVoiturePerso.Name = "lblVoiturePerso";
+            this.lblVoiturePerso.Size = new System.Drawing.Size(35, 13);
+            this.lblVoiturePerso.TabIndex = 3;
+            this.lblVoiturePerso.Text = "label4";
+            this.lblVoiturePerso.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // lblPuissance
+            // 
+            this.lblPuissance.AutoSize = true;
+            this.lblPuissance.Location = new System.Drawing.Point(149, 275);
+            this.lblPuissance.Name = "lblPuissance";
+            this.lblPuissance.Size = new System.Drawing.Size(35, 13);
+            this.lblPuissance.TabIndex = 4;
+            this.lblPuissance.Text = "label5";
+            // 
+            // lblDistance
+            // 
+            this.lblDistance.AutoSize = true;
+            this.lblDistance.Location = new System.Drawing.Point(149, 311);
+            this.lblDistance.Name = "lblDistance";
+            this.lblDistance.Size = new System.Drawing.Size(35, 13);
+            this.lblDistance.TabIndex = 5;
+            this.lblDistance.Text = "label6";
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Location = new System.Drawing.Point(247, 112);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(35, 13);
+            this.lblUser.TabIndex = 6;
+            this.lblUser.Text = "label7";
+            // 
+            // lblConcession
+            // 
+            this.lblConcession.AutoSize = true;
+            this.lblConcession.Location = new System.Drawing.Point(247, 148);
+            this.lblConcession.Name = "lblConcession";
+            this.lblConcession.Size = new System.Drawing.Size(35, 13);
+            this.lblConcession.TabIndex = 7;
+            this.lblConcession.Text = "label8";
+            // 
+            // lstFactures
+            // 
+            this.lstFactures.FormattingEnabled = true;
+            this.lstFactures.Location = new System.Drawing.Point(459, 217);
+            this.lstFactures.Name = "lstFactures";
+            this.lstFactures.Size = new System.Drawing.Size(218, 160);
+            this.lstFactures.TabIndex = 8;
+            // 
+            // frmFactureVisite
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lstFactures);
+            this.Controls.Add(this.lblConcession);
+            this.Controls.Add(this.lblUser);
+            this.Controls.Add(this.lblDistance);
+            this.Controls.Add(this.lblPuissance);
+            this.Controls.Add(this.lblVoiturePerso);
+            this.Controls.Add(this.lblDateRet);
+            this.Controls.Add(this.lblDateDep);
+            this.Controls.Add(this.lblNum);
+            this.Name = "frmFactureVisite";
             this.Text = "frmFactureVisite";
+            this.Load += new System.EventHandler(this.frmFactureVisite_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblNum;
+        private System.Windows.Forms.Label lblDateDep;
+        private System.Windows.Forms.Label lblDateRet;
+        private System.Windows.Forms.Label lblVoiturePerso;
+        private System.Windows.Forms.Label lblPuissance;
+        private System.Windows.Forms.Label lblDistance;
+        private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.Label lblConcession;
+        private System.Windows.Forms.ListBox lstFactures;
     }
 }

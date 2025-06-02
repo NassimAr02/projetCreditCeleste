@@ -144,6 +144,9 @@
     <EmbeddedResource Include="frmConnexion.resx">
       <DependentUpon>frmConnexion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFactureVisite.resx">
+      <DependentUpon>frmFactureVisite.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmIntroduction.resx">
       <DependentUpon>frmIntroduction.cs</DependentUpon>
     </EmbeddedResource>

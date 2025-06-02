@@ -30,21 +30,57 @@ namespace CreditCeleste
 
         private void frmComptabilite_Load(object sender, EventArgs e)
         {
-            con = new SqlConnection("Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste");
-            cmd = new SqlCommand();
-            con.Open();
-            cmd.Connection = con;
+            Globales.lesVisites = new List<Visite>(); // initialiser la liste
 
-            cmd.CommandText = "SELECT * FROM Visite";
-
-
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCeleste"))
             {
-                lstBoxFactures.Items.Add("Visite numéro : " + dr["numVisite"].ToString());
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Visite", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Visite v = new Visite(
+                        (DateTime)dr["dateDepart"],
+                        (DateTime)dr["dateRetour"],
+                        (bool)dr["voiturePerso"],
+                        (int)dr["idUtilisateur"],
+                        (int)dr["numeroConcession"],
+                        (int)dr["numVisite"]
+                    );
+
+                    Globales.lesVisites.Add(v);
+                }
             }
-            con.Close();
+
+            // On affiche les numéros dans la ListBox
+            lstBoxFactures.Items.Clear();
+            foreach (Visite v in Globales.lesVisites)
+            {
+                lstBoxFactures.Items.Add("Visite n°" + v.getNumeroVisite());
+            }
+
+
+
+
+
+
+
+            //con = new SqlConnection("Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste");
+            //cmd = new SqlCommand();
+            //con.Open();
+            //cmd.Connection = con;
+
+            //cmd.CommandText = "SELECT * FROM Visite";
+
+
+            //dr = cmd.ExecuteReader();
+
+            //while (dr.Read())
+            //{
+            //    lstBoxFactures.Items.Add("Visite numéro : " + dr["numVisite"].ToString());
+            //}
+            //con.Close();
 
 
             //Visite uneVisite = Globales.lesVisites[lstBoxFactures.SelectedIndex];
@@ -52,36 +88,20 @@ namespace CreditCeleste
 
         private void lstBoxFactures_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Nous permet de cliquer sur un élément de la listbox
-
-            if (lstBoxFactures.SelectedItem != null)
+            if (lstBoxFactures.SelectedIndex >= 0)
             {
-                // Exemple avec une simple valeur
-                string selectedItem = lstBoxFactures.SelectedItem.ToString();
-                char selectedItemVisite = selectedItem[selectedItem.Count() - 1]; // à commenter si ça ne fonctionne pas //Recupere le numero de la visite
+                Visite selectedVisite = Globales.lesVisites[lstBoxFactures.SelectedIndex];
+                Globales.uneVisite = selectedVisite;
 
-                con = new SqlConnection("Data Source = localhost\\SQLEXPRESS; Integrated Security =SSPI; Initial Catalog=CreditCeleste");
-                cmd = new SqlCommand();
-                con.Open();
-                cmd.Connection = con;
+                if (Globales.fenFactureVisite == null || Globales.fenFactureVisite.IsDisposed)
+                {
+                    Globales.fenFactureVisite = new frmFactureVisite();
+                }
 
-                cmd.CommandText = "SELECT * FROM Visite WHERE numVisite = " + selectedItemVisite.ToString();
-                dr = cmd.ExecuteReader();
-
-                //MessageBox.Show(dr["numVisite"].ToString());
-
-
-
-
-                //MessageBox.Show("Tu as cliqué sur : " + selectedItem[selectedItem.Count() - 1]); //Je récupère le numero de la visite
-
-                // Voir si j'ouvre une nouvelle form de cette facon après le clic
-                //Form formShow = null;
-                //formShow = new frmComptabilite(); //Remplacer par la nouvelle form qu'on va créer
-                //Globales.fenConnexion = null;
-                //this.Hide();
+                Globales.fenFactureVisite.Show();
+                Globales.fenFactureVisite.AfficherDetailsVisite(selectedVisite.getNumeroVisite()); // méthode à créer
             }
-            
+
         }
 
         private void btnBDDfill_Click(object sender, EventArgs e)
