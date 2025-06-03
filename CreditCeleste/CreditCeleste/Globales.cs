@@ -19,8 +19,8 @@ namespace CreditCeleste
         public static NouvelleVoiture uneNouvelleVoiture;
         public static Client unClient;
 
-        public static frmFactureVisite fenFactureVisite;
-        public static frmDetailsFacture fenDetailsFacture;
+        public static frmFactureVisite fenFactureVisite; //Pour lister les factures de la visite
+        public static frmDetailsFacture fenDetailsFacture; //Pour les détails d'une facture
         public static frmConnexion fenConnexion;
         public static frmAccueil fenAccueil;
         public static frmIntroduction fenIntroduction;
@@ -35,12 +35,13 @@ namespace CreditCeleste
 
 
         public static List<Visite> lesVisites;
+        public static List<Facture> lesFactures;
         public static Facture facture1;
         public static Facture facture2;
         public static Facture facture3;
         public static Visite uneVisite;
-        
-        
+        public static Facture uneFacture;
+
         public static frmAjoutClient fenAjoutClient;
         public static Vendeur unVendeur;
         

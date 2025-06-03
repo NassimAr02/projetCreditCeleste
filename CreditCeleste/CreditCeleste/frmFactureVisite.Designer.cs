@@ -121,6 +121,7 @@ namespace CreditCeleste
             this.lstFactures.Name = "lstFactures";
             this.lstFactures.Size = new System.Drawing.Size(373, 238);
             this.lstFactures.TabIndex = 8;
+            this.lstFactures.SelectedIndexChanged += new System.EventHandler(this.lstFactures_SelectedIndexChanged);
             // 
             // frmFactureVisite
             // 

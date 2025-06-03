@@ -22,6 +22,28 @@ namespace CreditCeleste
 
         private void frmFactureVisite_Load(object sender, EventArgs e)
         {
+            Globales.lesFactures = new List<Facture>();
+            using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCeleste"))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Facture", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Facture f = new Facture(
+                        (DateTime)dr["dateFacture"],
+                        (string)dr["typeFrais"],
+                        (float)dr["montant"],
+                        (int)dr["numVisite"],
+                        (int)dr["numFacture"],
+                        (bool)dr["estRembourser"]
+                    );
+
+                    Globales.lesFactures.Add(f);
+
+                }
+            }
 
         }
 
@@ -94,6 +116,24 @@ namespace CreditCeleste
         private void lblNum_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lstFactures_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstFactures.SelectedIndex >= 0)
+            {
+                Facture selectedFacture = Globales.lesFactures[lstFactures.SelectedIndex];
+                Globales.uneFacture = selectedFacture;
+
+                // Vérification si la fenêtre est fermée ou non
+                if (Globales.fenDetailsFacture == null || Globales.fenDetailsFacture.IsDisposed)
+                {
+                    Globales.fenDetailsFacture = new frmDetailsFacture(); //Creation de l'instance
+                }
+
+                Globales.fenDetailsFacture.Show();
+                //Globales.fenDetailsFacture.AfficherDetailsVisite(selectedFacture.getNumeroVisite());
+            }
         }
     }
 }

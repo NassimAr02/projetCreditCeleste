@@ -13,12 +13,29 @@ namespace CreditCeleste
         private string typeFrais;
         private double montantF;
         private int numeroVisite;
+
+        //Rajouté pour la compta
+        private int numFacture;
+        private bool estRembourser;
+
+
         public Facture (DateTime aaaammjj,string type,double montant, int numVisite)
         {
             dateFacture = aaaammjj;
             typeFrais = type;
             montantF = montant;
             numeroVisite = numVisite;
+
+        }
+
+        public Facture(DateTime aaaammjj, string typeF, double montant, int numVisite, int numF, bool boolRemboursement)
+        {
+            dateFacture = aaaammjj;
+            typeFrais = typeF;
+            montantF = montant;
+            numeroVisite = numVisite;
+            numFacture = numF;
+            estRembourser = boolRemboursement;
 
         }
 
@@ -53,7 +70,7 @@ namespace CreditCeleste
         {
             numeroVisite = numVisite;
         }
-        public int getNumVisite()
+        public int getNumeroVisite()
         {
             return numeroVisite;
         }
