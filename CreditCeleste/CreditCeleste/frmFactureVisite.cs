@@ -15,18 +15,24 @@ namespace CreditCeleste
 {
     public partial class frmFactureVisite : Form
     {
-        public frmFactureVisite()
+        private int numVisite;
+
+        public frmFactureVisite(int numV)
         {
             InitializeComponent();
+            numVisite = numV;
         }
 
         private void frmFactureVisite_Load(object sender, EventArgs e)
         {
             Globales.lesFactures = new List<Facture>();
+
             using (SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCeleste"))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Facture", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Facture WHERE numVisite = @numVisite", con);
+                cmd.Parameters.AddWithValue("@numVisite", numVisite);
+
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
@@ -34,18 +40,23 @@ namespace CreditCeleste
                     Facture f = new Facture(
                         (DateTime)dr["dateFacture"],
                         (string)dr["typeFrais"],
-                        (float)dr["montant"],
+                        (decimal)dr["montant"],
                         (int)dr["numVisite"],
                         (int)dr["numFacture"],
                         (bool)dr["estRembourser"]
                     );
 
                     Globales.lesFactures.Add(f);
-
                 }
             }
 
+            lstFactures.Items.Clear();
+            foreach (Facture f in Globales.lesFactures)
+            {
+                lstFactures.Items.Add("Facture pour " + f.getTypeFrais());
+            }
         }
+
 
         public void AfficherDetailsVisite(int numVisite)
         {
@@ -89,22 +100,22 @@ namespace CreditCeleste
                 }
                 dr.Close();
 
-                // Récupération des factures associées à cette visite
-                SqlCommand cmdFactures = new SqlCommand(@"
-                    SELECT numFacture, dateFacture, typeFrais, montant, estRembourser
-                    FROM Facture
-                    WHERE numVisite = @numVisite", con);
+                //// Récupération des factures associées à cette visite // Sous Requete SQL
+                //SqlCommand cmdFactures = new SqlCommand(@"
+                //    SELECT numFacture, dateFacture, typeFrais, montant, estRembourser
+                //    FROM Facture
+                //    WHERE numVisite = @numVisite", con);
 
-                cmdFactures.Parameters.AddWithValue("@numVisite", numVisite);
-                SqlDataReader drFactures = cmdFactures.ExecuteReader();
+                //cmdFactures.Parameters.AddWithValue("@numVisite", numVisite);
+                //SqlDataReader drFactures = cmdFactures.ExecuteReader();
 
-                lstFactures.Items.Clear();
-                while (drFactures.Read())
-                {
-                    string facture = $"Facture #{drFactures["numFacture"]} - {Convert.ToDateTime(drFactures["dateFacture"]).ToShortDateString()} - {drFactures["typeFrais"]} - {drFactures["montant"]} € - {(Convert.ToBoolean(drFactures["estRembourser"]) ? "Remboursée" : "Non remboursée")}";
-                    lstFactures.Items.Add(facture);
-                }
-                drFactures.Close();
+                //lstFactures.Items.Clear();
+                //while (drFactures.Read())
+                //{
+                //    string facture = $"Facture #{drFactures["numFacture"]} - {Convert.ToDateTime(drFactures["dateFacture"]).ToShortDateString()} - {drFactures["typeFrais"]} - {drFactures["montant"]} € - {(Convert.ToBoolean(drFactures["estRembourser"]) ? "Remboursée" : "Non remboursée")}";
+                //    lstFactures.Items.Add(facture);
+                //}
+                //drFactures.Close();
             }
         }
 
@@ -132,7 +143,7 @@ namespace CreditCeleste
                 }
 
                 Globales.fenDetailsFacture.Show();
-                //Globales.fenDetailsFacture.AfficherDetailsVisite(selectedFacture.getNumeroVisite());
+                Globales.fenDetailsFacture.AfficherDetailsFacture(selectedFacture.getNumeroFacture());
             }
         }
     }

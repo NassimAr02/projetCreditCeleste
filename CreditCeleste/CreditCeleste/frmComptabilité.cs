@@ -72,7 +72,9 @@ namespace CreditCeleste
                 // Vérification si la fenêtre est fermée ou non
                 if (Globales.fenFactureVisite == null || Globales.fenFactureVisite.IsDisposed)
                 {
-                    Globales.fenFactureVisite = new frmFactureVisite(); //Creation de l'instance
+                    //Globales.fenFactureVisite = new frmFactureVisite(); //Creation de l'instance
+                    Globales.fenFactureVisite = new frmFactureVisite(selectedVisite.getNumeroVisite());
+
                 }
 
                 Globales.fenFactureVisite.Show();
