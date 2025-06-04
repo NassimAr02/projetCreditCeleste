@@ -23,8 +23,8 @@ namespace CreditCeleste
         {
             InitializeComponent();
             numVisite = numeroVisite;
-            MessageBox.Show($"Numéro de visite reçu : {numVisite}");
         }
+
 
         private void frmSaisie_Load(object sender, EventArgs e)
         {
@@ -41,6 +41,7 @@ namespace CreditCeleste
                 command.Parameters.Add(new SqlParameter("@typeFrais", typeFrais));
                 command.Parameters.Add(new SqlParameter("@montant", montant));
                 command.Parameters.Add(new SqlParameter("@numVisite", this.numVisite));
+                command.Parameters.Add(new SqlParameter("@estRembourser", false));
 
                 command.ExecuteNonQuery();
             }
@@ -63,10 +64,10 @@ namespace CreditCeleste
                 return;
             }
 
-            string connexionParam = "Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCelesteKOPP";
+            //string connexionParam = "Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCelesteKOPP";
             try
             {
-                using (SqlConnection connexion = new SqlConnection(connexionParam))
+                using (SqlConnection connexion = DbConnexion.GetConnection())
                 {
                     connexion.Open();
                     if (fraisRepas > 0)
@@ -80,9 +81,10 @@ namespace CreditCeleste
 
                     MessageBox.Show("Enregistrement réussi");
                     this.Close();
+                    
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Erreur : {ex.Message}");
             }

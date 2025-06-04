@@ -11,11 +11,13 @@ namespace CreditCeleste
     { //comparable à des variables session en PHP
         public static string nomUtilisateur = "ARRASS"; // attribut de classe
         public static string maRegion = "Alsace";
-        
         // Les informations de la concession : une concession
         public static Concession uneConcession; // = new Concession();
-        public static Voiture uneVoiture;
+        public static int idUser;
+        public static AncienneVoiture uneAncienneVoiture;
+        public static NouvelleVoiture uneNouvelleVoiture;
         public static Client unClient;
+        public static frmConnexion fenConnexion;
         public static frmAccueil fenAccueil;
         public static frmAccueil frmAccueil;
         public static frmAccueilVisiteur fenAccueilVisiteur;
@@ -32,6 +34,7 @@ namespace CreditCeleste
         public static Facture facture2;
         public static Facture facture3;
         public static frmAjoutClient fenAjoutClient;
+        public static Vendeur unVendeur;
         public static Visite uneVisite = new Visite();
 
 

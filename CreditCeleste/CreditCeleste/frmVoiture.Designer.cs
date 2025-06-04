@@ -36,17 +36,16 @@ namespace CreditCeleste
             this.rdbNeuf = new System.Windows.Forms.RadioButton();
             this.lblNvVoiture = new System.Windows.Forms.Label();
             this.txtNvVoiture = new System.Windows.Forms.TextBox();
-            this.txt1ereImmat = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtNumImmat = new System.Windows.Forms.TextBox();
             this.txtNumSerie = new System.Windows.Forms.TextBox();
             this.txtPuis = new System.Windows.Forms.TextBox();
             this.lbl1ereImmat = new System.Windows.Forms.Label();
-            this.txtNumImmat = new System.Windows.Forms.Label();
             this.lblNumSerie = new System.Windows.Forms.Label();
             this.lblPuis = new System.Windows.Forms.Label();
-            this.cmdIntro = new System.Windows.Forms.Button();
-            this.ccmdEnregistre = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPrécédent = new System.Windows.Forms.Button();
+            this.btnCredit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtp1Immat = new System.Windows.Forms.DateTimePicker();
             this.gpbAgeV.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +67,7 @@ namespace CreditCeleste
             this.rdb5ans.AutoSize = true;
             this.rdb5ans.Location = new System.Drawing.Point(23, 115);
             this.rdb5ans.Name = "rdb5ans";
-            this.rdb5ans.Size = new System.Drawing.Size(177, 21);
+            this.rdb5ans.Size = new System.Drawing.Size(163, 20);
             this.rdb5ans.TabIndex = 3;
             this.rdb5ans.TabStop = true;
             this.rdb5ans.Text = "Occasion 5 ans et plus ";
@@ -79,7 +78,7 @@ namespace CreditCeleste
             this.rdb3à5ans.AutoSize = true;
             this.rdb3à5ans.Location = new System.Drawing.Point(23, 88);
             this.rdb3à5ans.Name = "rdb3à5ans";
-            this.rdb3à5ans.Size = new System.Drawing.Size(175, 21);
+            this.rdb3à5ans.Size = new System.Drawing.Size(161, 20);
             this.rdb3à5ans.TabIndex = 2;
             this.rdb3à5ans.TabStop = true;
             this.rdb3à5ans.Text = "Occasion de 3 à 5 ans ";
@@ -90,7 +89,7 @@ namespace CreditCeleste
             this.rdb3ans.AutoSize = true;
             this.rdb3ans.Location = new System.Drawing.Point(23, 60);
             this.rdb3ans.Name = "rdb3ans";
-            this.rdb3ans.Size = new System.Drawing.Size(160, 21);
+            this.rdb3ans.Size = new System.Drawing.Size(147, 20);
             this.rdb3ans.TabIndex = 1;
             this.rdb3ans.TabStop = true;
             this.rdb3ans.Text = "Occasion - de 3 ans ";
@@ -101,7 +100,7 @@ namespace CreditCeleste
             this.rdbNeuf.AutoSize = true;
             this.rdbNeuf.Location = new System.Drawing.Point(23, 33);
             this.rdbNeuf.Name = "rdbNeuf";
-            this.rdbNeuf.Size = new System.Drawing.Size(59, 21);
+            this.rdbNeuf.Size = new System.Drawing.Size(54, 20);
             this.rdbNeuf.TabIndex = 0;
             this.rdbNeuf.TabStop = true;
             this.rdbNeuf.Text = "Neuf";
@@ -110,71 +109,55 @@ namespace CreditCeleste
             // lblNvVoiture
             // 
             this.lblNvVoiture.AutoSize = true;
-            this.lblNvVoiture.Location = new System.Drawing.Point(49, 57);
+            this.lblNvVoiture.Location = new System.Drawing.Point(66, 71);
             this.lblNvVoiture.Name = "lblNvVoiture";
-            this.lblNvVoiture.Size = new System.Drawing.Size(145, 17);
+            this.lblNvVoiture.Size = new System.Drawing.Size(144, 16);
             this.lblNvVoiture.TabIndex = 15;
-            this.lblNvVoiture.Text = "Mon Nouveau Voiture";
+            this.lblNvVoiture.Text = "Libelé nouvelle Voiture";
             // 
             // txtNvVoiture
             // 
             this.txtNvVoiture.Location = new System.Drawing.Point(69, 90);
             this.txtNvVoiture.Name = "txtNvVoiture";
-            this.txtNvVoiture.Size = new System.Drawing.Size(101, 22);
+            this.txtNvVoiture.Size = new System.Drawing.Size(141, 22);
             this.txtNvVoiture.TabIndex = 16;
             // 
-            // txt1ereImmat
+            // txtNumImmat
             // 
-            this.txt1ereImmat.Location = new System.Drawing.Point(69, 274);
-            this.txt1ereImmat.Name = "txt1ereImmat";
-            this.txt1ereImmat.Size = new System.Drawing.Size(101, 22);
-            this.txt1ereImmat.TabIndex = 17;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(238, 274);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(101, 22);
-            this.textBox3.TabIndex = 18;
+            this.txtNumImmat.Location = new System.Drawing.Point(69, 207);
+            this.txtNumImmat.Name = "txtNumImmat";
+            this.txtNumImmat.Size = new System.Drawing.Size(141, 22);
+            this.txtNumImmat.TabIndex = 18;
             // 
             // txtNumSerie
             // 
-            this.txtNumSerie.Location = new System.Drawing.Point(404, 274);
+            this.txtNumSerie.Location = new System.Drawing.Point(203, 283);
             this.txtNumSerie.Name = "txtNumSerie";
-            this.txtNumSerie.Size = new System.Drawing.Size(101, 22);
+            this.txtNumSerie.Size = new System.Drawing.Size(132, 22);
             this.txtNumSerie.TabIndex = 19;
             // 
             // txtPuis
             // 
-            this.txtPuis.Location = new System.Drawing.Point(558, 274);
+            this.txtPuis.Location = new System.Drawing.Point(398, 283);
             this.txtPuis.Name = "txtPuis";
-            this.txtPuis.Size = new System.Drawing.Size(101, 22);
+            this.txtPuis.Size = new System.Drawing.Size(132, 22);
             this.txtPuis.TabIndex = 20;
             // 
             // lbl1ereImmat
             // 
             this.lbl1ereImmat.AutoSize = true;
-            this.lbl1ereImmat.Location = new System.Drawing.Point(25, 319);
+            this.lbl1ereImmat.Location = new System.Drawing.Point(66, 126);
             this.lbl1ereImmat.Name = "lbl1ereImmat";
-            this.lbl1ereImmat.Size = new System.Drawing.Size(169, 17);
+            this.lbl1ereImmat.Size = new System.Drawing.Size(186, 16);
             this.lbl1ereImmat.TabIndex = 21;
-            this.lbl1ereImmat.Text = "Date de 1ère introduction";
-            // 
-            // txtNumImmat
-            // 
-            this.txtNumImmat.AutoSize = true;
-            this.txtNumImmat.Location = new System.Drawing.Point(218, 319);
-            this.txtNumImmat.Name = "txtNumImmat";
-            this.txtNumImmat.Size = new System.Drawing.Size(156, 17);
-            this.txtNumImmat.TabIndex = 22;
-            this.txtNumImmat.Text = "Numéro Immatriculation";
+            this.lbl1ereImmat.Text = "Date première immatriculation";
             // 
             // lblNumSerie
             // 
             this.lblNumSerie.AutoSize = true;
-            this.lblNumSerie.Location = new System.Drawing.Point(401, 319);
+            this.lblNumSerie.Location = new System.Drawing.Point(200, 264);
             this.lblNumSerie.Name = "lblNumSerie";
-            this.lblNumSerie.Size = new System.Drawing.Size(115, 17);
+            this.lblNumSerie.Size = new System.Drawing.Size(110, 16);
             this.lblNumSerie.TabIndex = 23;
             this.lblNumSerie.Text = "Numéro de Série";
             this.lblNumSerie.Click += new System.EventHandler(this.label4_Click);
@@ -182,58 +165,63 @@ namespace CreditCeleste
             // lblPuis
             // 
             this.lblPuis.AutoSize = true;
-            this.lblPuis.Location = new System.Drawing.Point(572, 319);
+            this.lblPuis.Location = new System.Drawing.Point(395, 264);
             this.lblPuis.Name = "lblPuis";
-            this.lblPuis.Size = new System.Drawing.Size(73, 17);
+            this.lblPuis.Size = new System.Drawing.Size(71, 16);
             this.lblPuis.TabIndex = 24;
             this.lblPuis.Text = "Puissance";
             // 
-            // cmdIntro
+            // btnPrécédent
             // 
-            this.cmdIntro.Location = new System.Drawing.Point(527, 376);
-            this.cmdIntro.Name = "cmdIntro";
-            this.cmdIntro.Size = new System.Drawing.Size(100, 30);
-            this.cmdIntro.TabIndex = 26;
-            this.cmdIntro.Text = "Introduction";
-            this.cmdIntro.UseVisualStyleBackColor = true;
-            this.cmdIntro.Click += new System.EventHandler(this.cmdIntro_Click);
+            this.btnPrécédent.Location = new System.Drawing.Point(249, 352);
+            this.btnPrécédent.Name = "btnPrécédent";
+            this.btnPrécédent.Size = new System.Drawing.Size(104, 30);
+            this.btnPrécédent.TabIndex = 25;
+            this.btnPrécédent.Text = "Précédent";
+            this.btnPrécédent.UseVisualStyleBackColor = true;
+            this.btnPrécédent.Click += new System.EventHandler(this.btnPrécédent_Click);
             // 
-            // ccmdEnregistre
+            // btnCredit
             // 
-            this.ccmdEnregistre.Location = new System.Drawing.Point(203, 376);
-            this.ccmdEnregistre.Name = "ccmdEnregistre";
-            this.ccmdEnregistre.Size = new System.Drawing.Size(104, 30);
-            this.ccmdEnregistre.TabIndex = 25;
-            this.ccmdEnregistre.Text = "J\'enregistre";
-            this.ccmdEnregistre.UseVisualStyleBackColor = true;
-            this.ccmdEnregistre.Click += new System.EventHandler(this.ccmdEnregistre_Click);
+            this.btnCredit.Location = new System.Drawing.Point(381, 352);
+            this.btnCredit.Name = "btnCredit";
+            this.btnCredit.Size = new System.Drawing.Size(100, 30);
+            this.btnCredit.TabIndex = 27;
+            this.btnCredit.Text = "Crédit";
+            this.btnCredit.UseVisualStyleBackColor = true;
+            this.btnCredit.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button1
+            // label1
             // 
-            this.button1.Location = new System.Drawing.Point(366, 376);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 30);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Je valide";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(66, 188);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(159, 16);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Numéro d\'immatriculation";
+            // 
+            // dtp1Immat
+            // 
+            this.dtp1Immat.Location = new System.Drawing.Point(69, 145);
+            this.dtp1Immat.Name = "dtp1Immat";
+            this.dtp1Immat.Size = new System.Drawing.Size(200, 22);
+            this.dtp1Immat.TabIndex = 29;
             // 
             // frmVoiture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.cmdIntro);
-            this.Controls.Add(this.ccmdEnregistre);
+            this.Controls.Add(this.dtp1Immat);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnCredit);
+            this.Controls.Add(this.btnPrécédent);
             this.Controls.Add(this.lblPuis);
             this.Controls.Add(this.lblNumSerie);
-            this.Controls.Add(this.txtNumImmat);
             this.Controls.Add(this.lbl1ereImmat);
             this.Controls.Add(this.txtPuis);
             this.Controls.Add(this.txtNumSerie);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.txt1ereImmat);
+            this.Controls.Add(this.txtNumImmat);
             this.Controls.Add(this.txtNvVoiture);
             this.Controls.Add(this.lblNvVoiture);
             this.Controls.Add(this.gpbAgeV);
@@ -256,16 +244,15 @@ namespace CreditCeleste
         private System.Windows.Forms.RadioButton rdbNeuf;
         private System.Windows.Forms.Label lblNvVoiture;
         private System.Windows.Forms.TextBox txtNvVoiture;
-        private System.Windows.Forms.TextBox txt1ereImmat;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNumImmat;
         private System.Windows.Forms.TextBox txtNumSerie;
         private System.Windows.Forms.TextBox txtPuis;
         private System.Windows.Forms.Label lbl1ereImmat;
-        private System.Windows.Forms.Label txtNumImmat;
         private System.Windows.Forms.Label lblNumSerie;
         private System.Windows.Forms.Label lblPuis;
-        private System.Windows.Forms.Button cmdIntro;
-        private System.Windows.Forms.Button ccmdEnregistre;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPrécédent;
+        private System.Windows.Forms.Button btnCredit;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtp1Immat;
     }
 }

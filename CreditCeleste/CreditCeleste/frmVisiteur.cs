@@ -27,10 +27,10 @@ namespace CreditCeleste
 
         private void ChargerConcessions()
         {
-            string connexionString = "Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCelesteKOPP";
+            //string connexionString = "Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCelesteKOPP";
             try
             {
-                using (SqlConnection connexion = new SqlConnection(connexionString))
+                using (SqlConnection connexion = DbConnexion.GetConnection())
                 {
                     string requete = "SELECT numeroConcession, nomConcession FROM Concession";
                     SqlDataAdapter adapter = new SqlDataAdapter(requete, connexion);
@@ -70,18 +70,22 @@ namespace CreditCeleste
 
                     MessageBox.Show(
                     $"Paramètres :\n" +
+                    $"ID User : {uneVisite.getIdUser()}\n" +
                     $"Date Départ : {uneVisite.getDateDepart()}\n" +
                     $"Date Retour : {uneVisite.getDateRetour()}\n" +
                     $"Voiture Perso : {uneVisite.getVoiturePerso()}\n" +
                     $"Numéro Concession : {uneVisite.getNumeroConcession()}\n" +
-                    $"ID User : {uneVisite.getIdUser()}"
+                    $"Puissance : {uneVisite.getPuissanceVoiture()}\n" +
+                    $"Distance : {uneVisite.getDistanceVisite()}"
                     );
 
                     command.Parameters.Add(new SqlParameter("@datedepart", uneVisite.getDateDepart()));
                     command.Parameters.Add(new SqlParameter("@dateRetour", uneVisite.getDateRetour()));
                     command.Parameters.Add(new SqlParameter("@voiturePerso", uneVisite.getVoiturePerso()));
                     command.Parameters.Add(new SqlParameter("@numeroConcession", uneVisite.getNumeroConcession()));
-                    command.Parameters.Add(new SqlParameter("@idUser", uneVisite.getIdUser()));
+                    command.Parameters.Add(new SqlParameter("@puissanceVoiture", uneVisite.getPuissanceVoiture()));
+                    command.Parameters.Add(new SqlParameter("@distanceVisite", uneVisite.getDistanceVisite()));
+                    command.Parameters.Add(new SqlParameter("@idUtilisateur", uneVisite.getIdUser()));
 
                     object result = command.ExecuteScalar();
                     if (result != null)
@@ -124,15 +128,30 @@ namespace CreditCeleste
                 choixVoiturePerso = false; // Visiteur utilise un véhicule de la concession
             }
 
+            if (!int.TryParse(txtDistVisite.Text, out int distance) || distance < 0)
+            {
+                MessageBox.Show("Veuillez saisir une distance valide (entier positif) !");
+                return;
+            }
+
+            if (!int.TryParse(txtPuissVoit.Text, out int puissance) || puissance < 0)
+            {
+                MessageBox.Show("Veuillez saisir une puissance de véhicule valide (entier positif) !");
+                return;
+            }
+
             visiteActuelle.setDateDepart(dateDepartPicker.Value);
             visiteActuelle.setDateRetour(dateRetourPicker.Value);
             visiteActuelle.setVoiturePerso(choixVoiturePerso);
+            visiteActuelle.setDistanceVisite(distance);
+            visiteActuelle.setPuissanceVoiture(puissance);
             visiteActuelle.setNumeroConcession((int)cbxConcession.SelectedValue);
+            visiteActuelle.setIdUser(Globales.idUser);
 
 
             // Connexion à la base de données
-            string connexionParam = "Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCelesteKOPP";
-            using (SqlConnection connexion = new SqlConnection(connexionParam))
+            //string connexionParam = "Data Source=localhost\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=CreditCelesteKOPP";
+            using (SqlConnection connexion = DbConnexion.GetConnection())
             {
                 // Insertion de la visite
                 connexion.Open();
@@ -140,10 +159,17 @@ namespace CreditCeleste
 
                 if (numVisite > 0)
                 {
+                    try
+                    {
+                        frmSaisie saisieForm = new frmSaisie(numVisite);
+                        saisieForm.Show();
+                        this.Hide();
+                    }
                     // Redirection vers frmSaisie avec le numVisite
-                    frmSaisie saisieForm = new frmSaisie(numVisite);
-                    saisieForm.Show();
-                    this.Hide();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l’ouverture de la fenêtre frmSaisie : " + ex.Message);
+                    }
                 }
                 else
                 {

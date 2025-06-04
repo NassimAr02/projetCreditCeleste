@@ -13,19 +13,23 @@ namespace CreditCeleste
         private bool voiturePerso;
         private int idUser;
         private int numeroConcession;
+        private int distanceVisite;
+        private int puissanceVoiture;
 
         public Visite()
         {
 
         }
    
-        public Visite(DateTime dateD, DateTime dateR, bool voiturePers, int idU,int numC)
+        public Visite(DateTime dateD, DateTime dateR, bool voiturePers, int idU,int numC, int puiss, int dist)
         {
             dateDepart = dateD;
             dateRetour = dateR;
             voiturePerso = voiturePers;
             idUser = idU;
             numeroConcession = numC;
+            distanceVisite = dist;
+            puissanceVoiture = puiss;
         }
         public void setDateDepart(DateTime dateD)
         {
@@ -68,6 +72,26 @@ namespace CreditCeleste
         public int getNumeroConcession()
         {
             return numeroConcession;
+        }
+
+        public void setDistanceVisite(int dist)
+        {
+            distanceVisite = dist;
+        }
+
+        public int getDistanceVisite()
+        {
+            return distanceVisite;
+        }
+
+        public void setPuissanceVoiture(int puiss)
+        {
+            puissanceVoiture = puiss;
+        }
+
+        public int getPuissanceVoiture()
+        {
+            return puissanceVoiture;
         }
     }
 }

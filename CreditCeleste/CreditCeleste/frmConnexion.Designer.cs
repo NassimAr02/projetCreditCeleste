@@ -40,10 +40,10 @@ namespace CreditCeleste
             // 
             // btnValiderConnexion
             // 
-            this.btnValiderConnexion.Location = new System.Drawing.Point(33, 170);
-            this.btnValiderConnexion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnValiderConnexion.Location = new System.Drawing.Point(25, 138);
+            this.btnValiderConnexion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnValiderConnexion.Name = "btnValiderConnexion";
-            this.btnValiderConnexion.Size = new System.Drawing.Size(125, 36);
+            this.btnValiderConnexion.Size = new System.Drawing.Size(94, 29);
             this.btnValiderConnexion.TabIndex = 0;
             this.btnValiderConnexion.Text = "Valider";
             this.btnValiderConnexion.UseVisualStyleBackColor = true;
@@ -51,18 +51,18 @@ namespace CreditCeleste
             // 
             // txtUtilisateur
             // 
-            this.txtUtilisateur.Location = new System.Drawing.Point(33, 43);
-            this.txtUtilisateur.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUtilisateur.Location = new System.Drawing.Point(25, 35);
+            this.txtUtilisateur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUtilisateur.Name = "txtUtilisateur";
-            this.txtUtilisateur.Size = new System.Drawing.Size(127, 22);
+            this.txtUtilisateur.Size = new System.Drawing.Size(96, 20);
             this.txtUtilisateur.TabIndex = 1;
             // 
             // txtMdp
             // 
-            this.txtMdp.Location = new System.Drawing.Point(33, 105);
-            this.txtMdp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtMdp.Location = new System.Drawing.Point(25, 85);
+            this.txtMdp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtMdp.Name = "txtMdp";
-            this.txtMdp.Size = new System.Drawing.Size(127, 22);
+            this.txtMdp.Size = new System.Drawing.Size(96, 20);
             this.txtMdp.TabIndex = 2;
             this.txtMdp.UseSystemPasswordChar = true;
             this.txtMdp.TextChanged += new System.EventHandler(this.txtMdp_TextChanged);
@@ -70,18 +70,20 @@ namespace CreditCeleste
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 23);
+            this.label1.Location = new System.Drawing.Point(22, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 17);
+            this.label1.Size = new System.Drawing.Size(100, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Nom d\'utilisateur";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 85);
+            this.label2.Location = new System.Drawing.Point(22, 69);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 17);
+            this.label2.Size = new System.Drawing.Size(81, 15);
             this.label2.TabIndex = 4;
             this.label2.Text = "Mot de passe";
             // 
@@ -92,22 +94,23 @@ namespace CreditCeleste
             this.groupBox1.Controls.Add(this.btnValiderConnexion);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtMdp);
-            this.groupBox1.Location = new System.Drawing.Point(283, 86);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(212, 70);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(205, 249);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(154, 202);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connexion";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // frmConnexion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmConnexion";
             this.Text = "frmConnexion";
             this.Load += new System.EventHandler(this.frmConnexion_Load);

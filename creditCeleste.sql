@@ -1,8 +1,8 @@
 -- Utiliser la base de données
-USE creditCelesteARRASS;
+USE CreditCelesteKOPP;
 GO
 
--- Supprimer les tables si elles existent
+-- -- Supprimer les tables si elles existent
 IF OBJECT_ID('Credit', 'U') IS NOT NULL DROP TABLE Credit;
 IF OBJECT_ID('Client', 'U') IS NOT NULL DROP TABLE Client;
 IF OBJECT_ID('Lier', 'U') IS NOT NULL DROP TABLE Lier;
@@ -14,7 +14,7 @@ IF OBJECT_ID('Visite', 'U') IS NOT NULL DROP TABLE Visite;
 IF OBJECT_ID('Facture', 'U') IS NOT NULL DROP TABLE Facture;
 IF OBJECT_ID('Remboursement', 'U') IS NOT NULL DROP TABLE Remboursement;
 IF OBJECT_ID('Rembourser', 'U') IS NOT NULL DROP TABLE Rembourser;
-IF OBJECT_ID('Users','U') IS NOT NULL DROP TABLE Users;
+IF OBJECT_ID('Utilisateur','U') IS NOT NULL DROP TABLE Utilisateur;
 
 -- Table Client
 CREATE TABLE Client (
@@ -76,7 +76,7 @@ CREATE TABLE AncienneVoiture (
 );
 -- Table NouvelleVoiture
 CREATE TABLE NouvelleVoiture (
-   numeroConcession INT IDENTITY(1,1),
+   numeroConcession INT,
    numeroImmat CHAR(9),
    nouvelleVoiture NVARCHAR(50),
    puissance INT,
@@ -119,7 +119,7 @@ CREATE TABLE Visite (
    numeroConcession INT NOT NULL,
    idUtilisateur INT NOT NULL,
    FOREIGN KEY(numeroConcession) REFERENCES Concession(numeroConcession),
-   FOREIGN KEY(idUtilisateur) REFERENCES Users(idUtilisateur)
+   FOREIGN KEY(idUtilisateur) REFERENCES Utilisateur(idUtilisateur)
 );
 
 -- Table Visiteur
@@ -138,7 +138,7 @@ CREATE TABLE Facture (
 CREATE TABLE Remboursement (
    numFacture INT,
    numRemboursement INT IDENTITY(1,1) NOT NULL,
-   montantR INT DECIMAL(10,2),
+   montantR DECIMAL(10,2),
    RAC DECIMAL(10,2),
    commentaire NVARCHAR(100)
    PRIMARY KEY (numRemboursement), 
@@ -153,11 +153,11 @@ CREATE TABLE Rembourser(
    FOREIGN KEY(numFacture) REFERENCES Facture(numFacture)
 );
 
-INSERT INTO Users (username, passwordHash, roleConcession, numeroConcession)
+INSERT INTO Utilisateur (nomUtilisateur, mdpHash, roleConcession,nomCollaborateur,prenomCollaborateur,civiliteCollaborateur, numeroConcession)
 VALUES 
-('visiteur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVisiteur1'), 2)), 'Visiteur', 1),
-('vendeur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVendeur1'), 2)), 'Vendeur', 1),
-('comptabilite1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordCompta1'), 2)), 'Comptabilité', 1);
+('visiteur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVisiteur1'), 2)), 'Visiteur','KOPP','Enzo','M.', 1),
+('vendeur1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordVendeur1'), 2)), 'Vendeur','ARRASS','Nassim','M.', 1),
+('comptabilite1', LOWER(CONVERT(VARCHAR(32), HASHBYTES('MD5', 'passwordCompta1'), 2)), 'Comptabilité','GADAEV','Albert','M.', 1);
 
 
 IF OBJECT_ID('InsCredit', 'P') IS NOT NULL
@@ -168,7 +168,8 @@ CREATE PROCEDURE InsCredit
     @MontantFin decimal(10,2),
     @nbMens int,
     @MontantMens decimal(10,2),
-    @TauxAn decimal(5,3)
+    @TauxAn decimal(5,3),
+	@numClient INT
 AS
 BEGIN
     -- Valider les paramètres
@@ -176,9 +177,9 @@ BEGIN
     BEGIN
         -- Insertion des données dans la table CREDIT
         INSERT INTO [dbo].[CREDIT]
-            (montant, duree, mensualite, taux)
+            (montant, duree, mensualite, taux, numeroClient)
         VALUES 
-            (@MontantFin, @nbMens, @MontantMens, @TauxAn);
+            (@MontantFin, @nbMens, @MontantMens, @TauxAn, @numClient);
         
         RETURN 0; -- Succès
     END
@@ -199,7 +200,8 @@ CREATE PROCEDURE SelUserId
    @userN NVARCHAR(50),
    @passwordH NVARCHAR(32),
    @roleC NVARCHAR(20) OUTPUT,
-   @idU INT OUTPUT
+   @idU INT OUTPUT,
+   @numConcession INT OUTPUT
 AS
 BEGIN
    -- Initialiser la valeur de sortie à NULL par défaut
@@ -210,19 +212,13 @@ BEGIN
    IF EXISTS (
        SELECT 1 
        FROM [dbo].[Utilisateur] 
-       WHERE nomUtilisateur = @userN AND passwordHash = @passwordH
+       WHERE nomUtilisateur = @userN AND mdpHash = @passwordH
    )
    BEGIN
        -- Récupère le rôle de l'utilisateur
-<<<<<<< Updated upstream
-       SELECT @roleC = roleConcession
+       SELECT @idU = idUtilisateur, @roleC = roleConcession, @numConcession = numeroConcession
        FROM [dbo].[Utilisateur]
-       WHERE nomUtilisateur = @userN AND passwordHash = @passwordH;
-=======
-       SELECT @idU = idUser, @roleC = roleConcession
-       FROM [dbo].[Users]
-       WHERE username = @userN AND passwordHash = @passwordH;
->>>>>>> Stashed changes
+       WHERE nomUtilisateur = @userN AND mdpHash = @passwordH;
    END
    ELSE
    BEGIN
@@ -253,7 +249,7 @@ CREATE PROCEDURE InsClient
 AS
 BEGIN
    INSERT INTO [dbo].[Client]
-      (civilite, nomClient, prenomClient, numRue, nomRue, codePostal, ville, numTel, dateNaissance, profession, nomJeuneFille)
+      (civilite, nomClient, prenomClient, numRue, nomRue, codePostal, ville, numTel, dateNaissance, revenuAnnuel, profession, nomJeuneFille)
    VALUES
       (@civilite, @nom, @prenom, @numRue , @nomRue, @codePostal, @ville, @numTel, @dateNaissance, @revenuAnnuel, @profession, @nomJeuneFille);
    
@@ -269,8 +265,10 @@ CREATE PROCEDURE InsVisite
     @dateDepart DATE,
     @dateRetour DATE,
     @voiturePerso BIT,
+    @puissanceVoiture INT,
+    @distanceVisite INT,
     @numeroConcession INT,
-    @idUser INT
+    @idUtilisateur INT
 
 AS 
 BEGIN 
@@ -281,9 +279,9 @@ BEGIN
         RETURN 1;
     END
     -- Insertion des informations de la visite 
-    INSERT INTO [dbo].[Visite] (dateDepart, dateRetour, voiturePerso, numeroConcession, idUser)
-    VALUES (@dateDepart @dateRetour, @voiturePerso, @numeroConcession, @idUser); 
-    RETURN 0;
+    INSERT INTO [dbo].[Visite] (dateDepart, dateRetour, voiturePerso, puissanceVoiture, distanceVisite, numeroConcession, idUtilisateur)
+    VALUES (@dateDepart, @dateRetour, @voiturePerso, @puissanceVoiture, @distanceVisite, @numeroConcession, @idUtilisateur); 
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS NewVisiteId;
 END 
 GO
 
@@ -295,7 +293,8 @@ CREATE PROCEDURE InsFacture
     @dateFacture DATE,
     @typeFrais NVARCHAR(50),
     @montant DECIMAL(10,2),
-    @numVisite INT
+    @numVisite INT,
+    @estRembourser BIT = NULL, 
 AS
 BEGIN
     -- Vérification si la visite associée existe
@@ -306,12 +305,70 @@ BEGIN
     END
     
     -- Insertion des données dans la table Facture
-    INSERT INTO [dbo].[Facture] (dateFacture, typeFrais, montant, numVisite)
-    VALUES (@dateFacture, @typeFrais, @montant, @numVisite);
+    INSERT INTO [dbo].[Facture] (dateFacture, typeFrais, montant, estRembourser, numVisite)
+    VALUES (@dateFacture, @typeFrais, @montant, @estRembourser, @numVisite);
     
     RETURN 0; 
 END
 GO
 
+IF OBJECT_ID('InsAncienneVoiture','P') IS NOT NULL
+	DROP PROCEDURE InsAncienneVoiture;
+GO
 
+CREATE PROCEDURE InsAncienneVoiture 
+	@numClient INT,
+	@numConcession INT,
+	@numImmat NVARCHAR(9),
+	@dateImmat DATE,
+	@numeroSerie NVARCHAR(50),
+	@libeleAncVoiture NVARCHAR(60)
+AS
+BEGIN
+	INSERT INTO [dbo].[Voiture]
+		(numeroConcession, numeroImmat, dateImmat, numeroSerie) 
+	VALUES
+		(@numConcession,@numImmat,@dateImmat,@numeroSerie)
+	
+	INSERT INTO [dbo].[AncienneVoiture]
+		(numeroConcession,numeroImmat,ancienneVoiture)
+	VALUES
+		(@numConcession,@numImmat,@libeleAncVoiture)
+	INSERT INTO [dbo].[Lier]
+		(numeroClient, numeroConcession, numeroImmat) 
+	VALUES
+		(@numClient, @numConcession, @numImmat)
+		RETURN 0;
+END
+GO
+IF OBJECT_ID('InsNouvelleVoiture','P') IS NOT NULL
+	DROP PROCEDURE InsNouvelleVoiture;
+GO
 
+CREATE PROCEDURE InsNouvelleVoiture 
+	@numClient INT,
+	@numConcession INT,
+	@numImmat NVARCHAR(9),
+	@dateImmat DATE,
+	@numeroSerie NVARCHAR(50),
+	@puissance INT,
+	@age NVARCHAR(50),
+	@libeleNouvVoiture NVARCHAR(50)
+AS
+BEGIN
+	INSERT INTO [dbo].[Voiture]
+		(numeroConcession, numeroImmat, dateImmat, numeroSerie) 
+	VALUES
+		(@numConcession,@numImmat,@dateImmat,@numeroSerie)
+	
+	INSERT INTO [dbo].[NouvelleVoiture]
+		(numeroConcession, numeroImmat,puissance,age,NouvelleVoiture)
+	VALUES
+		(@numConcession,@numImmat,@puissance,@age,@libeleNouvVoiture)
+	INSERT INTO [dbo].[Lier]
+		(numeroClient, numeroConcession, numeroImmat) 
+	VALUES
+		(@numClient, @numConcession, @numImmat)
+		RETURN 0;
+END
+GO

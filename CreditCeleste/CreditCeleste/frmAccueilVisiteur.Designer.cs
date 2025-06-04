@@ -29,25 +29,26 @@ namespace CreditCeleste
         /// </summary>
         private void InitializeComponent()
         {
-            this.lsbMesVisites = new System.Windows.Forms.ListBox();
+            this.lsbFactureNon = new System.Windows.Forms.ListBox();
             this.btnNouvVisite = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lsbFactureOui = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // lsbMesVisites
+            // lsbFactureNon
             // 
-            this.lsbMesVisites.FormattingEnabled = true;
-            this.lsbMesVisites.ItemHeight = 20;
-            this.lsbMesVisites.Location = new System.Drawing.Point(190, 102);
-            this.lsbMesVisites.Name = "lsbMesVisites";
-            this.lsbMesVisites.Size = new System.Drawing.Size(385, 224);
-            this.lsbMesVisites.TabIndex = 0;
-            this.lsbMesVisites.Tag = "";
-            this.lsbMesVisites.SelectedIndexChanged += new System.EventHandler(this.lsbMesVisites_SelectedIndexChanged);
+            this.lsbFactureNon.FormattingEnabled = true;
+            this.lsbFactureNon.ItemHeight = 20;
+            this.lsbFactureNon.Location = new System.Drawing.Point(41, 96);
+            this.lsbFactureNon.Name = "lsbFactureNon";
+            this.lsbFactureNon.Size = new System.Drawing.Size(934, 224);
+            this.lsbFactureNon.TabIndex = 0;
+            this.lsbFactureNon.Tag = "";
+            this.lsbFactureNon.SelectedIndexChanged += new System.EventHandler(this.lsbMesVisites_SelectedIndexChanged);
             // 
             // btnNouvVisite
             // 
-            this.btnNouvVisite.Location = new System.Drawing.Point(609, 369);
+            this.btnNouvVisite.Location = new System.Drawing.Point(960, 36);
             this.btnNouvVisite.Name = "btnNouvVisite";
             this.btnNouvVisite.Size = new System.Drawing.Size(135, 40);
             this.btnNouvVisite.TabIndex = 1;
@@ -58,20 +59,31 @@ namespace CreditCeleste
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(186, 68);
+            this.label1.Location = new System.Drawing.Point(37, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 20);
+            this.label1.Size = new System.Drawing.Size(101, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Mes visites";
+            this.label1.Text = "Mes factures";
+            // 
+            // lsbFactureOui
+            // 
+            this.lsbFactureOui.FormattingEnabled = true;
+            this.lsbFactureOui.ItemHeight = 20;
+            this.lsbFactureOui.Location = new System.Drawing.Point(41, 369);
+            this.lsbFactureOui.Name = "lsbFactureOui";
+            this.lsbFactureOui.Size = new System.Drawing.Size(934, 224);
+            this.lsbFactureOui.TabIndex = 3;
+            this.lsbFactureOui.Tag = "";
             // 
             // frmAccueilVisiteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1184, 550);
+            this.Controls.Add(this.lsbFactureOui);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNouvVisite);
-            this.Controls.Add(this.lsbMesVisites);
+            this.Controls.Add(this.lsbFactureNon);
             this.Name = "frmAccueilVisiteur";
             this.Text = "Accueil Visiteur";
             this.Load += new System.EventHandler(this.frmAccueilVisiteur_Load);
@@ -82,8 +94,9 @@ namespace CreditCeleste
 
         #endregion
 
-        private System.Windows.Forms.ListBox lsbMesVisites;
+        private System.Windows.Forms.ListBox lsbFactureNon;
         private System.Windows.Forms.Button btnNouvVisite;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lsbFactureOui;
     }
 }

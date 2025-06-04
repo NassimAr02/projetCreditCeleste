@@ -41,6 +41,10 @@ namespace CreditCeleste
             this.gbxVoiturePerso = new System.Windows.Forms.GroupBox();
             this.radioBtnNon = new System.Windows.Forms.RadioButton();
             this.radioBtnOui = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtPuissVoit = new System.Windows.Forms.TextBox();
+            this.txtDistVisite = new System.Windows.Forms.TextBox();
             this.gbxVoiturePerso.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +57,7 @@ namespace CreditCeleste
             // 
             // cmdSuivant
             // 
-            this.cmdSuivant.Location = new System.Drawing.Point(481, 233);
+            this.cmdSuivant.Location = new System.Drawing.Point(564, 415);
             this.cmdSuivant.Name = "cmdSuivant";
             this.cmdSuivant.Size = new System.Drawing.Size(90, 32);
             this.cmdSuivant.TabIndex = 27;
@@ -114,7 +118,7 @@ namespace CreditCeleste
             // 
             // btnAccueil
             // 
-            this.btnAccueil.Location = new System.Drawing.Point(481, 176);
+            this.btnAccueil.Location = new System.Drawing.Point(564, 340);
             this.btnAccueil.Name = "btnAccueil";
             this.btnAccueil.Size = new System.Drawing.Size(90, 33);
             this.btnAccueil.TabIndex = 36;
@@ -155,11 +159,47 @@ namespace CreditCeleste
             this.radioBtnOui.Text = "Oui";
             this.radioBtnOui.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(445, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 20);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Puissance voiture";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(445, 222);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 20);
+            this.label4.TabIndex = 39;
+            this.label4.Text = "Distance visite";
+            // 
+            // txtPuissVoit
+            // 
+            this.txtPuissVoit.Location = new System.Drawing.Point(605, 144);
+            this.txtPuissVoit.Name = "txtPuissVoit";
+            this.txtPuissVoit.Size = new System.Drawing.Size(160, 26);
+            this.txtPuissVoit.TabIndex = 40;
+            // 
+            // txtDistVisite
+            // 
+            this.txtDistVisite.Location = new System.Drawing.Point(605, 221);
+            this.txtDistVisite.Name = "txtDistVisite";
+            this.txtDistVisite.Size = new System.Drawing.Size(160, 26);
+            this.txtDistVisite.TabIndex = 41;
+            // 
             // frmVisiteur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 562);
+            this.Controls.Add(this.txtDistVisite);
+            this.Controls.Add(this.txtPuissVoit);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.gbxVoiturePerso);
             this.Controls.Add(this.btnAccueil);
             this.Controls.Add(this.cboConcession);
@@ -195,5 +235,9 @@ namespace CreditCeleste
         private System.Windows.Forms.GroupBox gbxVoiturePerso;
         private System.Windows.Forms.RadioButton radioBtnNon;
         private System.Windows.Forms.RadioButton radioBtnOui;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtPuissVoit;
+        private System.Windows.Forms.TextBox txtDistVisite;
     }
 }

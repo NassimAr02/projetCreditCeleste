@@ -10,9 +10,10 @@ namespace CreditCeleste
     class Client
     {//a
         private int numeroClient;
-        private string nomClient, prenomClient,numRue,nomRue,CP,ville,civilite,dateNaissance,profession,nomJeuneFille;
+        private DateTime dateNaissance;
+        private string nomClient, prenomClient,numRue,nomRue,CP,ville,civilite,profession,nomJeuneFille;
         private double revenuAnnuel;
-
+        private string numTel;
 
 
         public Client()
@@ -20,7 +21,7 @@ namespace CreditCeleste
 
         }
         
-        public Client(int numCli,string civ, string nomCli, string prenomCli,string numRue, string nomRue, string CP, string ville, string dateNaissance,double revenuAnnuel,string profession,string nomJeuneFille)
+        public Client(int numCli,string civ, string nomCli, string prenomCli,string numRue, string nomRue, string CP, string ville, DateTime dateNaissance,double revenuAnnuel,string profession, string numTel ,string nomJeuneFille)
         {
             numeroClient = numCli;
             civilite = civ;
@@ -33,6 +34,7 @@ namespace CreditCeleste
             this.dateNaissance = dateNaissance;
             this.revenuAnnuel = revenuAnnuel;
             this.profession = profession;
+            this.numTel = numTel;
             this.nomJeuneFille = nomJeuneFille;
         }
         public void setNumeroClient(int numCli)
@@ -91,11 +93,11 @@ namespace CreditCeleste
         {
             return ville;
         }
-        public void setDateNaissance (string dateNaiss)
+        public void setDateNaissance (DateTime dateNaiss)
         {
             dateNaissance = dateNaiss;
         }
-        public string getDateNaissance()
+        public DateTime getDateNaissance()
         {
             return dateNaissance;
         }
@@ -114,6 +116,14 @@ namespace CreditCeleste
         public string getProfesssion()
         {
             return profession;
+        }
+        public void setNumtel(string numTel)
+        {
+            this.numTel = numTel;
+        }
+        public string getNumTel()
+        {
+            return numTel;
         }
         public void setNomJeuneFille(string nomJF)
         {
