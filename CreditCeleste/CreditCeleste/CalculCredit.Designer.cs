@@ -45,36 +45,36 @@ namespace CreditCeleste
             // txtMontantFinance
             // 
             this.txtMontantFinance.Location = new System.Drawing.Point(40, 48);
-            this.txtMontantFinance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMontantFinance.Margin = new System.Windows.Forms.Padding(2);
             this.txtMontantFinance.Name = "txtMontantFinance";
             this.txtMontantFinance.Size = new System.Drawing.Size(92, 20);
-            this.txtMontantFinance.TabIndex = 0;
+            this.txtMontantFinance.TabIndex = 1;
             this.txtMontantFinance.TextChanged += new System.EventHandler(this.txtMontantFinance_TextChanged);
             // 
             // txtTauxAnnuel
             // 
             this.txtTauxAnnuel.Location = new System.Drawing.Point(40, 150);
-            this.txtTauxAnnuel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTauxAnnuel.Margin = new System.Windows.Forms.Padding(2);
             this.txtTauxAnnuel.Name = "txtTauxAnnuel";
             this.txtTauxAnnuel.Size = new System.Drawing.Size(92, 20);
-            this.txtTauxAnnuel.TabIndex = 1;
+            this.txtTauxAnnuel.TabIndex = 3;
             // 
             // txtMensualite
             // 
             this.txtMensualite.Location = new System.Drawing.Point(40, 207);
-            this.txtMensualite.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMensualite.Margin = new System.Windows.Forms.Padding(2);
             this.txtMensualite.Name = "txtMensualite";
             this.txtMensualite.Size = new System.Drawing.Size(92, 20);
-            this.txtMensualite.TabIndex = 2;
+            this.txtMensualite.TabIndex = 8;
             // 
             // cbxDurée
             // 
             this.cbxDurée.FormattingEnabled = true;
             this.cbxDurée.Location = new System.Drawing.Point(40, 97);
-            this.cbxDurée.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxDurée.Margin = new System.Windows.Forms.Padding(2);
             this.cbxDurée.Name = "cbxDurée";
             this.cbxDurée.Size = new System.Drawing.Size(92, 21);
-            this.cbxDurée.TabIndex = 3;
+            this.cbxDurée.TabIndex = 2;
             // 
             // lblMontant
             // 
@@ -119,10 +119,10 @@ namespace CreditCeleste
             // btnCalcul
             // 
             this.btnCalcul.Location = new System.Drawing.Point(330, 203);
-            this.btnCalcul.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCalcul.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalcul.Name = "btnCalcul";
             this.btnCalcul.Size = new System.Drawing.Size(56, 24);
-            this.btnCalcul.TabIndex = 9;
+            this.btnCalcul.TabIndex = 4;
             this.btnCalcul.Text = "Calcul";
             this.btnCalcul.UseVisualStyleBackColor = true;
             this.btnCalcul.Click += new System.EventHandler(this.btnCalcul_Click);
@@ -130,10 +130,10 @@ namespace CreditCeleste
             // btnListeCredit
             // 
             this.btnListeCredit.Location = new System.Drawing.Point(368, 249);
-            this.btnListeCredit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnListeCredit.Margin = new System.Windows.Forms.Padding(2);
             this.btnListeCredit.Name = "btnListeCredit";
             this.btnListeCredit.Size = new System.Drawing.Size(80, 24);
-            this.btnListeCredit.TabIndex = 10;
+            this.btnListeCredit.TabIndex = 5;
             this.btnListeCredit.Text = "Liste Crédit";
             this.btnListeCredit.UseVisualStyleBackColor = true;
             this.btnListeCredit.Click += new System.EventHandler(this.btnListeCredit_Click);
@@ -143,7 +143,7 @@ namespace CreditCeleste
             this.btnPrecedent.Location = new System.Drawing.Point(275, 250);
             this.btnPrecedent.Name = "btnPrecedent";
             this.btnPrecedent.Size = new System.Drawing.Size(75, 23);
-            this.btnPrecedent.TabIndex = 11;
+            this.btnPrecedent.TabIndex = 6;
             this.btnPrecedent.Text = "Précédent";
             this.btnPrecedent.UseVisualStyleBackColor = true;
             this.btnPrecedent.Click += new System.EventHandler(this.btnPrecedent_Click);
@@ -164,7 +164,7 @@ namespace CreditCeleste
             this.Controls.Add(this.txtMensualite);
             this.Controls.Add(this.txtTauxAnnuel);
             this.Controls.Add(this.txtMontantFinance);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCalculCredit";
             this.Text = "Calcul Crédit";
             this.Load += new System.EventHandler(this.frmCalculCredit_Load);
