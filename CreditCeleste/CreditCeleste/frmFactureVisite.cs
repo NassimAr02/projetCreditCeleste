@@ -97,9 +97,11 @@ namespace CreditCeleste
                     lblDistance.Text = "Distance : " + dr["distanceVisite"].ToString() + " km";
                     lblUser.Text = "Effectuée par : " + dr["prenomCollaborateur"] + " " + dr["nomCollaborateur"];
                     lblConcession.Text = "Concession : " + dr["nomConcession"];
+                    Globales.uneVisite = new Visite(Convert.ToDateTime(dr["dateDepart"]), Convert.ToDateTime(dr["dateRetour"]), (bool)dr["voiturePerso"], (int)dr["puissanceVoiture"], (int)dr["distanceVisite"]);
                 }
                 dr.Close();
-
+                
+                
                 //// Récupération des factures associées à cette visite // Sous Requete SQL
                 //SqlCommand cmdFactures = new SqlCommand(@"
                 //    SELECT numFacture, dateFacture, typeFrais, montant, estRembourser
@@ -144,6 +146,8 @@ namespace CreditCeleste
 
                 Globales.fenDetailsFacture.Show();
                 Globales.fenDetailsFacture.AfficherDetailsFacture(selectedFacture.getNumeroFacture());
+                Globales.fenFactureVisite = null;
+                this.Close();
             }
         }
     }

@@ -76,16 +76,25 @@ namespace CreditCeleste
                     Globales.fenFactureVisite = new frmFactureVisite(selectedVisite.getNumeroVisite());
 
                 }
-
+                
                 Globales.fenFactureVisite.Show();
-                Globales.fenFactureVisite.AfficherDetailsVisite(selectedVisite.getNumeroVisite()); 
+                Globales.fenFactureVisite.AfficherDetailsVisite(selectedVisite.getNumeroVisite());
+                Globales.fenComptabilite = null;
+                this.Close();
             }
 
         }
 
         private void btnBDDfill_Click(object sender, EventArgs e)
         {
-            
+            if(Globales.fenAccueil == null)
+            {
+                Globales.fenComptabilite = null;
+                Globales.fenAccueil = new frmAccueil();
+                Globales.fenAccueil.Show();
+                this.Close();
+            }
+           
         }
 
         private void btnConsulter_Click(object sender, EventArgs e)

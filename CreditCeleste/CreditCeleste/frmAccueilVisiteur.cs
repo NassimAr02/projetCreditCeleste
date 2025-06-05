@@ -99,14 +99,17 @@ namespace CreditCeleste
 
             string requete = @"
         SELECT 
-            numFacture,
-            dateFacture,
-            montant,
-            typeFrais
+            F.numFacture,
+            F.dateFacture,
+            F.montant,
+            F.typeFrais,
+            R.montantR
         FROM 
-            Facture
+            Facture F
+        INNER JOIN 
+            Remboursement R ON F.numFacture = R.numFacture
         WHERE 
-            estRembourser = 1
+            F.estRembourser = 1
     ";
 
             try
@@ -122,9 +125,10 @@ namespace CreditCeleste
                             int numFacture = (int)reader["numFacture"];
                             DateTime date = (DateTime)reader["dateFacture"];
                             decimal montant = (decimal)reader["montant"];
+                            decimal montantR = (decimal)reader["montantR"];
                             string typeFrais = reader["typeFrais"].ToString();
 
-                            string ligne = $"Facture N°{numFacture} | | {date:dd/MM/yyyy} | {typeFrais} | Montant: {montant:C}";
+                            string ligne = $"Facture N°{numFacture} | {date:dd/MM/yyyy} | {typeFrais} | Montant: {montant:C} | Remboursé: {montantR:C}";
                             lsbFactureOui.Items.Add(ligne);
                         }
                     }

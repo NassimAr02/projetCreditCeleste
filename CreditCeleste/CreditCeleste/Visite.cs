@@ -33,7 +33,14 @@ namespace CreditCeleste
             distanceVisite = dist;
             puissanceVoiture = puiss;
         }
-
+        public Visite(DateTime dateD, DateTime dateR, bool voiturePers, int puiss, int dist)
+        {
+            dateDepart = dateD;
+            dateRetour = dateR;
+            voiturePerso = voiturePers;
+            distanceVisite = dist;
+            puissanceVoiture = puiss;
+        }
         public Visite(DateTime dateD, DateTime dateR, bool voiturePers, int idU, int numC, int numV)
         {
             dateDepart = dateD;

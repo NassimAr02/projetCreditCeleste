@@ -20,15 +20,7 @@ namespace CreditCeleste
 
         private void frmDetailsFacture_Load(object sender, EventArgs e)
         {
-            if (lblTypeFrais.Text == "Carburant" || lblTypeFrais.Text == "carburant")
-            {
-                txtDistance.Enabled = true;
-                lblDistance.Enabled = true;
-            } else
-            {
-                txtDistance.Enabled = false;
-                lblDistance.Enabled = false;
-            }
+    
         }
 
         public void AfficherDetailsFacture(int numFacture)
@@ -63,6 +55,28 @@ namespace CreditCeleste
                     lblDateFacture.Text = "Date : " + Convert.ToDateTime(dr["dateFacture"]).ToShortDateString();
                     lblRembourserBool.Text = ((bool)dr["estRembourser"] ? "Remboursé" : "Non Remboursé");
                 }
+                if (lblTypeFrais.Text == "Type de frais : Frais essence")
+                {
+                    txtDistance.Enabled = true;
+                    lblDistance.Enabled = true;
+
+                    int distance = Globales.uneVisite.getDistanceVisite();
+                    txtDistance.Text = distance.ToString();
+
+                    // Calcul automatique du montant remboursé
+                    double montant = 0;
+                    switch (Globales.uneVisite.getPuissanceVoiture())
+                    {
+                        case 3: montant = 0.52 * distance; break;
+                        case 4: montant = 0.60 * distance; break;
+                        case 5: montant = 0.63 * distance; break;
+                        case 6: montant = 0.66 * distance; break;
+                        default: montant = 0.69 * distance; break;
+                    }
+
+                    txtBoxMontantRembourser.Text = montant.ToString("0.00");
+                }
+
                 dr.Close();
 
                 // 2. Récupération du remboursement associé, s'il existe
@@ -134,7 +148,8 @@ namespace CreditCeleste
                     insertRemb.Parameters.AddWithValue("@numFacture", numFacture);
                     insertRemb.Parameters.AddWithValue("@montantR", montantRembourse);
                     insertRemb.Parameters.AddWithValue("@rac", resteACharge);
-                    insertRemb.Parameters.AddWithValue("@commentaire", DBNull.Value);
+                    insertRemb.Parameters.AddWithValue("@commentaire", string.IsNullOrWhiteSpace(txtCommentaire.Text) ? DBNull.Value : (object)txtCommentaire.Text);
+
 
                     // Exécution + récupération de l'ID généré
                     int numRemboursement = (int)insertRemb.ExecuteScalar();
@@ -163,6 +178,10 @@ namespace CreditCeleste
 
                     transaction.Commit();
                     MessageBox.Show("Remboursement enregistré !");
+                    Globales.fenComptabilite = new frmComptabilite();
+                    Globales.fenComptabilite.Show();
+                    Globales.fenDetailsFacture = null;
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -174,23 +193,7 @@ namespace CreditCeleste
 
         private void txtDistance_TextChanged(object sender, EventArgs e) 
         {
-            double dist = Convert.ToDouble(txtDistance.Text);
-            if (Globales.uneVisite.getPuissanceVoiture() == 3)
-            {
-                txtBoxMontantRembourser.Text = Convert.ToString(0.52 * dist);
-            } else if (Globales.uneVisite.getPuissanceVoiture() == 4)
-            {
-                txtBoxMontantRembourser.Text = Convert.ToString(0.6 * dist);
-            } else if (Globales.uneVisite.getPuissanceVoiture() == 5)
-            {
-                txtBoxMontantRembourser.Text = Convert.ToString(0.63 * dist);
-            } else if (Globales.uneVisite.getPuissanceVoiture() == 6)
-            {
-                txtBoxMontantRembourser.Text = Convert.ToString(0.66 * dist);
-            } else
-            {
-                txtBoxMontantRembourser.Text = Convert.ToString(0.69 * dist);
-            }
+            
         }
     }
 }
