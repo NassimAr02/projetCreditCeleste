@@ -42,6 +42,10 @@ namespace CreditCeleste
             this.groupBoxRembourser = new System.Windows.Forms.GroupBox();
             this.lblRembourserBool = new System.Windows.Forms.Label();
             this.lblRAC = new System.Windows.Forms.Label();
+            this.txtCommentaire = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblDistance = new System.Windows.Forms.Label();
+            this.txtDistance = new System.Windows.Forms.TextBox();
             this.groupBoxRembourser.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,11 +171,48 @@ namespace CreditCeleste
             this.lblRAC.TabIndex = 14;
             this.lblRAC.Text = "reste à charge";
             // 
+            // txtCommentaire
+            // 
+            this.txtCommentaire.Location = new System.Drawing.Point(464, 76);
+            this.txtCommentaire.Name = "txtCommentaire";
+            this.txtCommentaire.Size = new System.Drawing.Size(276, 20);
+            this.txtCommentaire.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(464, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Commentaire";
+            // 
+            // lblDistance
+            // 
+            this.lblDistance.AutoSize = true;
+            this.lblDistance.Location = new System.Drawing.Point(41, 229);
+            this.lblDistance.Name = "lblDistance";
+            this.lblDistance.Size = new System.Drawing.Size(49, 13);
+            this.lblDistance.TabIndex = 17;
+            this.lblDistance.Text = "Distance";
+            // 
+            // txtDistance
+            // 
+            this.txtDistance.Location = new System.Drawing.Point(44, 245);
+            this.txtDistance.Name = "txtDistance";
+            this.txtDistance.Size = new System.Drawing.Size(100, 20);
+            this.txtDistance.TabIndex = 18;
+            this.txtDistance.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
+            // 
             // frmDetailsFacture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtDistance);
+            this.Controls.Add(this.lblDistance);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtCommentaire);
             this.Controls.Add(this.lblRAC);
             this.Controls.Add(this.lblRembourserBool);
             this.Controls.Add(this.groupBoxRembourser);
@@ -208,5 +249,9 @@ namespace CreditCeleste
         private System.Windows.Forms.GroupBox groupBoxRembourser;
         private System.Windows.Forms.Label lblRembourserBool;
         private System.Windows.Forms.Label lblRAC;
+        private System.Windows.Forms.TextBox txtCommentaire;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDistance;
+        private System.Windows.Forms.TextBox txtDistance;
     }
 }

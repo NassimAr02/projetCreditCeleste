@@ -20,7 +20,15 @@ namespace CreditCeleste
 
         private void frmDetailsFacture_Load(object sender, EventArgs e)
         {
-
+            if (lblTypeFrais.Text == "Carburant" || lblTypeFrais.Text == "carburant")
+            {
+                txtDistance.Enabled = true;
+                lblDistance.Enabled = true;
+            } else
+            {
+                txtDistance.Enabled = false;
+                lblDistance.Enabled = false;
+            }
         }
 
         public void AfficherDetailsFacture(int numFacture)
@@ -164,6 +172,25 @@ namespace CreditCeleste
             }
         }
 
-
+        private void txtDistance_TextChanged(object sender, EventArgs e) 
+        {
+            double dist = Convert.ToDouble(txtDistance.Text);
+            if (Globales.uneVisite.getPuissanceVoiture() == 3)
+            {
+                txtBoxMontantRembourser.Text = Convert.ToString(0.52 * dist);
+            } else if (Globales.uneVisite.getPuissanceVoiture() == 4)
+            {
+                txtBoxMontantRembourser.Text = Convert.ToString(0.6 * dist);
+            } else if (Globales.uneVisite.getPuissanceVoiture() == 5)
+            {
+                txtBoxMontantRembourser.Text = Convert.ToString(0.63 * dist);
+            } else if (Globales.uneVisite.getPuissanceVoiture() == 6)
+            {
+                txtBoxMontantRembourser.Text = Convert.ToString(0.66 * dist);
+            } else
+            {
+                txtBoxMontantRembourser.Text = Convert.ToString(0.69 * dist);
+            }
+        }
     }
 }
