@@ -30,8 +30,8 @@ namespace CreditCeleste
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
             // à commenter après
-            identifiantUser = "comptabilite1";
-            mdpUser = MDPversMD5.ConversionMD5("passwordCompta1");
+            //identifiantUser = "comptabilite1";
+            //mdpUser = MDPversMD5.ConversionMD5("passwordCompta1");
 
             string concess = "SELECT * FROM Concession WHERE numeroConcession = @numConcession";
           
