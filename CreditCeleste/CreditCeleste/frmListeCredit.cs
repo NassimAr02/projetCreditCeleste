@@ -86,6 +86,7 @@ namespace CreditCeleste
             
         }
 
+        // Pour effacer
         private void cmdInit_Click(object sender, EventArgs e)
         {
             lsbLesCredits.Items.Clear();

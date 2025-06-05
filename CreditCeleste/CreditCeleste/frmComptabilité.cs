@@ -85,6 +85,7 @@ namespace CreditCeleste
 
         }
 
+        // Deconnexion
         private void btnBDDfill_Click(object sender, EventArgs e)
         {
             if(Globales.fenConnexion == null)
