@@ -31,16 +31,16 @@ namespace CreditCeleste
 
         }
 
-        private void insererFacture(SqlConnection connexion, DateTime dateFacture, string typeFrais, decimal montant)
+        private void insererFacture(SqlConnection connexion, Facture facture)
         {
 
             using (SqlCommand command = new SqlCommand("InsFacture", connexion))
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add(new SqlParameter("@dateFacture", dateFacture));
-                command.Parameters.Add(new SqlParameter("@typeFrais", typeFrais));
-                command.Parameters.Add(new SqlParameter("@montant", montant));
-                command.Parameters.Add(new SqlParameter("@numVisite", this.numVisite));
+                command.Parameters.Add(new SqlParameter("@dateFacture", facture.getDateFacture()));
+                command.Parameters.Add(new SqlParameter("@typeFrais", facture.getTypeFrais()));
+                command.Parameters.Add(new SqlParameter("@montant", facture.getMontantF()));
+                command.Parameters.Add(new SqlParameter("@numVisite", facture.getNumeroVisite()));
                 command.Parameters.Add(new SqlParameter("@estRembourser", false));
 
                 command.ExecuteNonQuery();
@@ -71,17 +71,33 @@ namespace CreditCeleste
                 {
                     connexion.Open();
                     if (fraisRepas > 0)
-                        insererFacture(connexion, dateFacture.Value, "Frais Repas", fraisRepas);
+                    {
+                        Facture fRepas = new Facture(dateFacture.Value, "Frais Repas", fraisRepas, numVisite);
+                        insererFacture(connexion, fRepas);
+                    }
 
                     if (fraisHotel > 0)
-                        insererFacture(connexion, dateFacture.Value, "Frais hôtel", fraisHotel);
+                    {
+                        Facture fHotel = new Facture(dateFacture.Value, "Frais hôtel", fraisHotel, numVisite);
+                        insererFacture(connexion, fHotel);
+                    }
 
                     if (fraisEssence > 0)
-                        insererFacture(connexion, dateFacture.Value, "Frais essence", fraisEssence);
+                    {
+                        Facture fEssence = new Facture(dateFacture.Value, "Frais essence", fraisEssence, numVisite);
+                        insererFacture(connexion, fEssence);
+                    }
 
                     MessageBox.Show("Enregistrement réussi");
-                    this.Close();
-                    
+                    if (Globales.fenAccueilVisiteur == null || Globales.fenAccueilVisiteur.IsDisposed)
+                    {
+                        Globales.fenAccueilVisiteur = new frmAccueilVisiteur();
+                    }
+                    Globales.fenAccueilVisiteur.Show();
+
+                    // Fermer la fenêtre actuelle
+                    this.Hide();
+
                 }
             }
             catch (Exception ex)

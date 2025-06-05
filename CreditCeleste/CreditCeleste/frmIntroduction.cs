@@ -38,10 +38,7 @@ namespace CreditCeleste
         {
            
             //mettre les vendeurs dans la comboBox
-            foreach (Vendeur unVendeur in Globales.uneConcession.getLesVendeurs())
-            {
-                cbxVendeur.Items.Add(unVendeur.getInfoVendeur());
-            }
+           
             if (Globales.uneAncienneVoiture != null)
             {
                 txtAncVhc.Text = Globales.uneAncienneVoiture.LibeleAncVoiture;
@@ -70,18 +67,7 @@ namespace CreditCeleste
 
        
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (cbxVendeur.SelectedItem != null)
-            {
-                lblNomA.Text = cbxVendeur.SelectedItem.ToString();
-                lblNomA.Refresh();
-
-            }
-
-
-        }
+        
 
        
 

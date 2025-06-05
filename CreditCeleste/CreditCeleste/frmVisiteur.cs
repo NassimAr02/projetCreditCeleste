@@ -68,16 +68,16 @@ namespace CreditCeleste
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    MessageBox.Show(
-                    $"Paramètres :\n" +
-                    $"ID User : {uneVisite.getIdUser()}\n" +
-                    $"Date Départ : {uneVisite.getDateDepart()}\n" +
-                    $"Date Retour : {uneVisite.getDateRetour()}\n" +
-                    $"Voiture Perso : {uneVisite.getVoiturePerso()}\n" +
-                    $"Numéro Concession : {uneVisite.getNumeroConcession()}\n" +
-                    $"Puissance : {uneVisite.getPuissanceVoiture()}\n" +
-                    $"Distance : {uneVisite.getDistanceVisite()}"
-                    );
+                    //MessageBox.Show(
+                    //$"Paramètres :\n" +
+                    //$"ID User : {uneVisite.getIdUser()}\n" +
+                    //$"Date Départ : {uneVisite.getDateDepart()}\n" +
+                    //$"Date Retour : {uneVisite.getDateRetour()}\n" +
+                    //$"Voiture Perso : {uneVisite.getVoiturePerso()}\n" +
+                    //$"Numéro Concession : {uneVisite.getNumeroConcession()}\n" +
+                    //$"Puissance : {uneVisite.getPuissanceVoiture()}\n" +
+                    //$"Distance : {uneVisite.getDistanceVisite()}"
+                    //);
 
                     command.Parameters.Add(new SqlParameter("@datedepart", uneVisite.getDateDepart()));
                     command.Parameters.Add(new SqlParameter("@dateRetour", uneVisite.getDateRetour()));

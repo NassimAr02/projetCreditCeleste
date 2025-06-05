@@ -90,6 +90,18 @@
     <Compile Include="frmConnexion.Designer.cs">
       <DependentUpon>frmConnexion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDetailsFacture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetailsFacture.Designer.cs">
+      <DependentUpon>frmDetailsFacture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFactureVisite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFactureVisite.Designer.cs">
+      <DependentUpon>frmFactureVisite.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListeCredit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +164,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConnexion.resx">
       <DependentUpon>frmConnexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailsFacture.resx">
+      <DependentUpon>frmDetailsFacture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFactureVisite.resx">
+      <DependentUpon>frmFactureVisite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmIntroduction.resx">
       <DependentUpon>frmIntroduction.cs</DependentUpon>

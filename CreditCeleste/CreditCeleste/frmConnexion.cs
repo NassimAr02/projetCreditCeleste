@@ -29,6 +29,10 @@ namespace CreditCeleste
             string identifiantUser = txtUtilisateur.Text;
             string mdpUser = MDPversMD5.ConversionMD5(txtMdp.Text);
 
+            // à commenter après
+            //identifiantUser = "comptabilite1";
+            //mdpUser = MDPversMD5.ConversionMD5("passwordCompta1");
+
             string concess = "SELECT * FROM Concession WHERE numeroConcession = @numConcession";
           
             using (SqlConnection connection = DbConnexion.GetConnection())
@@ -74,7 +78,7 @@ namespace CreditCeleste
                         {
                             int userId = (idU.Value != DBNull.Value) ? Convert.ToInt32(idU.Value) : 0;
                             Globales.idUser = userId;
-                            Globales.uneVisite.setIdUser(userId);
+                            //Globales.uneVisite.setIdUser(userId);
 
                             Form formShow = null;
                             if (role  == "Visiteur")
@@ -121,7 +125,7 @@ namespace CreditCeleste
                                 using (SqlCommand vendeurCmd = new SqlCommand(vendeur, connection))
                                 {
                                     vendeurCmd.Parameters.AddWithValue("@nomU", identifiantUser);
-                                    vendeurCmd.Parameters.AddWithValue("@mdp", identifiantUser);
+                                    vendeurCmd.Parameters.AddWithValue("@mdp", mdpUser);
 
                                     using (SqlDataReader reader = vendeurCmd.ExecuteReader())
                                     {
@@ -131,6 +135,10 @@ namespace CreditCeleste
                                             string nomC = reader["nomCollaborateur"] != DBNull.Value ? reader["nomCollaborateur"].ToString() : "";
                                             string prenomC = reader["prenomCollaborateur"] != DBNull.Value ? reader["prenomCollaborateur"].ToString() : "";
                                             Globales.unVendeur = new Vendeur(civC, nomC, prenomC);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Aucun vendeur trouvé pour ces identifiants.");
                                         }
                                     }
                                 }

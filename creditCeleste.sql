@@ -1,5 +1,5 @@
 -- Utiliser la base de données
-USE CreditCelesteKOPP;
+USE CreditCeleste;
 GO
 
 -- -- Supprimer les tables si elles existent
@@ -227,6 +227,7 @@ BEGIN
    END
 END
 GO
+
 
 IF OBJECT_ID('InsClient', 'P') IS NOT NULL 
     DROP PROCEDURE InsClient;

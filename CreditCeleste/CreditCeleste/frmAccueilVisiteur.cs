@@ -20,6 +20,11 @@ namespace CreditCeleste
 
         private void btnNouvVisite_Click(object sender, EventArgs e)
         {
+            if(Globales.uneVisite == null)
+            {
+                Globales.uneVisite = new Visite();
+                Globales.uneVisite.setIdUser(Globales.idUser);
+            }
 
             //Globales.uneVisite.setIdUser(Globales.idUser);
             if (Globales.fenVisiteur == null)
@@ -140,6 +145,17 @@ namespace CreditCeleste
         private void lsbMesVisites_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDeconnexion_Click(object sender, EventArgs e)
+        {
+            if (Globales.fenConnexion == null)
+            {
+                Globales.fenConnexion = new frmConnexion();
+                Globales.fenConnexion.Show();
+                Globales.fenAccueil = null;
+                this.Hide();
+            }
         }
     }
 }
