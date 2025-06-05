@@ -295,7 +295,7 @@ CREATE PROCEDURE InsFacture
     @typeFrais NVARCHAR(50),
     @montant DECIMAL(10,2),
     @numVisite INT,
-    @estRembourser BIT = NULL, 
+    @estRembourser BIT 
 AS
 BEGIN
     -- Vérification si la visite associée existe
