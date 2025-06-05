@@ -126,61 +126,39 @@ namespace CreditCeleste
                 try
                 {
                     // 1. Récupérer le montant de la facture
-                    decimal montantFacture = 0;
-
                     SqlCommand cmdGetMontant = new SqlCommand(
                         "SELECT montant FROM Facture WHERE numFacture = @numFacture", con, transaction);
                     cmdGetMontant.Parameters.AddWithValue("@numFacture", numFacture);
 
                     object result = cmdGetMontant.ExecuteScalar();
-                    if (result != null)
-                        montantFacture = Convert.ToDecimal(result);
-                    else
+                    if (result == null)
                         throw new Exception("Facture introuvable.");
+
+                    decimal montantFacture = Convert.ToDecimal(result);
 
                     // 2. Calcul du reste à charge
                     decimal resteACharge = montantFacture - montantRembourse;
-                    if (resteACharge < 0) resteACharge = 0; // optionnel : éviter valeur négative
+                    if (resteACharge < 0) resteACharge = 0;
 
-                    // 3. Insertion dans Remboursement et récupération de numRemboursement
-                    SqlCommand insertRemb = new SqlCommand(@"
-                    INSERT INTO Remboursement (numFacture, montantR, RAC, commentaire)
-                    VALUES (@numFacture, @montantR, @rac, @commentaire);
-                    SELECT CAST(SCOPE_IDENTITY() AS INT);", con, transaction);
+                    // 3. Appel de la procédure stockée
+                    SqlCommand cmd = new SqlCommand("InsertRemboursementEtMajFacture", con, transaction);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    insertRemb.Parameters.AddWithValue("@numFacture", numFacture);
-                    insertRemb.Parameters.AddWithValue("@montantR", montantRembourse);
-                    insertRemb.Parameters.AddWithValue("@rac", resteACharge);
-                    insertRemb.Parameters.AddWithValue("@commentaire", string.IsNullOrWhiteSpace(txtCommentaire.Text) ? DBNull.Value : (object)txtCommentaire.Text);
+                    cmd.Parameters.AddWithValue("@numFacture", numFacture);
+                    cmd.Parameters.AddWithValue("@montantR", montantRembourse);
+                    cmd.Parameters.AddWithValue("@rac", resteACharge);
+                    cmd.Parameters.AddWithValue("@estRembourse", estRembourser);
 
+                    // Gérer les valeurs nulles proprement
+                    object commentaire = string.IsNullOrWhiteSpace(txtCommentaire.Text) ? DBNull.Value : (object)txtCommentaire.Text;
+                    cmd.Parameters.AddWithValue("@commentaire", commentaire);
 
-                    // Exécution + récupération de l'ID généré
-                    int numRemboursement = (int)insertRemb.ExecuteScalar();
-
-
-                    // 4. Insertion dans Rembourser
-                    SqlCommand insertRembourser = new SqlCommand(@"
-                    INSERT INTO Rembourser (numRemboursement, numFacture)
-                    VALUES (@numRemboursement, @numFacture);", con, transaction);
-
-                    insertRembourser.Parameters.AddWithValue("@numRemboursement", numRemboursement);
-                    insertRembourser.Parameters.AddWithValue("@numFacture", numFacture);
-                    insertRembourser.ExecuteNonQuery();
-
-
-
-                    // 5. Mise à jour de la facture
-                    SqlCommand updateFacture = new SqlCommand(@"
-                    UPDATE Facture
-                    SET estRembourser = @estRembourse
-                    WHERE numFacture = @numFacture;", con, transaction);
-
-                    updateFacture.Parameters.AddWithValue("@estRembourse", estRembourser);
-                    updateFacture.Parameters.AddWithValue("@numFacture", numFacture);
-                    updateFacture.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
                     transaction.Commit();
                     MessageBox.Show("Remboursement enregistré !");
+
+                    // Navigation
                     Globales.fenComptabilite = new frmComptabilite();
                     Globales.fenComptabilite.Show();
                     Globales.fenDetailsFacture = null;

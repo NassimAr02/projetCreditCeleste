@@ -379,3 +379,40 @@ BEGIN
 		RETURN 0;
 END
 GO
+
+CREATE PROCEDURE InsertRemboursementEtMajFacture
+    @numFacture INT,
+    @montantR DECIMAL(10, 2),
+    @rac DECIMAL(10, 2),
+    @commentaire NVARCHAR(MAX) = NULL,
+    @estRembourse BIT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- 1. Insertion dans Remboursement
+        INSERT INTO Remboursement (numFacture, montantR, RAC, commentaire)
+        VALUES (@numFacture, @montantR, @rac, @commentaire);
+
+		-- Stockage de numRemboursement au moment de sa creation
+        DECLARE @numRemboursement INT = SCOPE_IDENTITY();
+
+        -- 2. Insertion dans Rembourser
+        INSERT INTO Rembourser (numRemboursement, numFacture)
+        VALUES (@numRemboursement, @numFacture);
+
+        -- 3. Mise à jour de Facture
+        UPDATE Facture
+        SET estRembourser = @estRembourse
+        WHERE numFacture = @numFacture;
+
+        COMMIT;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK;
+        THROW;
+    END CATCH
+END;
