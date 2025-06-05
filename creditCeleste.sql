@@ -3,18 +3,18 @@ USE CreditCeleste;
 GO
 
 -- -- Supprimer les tables si elles existent
-IF OBJECT_ID('Credit', 'U') IS NOT NULL DROP TABLE Credit;
-IF OBJECT_ID('Client', 'U') IS NOT NULL DROP TABLE Client;
-IF OBJECT_ID('Lier', 'U') IS NOT NULL DROP TABLE Lier;
-IF OBJECT_ID('Voiture', 'U') IS NOT NULL DROP TABLE Voiture;
-IF OBJECT_ID('NouvelleVoiture', 'U') IS NOT NULL DROP TABLE NouvelleVoiture;
-IF OBJECT_ID('AncienneVoiture', 'U') IS NOT NULL DROP TABLE AncienneVoiture;
-IF OBJECT_ID('Concession', 'U') IS NOT NULL DROP TABLE Concession;
-IF OBJECT_ID('Visite', 'U') IS NOT NULL DROP TABLE Visite;
-IF OBJECT_ID('Facture', 'U') IS NOT NULL DROP TABLE Facture;
-IF OBJECT_ID('Remboursement', 'U') IS NOT NULL DROP TABLE Remboursement;
-IF OBJECT_ID('Rembourser', 'U') IS NOT NULL DROP TABLE Rembourser;
-IF OBJECT_ID('Utilisateur','U') IS NOT NULL DROP TABLE Utilisateur;
+-- IF OBJECT_ID('Credit', 'U') IS NOT NULL DROP TABLE Credit;
+-- IF OBJECT_ID('Client', 'U') IS NOT NULL DROP TABLE Client;
+-- IF OBJECT_ID('Lier', 'U') IS NOT NULL DROP TABLE Lier;
+-- IF OBJECT_ID('Voiture', 'U') IS NOT NULL DROP TABLE Voiture;
+-- IF OBJECT_ID('NouvelleVoiture', 'U') IS NOT NULL DROP TABLE NouvelleVoiture;
+-- IF OBJECT_ID('AncienneVoiture', 'U') IS NOT NULL DROP TABLE AncienneVoiture;
+-- IF OBJECT_ID('Concession', 'U') IS NOT NULL DROP TABLE Concession;
+-- IF OBJECT_ID('Visite', 'U') IS NOT NULL DROP TABLE Visite;
+-- IF OBJECT_ID('Facture', 'U') IS NOT NULL DROP TABLE Facture;
+-- IF OBJECT_ID('Remboursement', 'U') IS NOT NULL DROP TABLE Remboursement;
+-- IF OBJECT_ID('Rembourser', 'U') IS NOT NULL DROP TABLE Rembourser;
+-- IF OBJECT_ID('Utilisateur','U') IS NOT NULL DROP TABLE Utilisateur;
 
 -- Table Client
 CREATE TABLE Client (

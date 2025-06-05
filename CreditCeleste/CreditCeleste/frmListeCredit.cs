@@ -119,6 +119,17 @@ namespace CreditCeleste
                 this.Hide();
             }
         }
+
+        private void btnPrecedent_Click(object sender, EventArgs e)
+        {
+            if (Globales.fenCalcul == null)
+            {
+                Globales.fenCalcul = new frmCalculCredit();
+                Globales.fenCalcul.Show();
+                Globales.fenListeCredit = null;
+                this.Hide();
+            }
+        }
     }
 }
  

@@ -54,6 +54,7 @@ namespace CreditCeleste
                 Globales.fenListeCredit = new frmListeCredit();
             }
             Globales.fenListeCredit.Show();
+            Globales.fenCalcul = null;
             this.Close();
             
         }

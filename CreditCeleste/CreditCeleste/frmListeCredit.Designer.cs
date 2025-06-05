@@ -35,14 +35,15 @@ namespace CreditCeleste
             this.lsbLesCredits = new System.Windows.Forms.ListBox();
             this.cmdInit = new System.Windows.Forms.Button();
             this.btnDeconnexion = new System.Windows.Forms.Button();
+            this.btnPrecedent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEnregistre
             // 
-            this.btnEnregistre.Location = new System.Drawing.Point(409, 327);
-            this.btnEnregistre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEnregistre.Location = new System.Drawing.Point(307, 266);
+            this.btnEnregistre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEnregistre.Name = "btnEnregistre";
-            this.btnEnregistre.Size = new System.Drawing.Size(109, 37);
+            this.btnEnregistre.Size = new System.Drawing.Size(82, 30);
             this.btnEnregistre.TabIndex = 1;
             this.btnEnregistre.Text = "Enregistrer";
             this.btnEnregistre.UseVisualStyleBackColor = true;
@@ -50,10 +51,10 @@ namespace CreditCeleste
             // 
             // btnRetour
             // 
-            this.btnRetour.Location = new System.Drawing.Point(45, 44);
-            this.btnRetour.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRetour.Location = new System.Drawing.Point(34, 36);
+            this.btnRetour.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRetour.Name = "btnRetour";
-            this.btnRetour.Size = new System.Drawing.Size(75, 37);
+            this.btnRetour.Size = new System.Drawing.Size(56, 30);
             this.btnRetour.TabIndex = 2;
             this.btnRetour.Text = "Accueil";
             this.btnRetour.UseVisualStyleBackColor = true;
@@ -62,20 +63,19 @@ namespace CreditCeleste
             // lsbLesCredits
             // 
             this.lsbLesCredits.FormattingEnabled = true;
-            this.lsbLesCredits.ItemHeight = 16;
-            this.lsbLesCredits.Location = new System.Drawing.Point(200, 100);
-            this.lsbLesCredits.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lsbLesCredits.Location = new System.Drawing.Point(150, 81);
+            this.lsbLesCredits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lsbLesCredits.Name = "lsbLesCredits";
-            this.lsbLesCredits.Size = new System.Drawing.Size(367, 148);
+            this.lsbLesCredits.Size = new System.Drawing.Size(276, 121);
             this.lsbLesCredits.TabIndex = 3;
             this.lsbLesCredits.SelectedIndexChanged += new System.EventHandler(this.lsbLesCredits_SelectedIndexChanged);
             // 
             // cmdInit
             // 
-            this.cmdInit.Location = new System.Drawing.Point(249, 327);
-            this.cmdInit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmdInit.Location = new System.Drawing.Point(34, 81);
+            this.cmdInit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmdInit.Name = "cmdInit";
-            this.cmdInit.Size = new System.Drawing.Size(113, 37);
+            this.cmdInit.Size = new System.Drawing.Size(85, 30);
             this.cmdInit.TabIndex = 5;
             this.cmdInit.Text = "Effacer la liste";
             this.cmdInit.UseVisualStyleBackColor = true;
@@ -83,26 +83,36 @@ namespace CreditCeleste
             // 
             // btnDeconnexion
             // 
-            this.btnDeconnexion.Location = new System.Drawing.Point(638, 44);
-            this.btnDeconnexion.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeconnexion.Location = new System.Drawing.Point(478, 36);
             this.btnDeconnexion.Name = "btnDeconnexion";
-            this.btnDeconnexion.Size = new System.Drawing.Size(124, 28);
+            this.btnDeconnexion.Size = new System.Drawing.Size(93, 23);
             this.btnDeconnexion.TabIndex = 7;
             this.btnDeconnexion.Text = "Déconnexion";
             this.btnDeconnexion.UseVisualStyleBackColor = true;
             this.btnDeconnexion.Click += new System.EventHandler(this.btnDeconnexion_Click);
             // 
+            // btnPrecedent
+            // 
+            this.btnPrecedent.Location = new System.Drawing.Point(185, 266);
+            this.btnPrecedent.Name = "btnPrecedent";
+            this.btnPrecedent.Size = new System.Drawing.Size(82, 30);
+            this.btnPrecedent.TabIndex = 8;
+            this.btnPrecedent.Text = "Précédent";
+            this.btnPrecedent.UseVisualStyleBackColor = true;
+            this.btnPrecedent.Click += new System.EventHandler(this.btnPrecedent_Click);
+            // 
             // frmListeCredit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.btnPrecedent);
             this.Controls.Add(this.btnDeconnexion);
             this.Controls.Add(this.cmdInit);
             this.Controls.Add(this.lsbLesCredits);
             this.Controls.Add(this.btnRetour);
             this.Controls.Add(this.btnEnregistre);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmListeCredit";
             this.Text = "listeCredit";
             this.Load += new System.EventHandler(this.listeCredit_Load);
@@ -117,5 +127,6 @@ namespace CreditCeleste
         private System.Windows.Forms.ListBox lsbLesCredits;
         private System.Windows.Forms.Button cmdInit;
         private System.Windows.Forms.Button btnDeconnexion;
+        private System.Windows.Forms.Button btnPrecedent;
     }
 }
