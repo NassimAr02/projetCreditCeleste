@@ -87,11 +87,11 @@ namespace CreditCeleste
 
         private void btnBDDfill_Click(object sender, EventArgs e)
         {
-            if(Globales.fenAccueil == null)
+            if(Globales.fenConnexion == null)
             {
                 Globales.fenComptabilite = null;
-                Globales.fenAccueil = new frmAccueil();
-                Globales.fenAccueil.Show();
+                Globales.fenConnexion = new frmConnexion();
+                Globales.fenConnexion.Show();
                 this.Close();
             }
            

@@ -1,4 +1,10 @@
 -- Utiliser la base de données
+DROP DATABASE IF EXISTS CreditCeleste;
+GO
+
+CREATE DATABASE CreditCeleste;
+GO
+
 USE CreditCeleste;
 GO
 

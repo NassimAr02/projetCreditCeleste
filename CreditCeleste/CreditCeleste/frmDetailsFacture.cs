@@ -75,6 +75,9 @@ namespace CreditCeleste
                     }
 
                     txtBoxMontantRembourser.Text = montant.ToString("0.00");
+                } else {
+                    txtDistance.Enabled = false;
+                    lblDistance.Enabled = false;
                 }
 
                 dr.Close();
